@@ -13,20 +13,152 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::create('user_roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('type')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('employees', function(Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('dob');
+            $table->timestamps();
+
+        });
+
+        Schema::create('addresses', function(Blueprint $table) {
+            $table->id();
+            $table->string('line_1');
+            $table->string('line_2');
+            $table->string('city');
+            $table->string('state');
+            $table->string('country');
+            $table->timestamps();
+
+        });
+
+
+        Schema::create('contacts', function(Blueprint $table) {
+            $table->id();
+            $table->string('primary_number');
+            $table->string('secondary_number')->nullable();
+            $table->string('email');
+            $table->timestamps();
+
+        });
+
+        
+        Schema::create('job_roles', function(Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
+
+        });        
+
+        Schema::create('items', function(Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->float('selling_price');
+            $table->float('cost_price');
+            $table->integer('total_sold');
+            $table->integer('stock_count');
+            $table->string('image_url')->nullable();
+            $table->timestamps();
+
+        });
+
+
+        Schema::create('suppliers', function(Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+
+        });
+
+        
+        Schema::create('categories', function(Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+
+        });
+
+        
+        Schema::create('transactions', function(Blueprint $table) {
+            $table->id();
+            $table->integer('count');
+            $table->float('total_cost');
+            $table->timestamps();
+
+        });
+
+
+        Schema::create('orders', function(Blueprint $table) {
+            $table->id();
+            $table->float('gross_cost');
+            $table->float('net_cost');
+            $table->float('discount');
+            $table->float('duty_and_vat');
+            $table->float('insurance_fee');
+            $table->float('processing_fee');
+            $table->float('shipping_fee');
+            $table->date('order_date');
+            $table->date('date_arrived');
+            $table->boolean('received');
+            $table->timestamps();
+
+        });
+
+        Schema::create('bills', function(Blueprint $table) {
+            $table->id();
+            $table->float('gross_cost');
+            $table->float('net_cost');
+            $table->float('discount');
+            $table->float('duty_and_vat');
+            $table->float('delivery_free')->nullable();
+            $table->timestamps();
+
+        });
+
+
+        Schema::create('deliveries', function(Blueprint $table) {
+            $table->id();
+            $table->date('date_shipped');
+            $table->timestamps();
+
+        });
+
+        Schema::create('customers', function(Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->timestamps();
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('employees');
+        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('job_roles');
+        Schema::dropIfExists('items');
+        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('categories');
+        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('orders');
+        Schema::dropIfExists('bills');
+        Schema::dropIfExists('deliveries');
+        Schema::dropIfExists('customers');
     }
 };
