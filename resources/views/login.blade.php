@@ -13,6 +13,10 @@
         <input id="email" type="email" name="email" required autofocus>
     </div>
     <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required autofocus>
+    </div>
+    <div>
         <button type="submit">Login</button>
     </div>
 </form> 

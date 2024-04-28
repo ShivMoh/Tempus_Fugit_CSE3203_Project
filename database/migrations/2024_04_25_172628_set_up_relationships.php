@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function(Blueprint $table ) {
-            $table->integer('user_role_id')->unique();  
-            $table->integer('employee_id')->unique();
+            $table->uuid('user_role_id');  
+            $table->uuid('employee_id');
 
             $table->foreign('user_role_id')->references('id')->on('user_roles');
             $table->foreign('employee_id')->references('id')->on('employees');
         });
 
         Schema::table('employees', function(Blueprint $table ) {
-            $table->integer('job_role_id')->unique();
-            $table->integer('contact_id')->unique();
-            $table->integer('address_id')->unique();
+            $table->uuid('job_role_id');
+            $table->uuid('contact_id');
+            $table->uuid('address_id');
             
             $table->foreign('job_role_id')->references('id')->on('job_roles');
             $table->foreign('contact_id')->references('id')->on('contacts');
@@ -30,16 +30,16 @@ return new class extends Migration
         });
         
         Schema::table('items', function(Blueprint $table ) {
-            $table->integer('category_id')->unique();
-            $table->integer('supplier_id')->unique();
+            $table->uuid('category_id');
+            $table->uuid('supplier_id');
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
         });
 
         Schema::table('transactions', function(Blueprint $table ) {
-            $table->integer('item_id')->unique();
-            $table->integer('bill_id')->unique();
+            $table->uuid('item_id');
+            $table->uuid('bill_id');
 
             $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('bill_id')->references('id')->on('bills');
@@ -47,17 +47,17 @@ return new class extends Migration
         
         
         Schema::table('bills', function(Blueprint $table ) {
-            $table->integer('employee_id')->unique();
-            $table->integer('customer_id')->unique();
+            $table->uuid('employee_id');
+            $table->uuid('customer_id');
 
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('customer_id')->references('id')->on('customers');
         });
         
         Schema::table('orders', function(Blueprint $table ) {
-            $table->integer('employee_id')->unique();
-            $table->integer('supplier_id')->unique();
-            $table->integer('item_id')->unique();
+            $table->uuid('employee_id');
+            $table->uuid('supplier_id');
+            $table->uuid('item_id');
         
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
@@ -67,9 +67,9 @@ return new class extends Migration
 
         
         Schema::table('deliveries', function(Blueprint $table ) {
-            $table->integer('bill_id')->unique();
-            $table->integer('address_id')->unique();
-            $table->integer('contact_id')->unique();
+            $table->uuid('bill_id');
+            $table->uuid('address_id');
+            $table->uuid('contact_id');
 
             $table->foreign('bill_id')->references('id')->on('bills');
             $table->foreign('address_id')->references('id')->on('addresses');
@@ -77,7 +77,7 @@ return new class extends Migration
         });
 
         Schema::table('customers', function(Blueprint $table ) {           
-            $table->integer('contact_id')->unique();
+            $table->uuid('contact_id');
 
             $table->foreign('contact_id')->references('id')->on('contacts');
         });

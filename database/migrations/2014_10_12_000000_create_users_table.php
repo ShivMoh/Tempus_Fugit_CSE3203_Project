@@ -12,20 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
         });
 
         Schema::create('user_roles', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('type')->unique();
             $table->timestamps();
         });
 
         Schema::create('employees', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('dob');
@@ -34,7 +34,7 @@ return new class extends Migration
         });
 
         Schema::create('addresses', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('line_1');
             $table->string('line_2');
             $table->string('city');
@@ -46,7 +46,7 @@ return new class extends Migration
 
 
         Schema::create('contacts', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('primary_number');
             $table->string('secondary_number')->nullable();
             $table->string('email');
@@ -56,14 +56,14 @@ return new class extends Migration
 
         
         Schema::create('job_roles', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->timestamps();
 
         });        
 
         Schema::create('items', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->float('selling_price');
             $table->float('cost_price');
@@ -76,7 +76,7 @@ return new class extends Migration
 
 
         Schema::create('suppliers', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamps();
 
@@ -84,7 +84,7 @@ return new class extends Migration
 
         
         Schema::create('categories', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamps();
 
@@ -92,7 +92,7 @@ return new class extends Migration
 
         
         Schema::create('transactions', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->integer('count');
             $table->float('total_cost');
             $table->timestamps();
@@ -101,7 +101,7 @@ return new class extends Migration
 
 
         Schema::create('orders', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->float('gross_cost');
             $table->float('net_cost');
             $table->float('discount');
@@ -117,7 +117,7 @@ return new class extends Migration
         });
 
         Schema::create('bills', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->float('gross_cost');
             $table->float('net_cost');
             $table->float('discount');
@@ -129,14 +129,14 @@ return new class extends Migration
 
 
         Schema::create('deliveries', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->date('date_shipped');
             $table->timestamps();
 
         });
 
         Schema::create('customers', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('first_name');
             $table->string('last_name');
             $table->timestamps();

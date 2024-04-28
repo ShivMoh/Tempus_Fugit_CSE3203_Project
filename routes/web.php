@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonkeyController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
+Route::get('/register', [UserController::class, 'register']);
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::view('/login', 'login')->name('login');
+Route::post('/login', [UserController::class, 'login']);
+
 Route::view('/dashboard', 'dashboard');

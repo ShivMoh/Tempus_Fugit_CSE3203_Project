@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logs', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('message');
             $table->timestamps();
 
-            $table->integer('employee_id')->unique();
+            $table->uuid('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees');
         });
 
         Schema::create('reports', function(Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('x_data');
             $table->string('y_data');
 
