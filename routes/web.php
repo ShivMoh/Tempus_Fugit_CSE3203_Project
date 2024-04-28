@@ -19,7 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
-Route::get('/register', [UserController::class, 'register']);
+
+Route::view('/register', 'register');
+Route::post('/register', [UserController::class, 'register']);
 
 Route::view('/login', 'login')->name('login');
 Route::post('/login', [UserController::class, 'login']);

@@ -17,7 +17,6 @@ class UserController extends Controller
     public function login(Request $request)
     {
 
-
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -41,17 +40,25 @@ class UserController extends Controller
     }
 
     public function register(Request $request) {
-        // uncomment these when we actually create the views
+        // // uncomment these when we actually create the views
         // $data = $request->validate(
         //     [
         //         'first_name'=>'required|max:255',
         //         'last_name'=>'required|max:255',
-        //         'dob'=>'required|date',
+        //         'job_role'=>'required|max:255',
+        //         'dob'=>'required',
+        //         'line_1'=>'required|max:255',
+        //         'line_2'=>'required|max:255',
+        //         'city'=>'required|max:255',
+        //         'state'=>'required|max:255',
+        //         'country'=>'required|max:255',
         //         'email'=>'required|unique|email|max:255',
         //         'password'=>'required',
-        //         'confirm_password'=>'required'
+        //         'confirm_password'=>'required'            
         //     ]
         // );
+
+        echo "<script>console.log('hello world')</script>";
 
         // if (floor(date("Y-m-d") - $request->input('dob')) < 18) {
         //     echo "Under aged";
@@ -66,25 +73,25 @@ class UserController extends Controller
         
         $address = new Address([
             "id"=>(string) Str::uuid(),
-            "line_1"=>"something address",
-            "line_2"=>"something address",
-            "city"=>"something city",
-            "state"=>"something state",
-            "country"=>"something country",
+            "line_1"=>$request->input('line_1'),
+            "line_2"=>$request->input('line_2'),
+            "city"=>$request->input('city'),
+            "state"=>$request->input('state'),
+            "country"=>$request->input('country'),
         ]);
 
         $contact = new Contact([
             "id"=>(string) Str::uuid(),
-            "primary_number"=>"355552",
-            "secondary_number"=>"355552",
-            "email"=>"something email",
+            "primary_number"=>$request->input('primary_number'),
+            "secondary_number"=>$request->input('secondary_number'),
+            "email"=>$request->input('email'),
         ]);
 
         $employee = new Employee([
             "id"=>(string) Str::uuid(),
-            "first_name"=>'first_name',
-            "last_name"=>'last_name',
-            "dob"=>'yy-mm-dd',
+            "first_name"=>$request->input('first_name'),
+            "last_name"=>$request->input('last_name'),
+            "dob"=>$request->input('dob'),
             "address_id"=>$address->id,
             "contact_id"=>$contact->id,
             "job_role_id"=>"d6353dd9-2e4a-4a21-81c4-9a4f16cef20c",
@@ -92,8 +99,8 @@ class UserController extends Controller
 
         $user = new User([
             "id"=>(string) Str::uuid(),
-            "email"=>'email3@gmail.com',
-            "password"=>'password',
+            "email"=>$request->input('email'),
+            "password"=>$request->input('password'),
             "user_role_id"=>"86efe04b-8be4-4c70-a240-fe9624d89371",
             "employee_id"=>$employee->id,
         ]);
@@ -103,5 +110,6 @@ class UserController extends Controller
         $employee->save();
         $user->save();
         
+        return redirect()->intended('/dashboard');
     }
 }
