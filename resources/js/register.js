@@ -27,7 +27,7 @@ window.nextPrev = function(n) {
   if (n == 1 && !validateForm()) return false;
   // Hide the current tab:
   x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
+  // Increase or decrease the current tab by 1:P
   currentTab = currentTab + n;
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {

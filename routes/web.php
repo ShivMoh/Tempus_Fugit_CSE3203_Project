@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonkeyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SupplierController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +22,12 @@ Route::get('/', function () {
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
 
+Route::view('/supplier', 'supplier/supplier');
+Route::post('/supplier', [SupplierController::class, 'register']);
+
 Route::view('/register', 'register');
 Route::post('/register', [UserController::class, 'register']);
+
 
 Route::view('/login', 'login')->name('login');
 Route::post('/login', [UserController::class, 'login']);
