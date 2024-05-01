@@ -65,6 +65,10 @@ return new class extends Migration
             
         });
 
+        Schema::table('suppliers', function(Blueprint $table ) {
+            $table->uuid('contact_id');
+            $table->foreign('contact_id')->references('id')->on('contacts');            
+        });
         
         Schema::table('deliveries', function(Blueprint $table ) {
             $table->uuid('bill_id');
@@ -123,6 +127,10 @@ return new class extends Migration
             $table->dropForeign(['item_id']);
         });
 
+
+        Schema::table('suppliers', function(Blueprint $table ) {
+            $table->dropForeign(['contact_id']);
+        });
         
         Schema::table('deliveries', function(Blueprint $table ) {
             $table->dropForeign(['bill_id']);

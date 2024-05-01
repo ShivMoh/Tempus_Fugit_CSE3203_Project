@@ -22,8 +22,14 @@ Route::get('/', function () {
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
 
-Route::view('/supplier', 'supplier/supplier');
-Route::post('/supplier', [SupplierController::class, 'register']);
+// start supplier routes
+
+// Route::view('/supplier', 'supplier/supplier');
+Route::get('/supplier', [SupplierController::class, 'index']);
+// Route::post('/supplier', [SupplierController::class, 'test']);
+
+// end supplier routes
+
 
 Route::view('/register', 'register');
 Route::post('/register', [UserController::class, 'register']);
