@@ -26,6 +26,8 @@ Route::get('/monkey', [MonkeyController::class, 'index']);
 
 // Route::view('/supplier', 'supplier/supplier');
 Route::get('/supplier', [SupplierController::class, 'index']);
+Route::get('/request-form', [SupplierController::class, 'get_request_form']);
+
 // Route::post('/supplier', [SupplierController::class, 'test']);
 
 // end supplier routes

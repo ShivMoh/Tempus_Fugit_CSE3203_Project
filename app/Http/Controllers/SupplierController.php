@@ -29,12 +29,17 @@ class SupplierController extends Controller
             );
         }
         
-        return view('supplier/test', 
+        return view('supplier/supplier', 
             [
                 'suppliers' => $result,
             ]
         );
     }
+
+    public function get_request_form() {
+        return view('supplier/request-form');
+    }
+
     //
     function test() {
 

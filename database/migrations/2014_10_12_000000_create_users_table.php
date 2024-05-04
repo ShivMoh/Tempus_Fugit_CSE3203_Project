@@ -79,6 +79,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string("description");
             $table->string('name');
+            $table->string("image_url")->nullable();
             $table->timestamps();
 
         });
