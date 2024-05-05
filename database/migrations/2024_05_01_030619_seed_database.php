@@ -48,7 +48,7 @@ return new class extends Migration
 
         DB::table('suppliers')->insert(
             array(
-                "id"=>(string) Str::uuid(),
+                "id"=>"79f9eef4-b689-4f13-895a-69f1488a791b",
                 'name'=>'Supplier 1',
                 "description"=>"This is supplier 1. They supply x, y and z",
                 "contact_id"=>"4c2b9326-bef5-4871-8e9a-9c12bccbb2d2",
@@ -77,7 +77,49 @@ return new class extends Migration
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
+        );          
+        
+
+        DB::table('categories')->insert(
+            array(
+                "id"=>"174779ab-5a6e-4aee-8053-2822954611d2",
+                "name"=>"category_1",
+                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+            )
         );       
+
+        DB::table('items')->insert(
+            array(
+                "id"=>(string) Str::uuid(),
+                'name'=>'Random Item',
+                'selling_price'=>4.5,
+                'cost_price'=>10.0,
+                'total_sold'=>10,
+                'stock_count'=>20,
+                'image_url'=>"sdfdfsdfndsf",
+                'category_id'=>'174779ab-5a6e-4aee-8053-2822954611d2',
+                'supplier_id'=>'79f9eef4-b689-4f13-895a-69f1488a791b',
+                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+            )
+        );    
+        
+        DB::table('items')->insert(
+            array(
+                "id"=>(string) Str::uuid(),
+                'name'=>'Random Item 2',
+                'selling_price'=>4.5,
+                'cost_price'=>10.0,
+                'total_sold'=>10,
+                'stock_count'=>20,
+                'image_url'=>"sdfdfsdfndsf",
+                'category_id'=>'174779ab-5a6e-4aee-8053-2822954611d2',
+                'supplier_id'=>'79f9eef4-b689-4f13-895a-69f1488a791b',
+                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+            )
+        );   
 
     }
 
@@ -88,6 +130,7 @@ return new class extends Migration
     {
         DB::table('contacts')->truncate();
         DB::table('suppliers')->truncate();
-
+        DB::table('categories')->truncate();
+        DB::table('items')->truncate();
     }
 };

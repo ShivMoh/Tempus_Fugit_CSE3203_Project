@@ -58,11 +58,23 @@ return new class extends Migration
             $table->uuid('employee_id');
             $table->uuid('supplier_id');
             $table->uuid('item_id');
-        
+            $table->uuid('payment_id');
+            $table->uuid('address_id');
+            
+            $table->foreign('payment_id')->references('id')->on('payments');
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->foreign('item_id')->references('id')->on('items');
             
+        });
+
+        Schema::table('order_items', function(Blueprint $table ) {
+            $table->uuid('item_id');
+            $table->uuid('order_id');
+        
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('order_id')->references('id')->on('orders');            
         });
 
         Schema::table('suppliers', function(Blueprint $table ) {
@@ -70,6 +82,12 @@ return new class extends Migration
             $table->foreign('contact_id')->references('id')->on('contacts');            
         });
         
+
+        Schema::table('cards', function(Blueprint $table ) {
+            $table->uuid('payment_id');
+            $table->foreign('payment_id')->references('id')->on('payments');            
+        });
+
         Schema::table('deliveries', function(Blueprint $table ) {
             $table->uuid('bill_id');
             $table->uuid('address_id');
@@ -82,8 +100,10 @@ return new class extends Migration
 
         Schema::table('customers', function(Blueprint $table ) {           
             $table->uuid('contact_id');
+            $table->uuid('payment_id');
 
             $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('payment_id')->references('id')->on('payments');
         });
         
     }
@@ -125,6 +145,14 @@ return new class extends Migration
             $table->dropForeign(['employee_id']);
             $table->dropForeign(['supplier_id']);
             $table->dropForeign(['item_id']);
+            $table->dropForeign(['payment_id']);
+            $table->dropForeign(['address_id']);
+
+        });
+
+        Schema::table('order_items', function(Blueprint $table ) {
+            $table->dropForeign(['item_id']);
+            $table->dropForeign(['order_id']);
         });
 
 
@@ -132,6 +160,10 @@ return new class extends Migration
             $table->dropForeign(['contact_id']);
         });
         
+        Schema::table('cards', function(Blueprint $table ) {
+            $table->dropForeign(['payment_id']);
+        });
+
         Schema::table('deliveries', function(Blueprint $table ) {
             $table->dropForeign(['bill_id']);
             $table->dropForeign(['address_id']);
@@ -140,6 +172,7 @@ return new class extends Migration
 
         Schema::table('customers', function(Blueprint $table ) {           
             $table->dropForeign(['contact_id']);
+            $table->dropForeign(['payment_id']);
         });
     }
 };

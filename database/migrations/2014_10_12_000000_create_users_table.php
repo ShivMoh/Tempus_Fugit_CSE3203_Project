@@ -61,6 +61,11 @@ return new class extends Migration
             $table->timestamps();
 
         });        
+        
+        Schema::create('order_items', function(Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->timestamps();
+        });      
 
         Schema::create('items', function(Blueprint $table) {
             $table->uuid('id')->primary();
@@ -73,7 +78,22 @@ return new class extends Migration
             $table->timestamps();
 
         });
+        
+        Schema::create('payments', function(Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->boolean('cash');            
+            $table->float('amount');
+            $table->timestamps();
+        });
 
+        Schema::create('cards', function(Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('card_holder');
+            $table->string('card_number');
+            $table->string('security_pin');
+            $table->string('expirary_date');
+            $table->timestamps();
+        });
 
         Schema::create('suppliers', function(Blueprint $table) {
             $table->uuid('id')->primary();
@@ -159,6 +179,7 @@ return new class extends Migration
         Schema::dropIfExists('categories');
         Schema::dropIfExists('transactions');
         Schema::dropIfExists('orders');
+        Schema::dropIfExists('order_items');
         Schema::dropIfExists('bills');
         Schema::dropIfExists('deliveries');
         Schema::dropIfExists('customers');

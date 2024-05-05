@@ -27,6 +27,7 @@ window.addItem = function() {
     var item_display = document.getElementById('item-display');
     var item_str = `${amount.value}X ${item.value}`;
 
+    console.log(document.getElementById('supplier').value)
     item_display.innerHTML = item_display.innerHTML + item_str + " | ";
     items.value = item_display.innerText;
     console.log(items.value)    
