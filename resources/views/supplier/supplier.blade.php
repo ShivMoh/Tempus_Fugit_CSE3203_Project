@@ -1,16 +1,20 @@
 @vite(['resources/js/supplier/request_form.js'])
 @vite(['resources/css/supplier/supplier.css'])
 
+{{$error}}
+
 <section class="filter-section">
     <div class="filter-container">
-        <div class="search-bar">
+        <form  action="/supplier" method="POST" class="search-bar">
+            @csrf
             <input 
                 type="search" 
-                name="search-bar" 
+                name="search" 
                 id="search-bar"
-                placeholder="Type to search"
+                placeholder="Search by name"
                 >
-        </div>
+            <button type="submit">Search</button>
+        </form>
     </div>
 </section>
 

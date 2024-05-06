@@ -26,8 +26,10 @@ Route::get('/monkey', [MonkeyController::class, 'index']);
 
 // Route::view('/supplier', 'supplier/supplier');
 Route::get('/supplier', [SupplierController::class, 'index']);
+Route::post('/supplier', [SupplierController::class, 'index']);
 Route::post('/request-form', [SupplierController::class, 'get_request_form']);
 Route::post('/order-item', [SupplierController::class, 'order_item']);
+Route::post('/review', [SupplierController::class, 'review']);
 
 // Route::post('/supplier', [SupplierController::class, 'test']);
 
