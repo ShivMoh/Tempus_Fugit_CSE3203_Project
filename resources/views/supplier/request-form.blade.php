@@ -28,7 +28,7 @@
         <p><input placeholder="Amount" type="number" name="amount" id="amount"></p>
         <p class="item-display" id="item-display"></p>
         <input type="hidden" name="items" id="items">
-        <input type="hidden" name="supplier" id="supplier" value={{$result[0]['supplier']}}>
+        <input type="hidden" name="supplier" id="supplier" value={{$result[0]['supplier']->id}}>
         <button type="button" onclick="addItem()">Add Item</button>
     </div>
     

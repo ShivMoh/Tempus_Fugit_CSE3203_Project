@@ -78,6 +78,7 @@ class UserController extends Controller
             "city"=>$request->input('city'),
             "state"=>$request->input('state'),
             "country"=>$request->input('country'),
+            "company_address"=>false,
         ]);
 
         $contact = new Contact([

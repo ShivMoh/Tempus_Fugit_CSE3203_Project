@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
+
 
 return new class extends Migration
 {
@@ -121,6 +123,35 @@ return new class extends Migration
             )
         );   
 
+        // company card
+
+        DB::table('cards')->insert(
+            array(
+                "id"=>"d625a5d9-7277-46df-8c5e-970e8770ab67",
+                "card_holder"=>"Tempus Fugit LTD",
+                "card_number"=>"343434343434",
+                "security_pin"=>"323",
+                "expirary_date"=>Carbon::createFromDate("2025", 1, 1),
+                "company_card"=>true,
+                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+            )
+        );   
+
+        DB::table('addresses')->insert(
+            array(
+                "id"=>"2d9d32a9-0d08-43c0-a0a5-48f9d5d9aad2",
+                "line_1"=>"Address Line",
+                "line_2"=>"Address Line 2",
+                "city"=>"Georgetown",
+                "state"=>"Guyana",
+                "country"=>"Guyana",
+                "company_address"=>true,
+                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+            )
+        );   
+
     }
 
     /**
@@ -132,5 +163,7 @@ return new class extends Migration
         DB::table('suppliers')->truncate();
         DB::table('categories')->truncate();
         DB::table('items')->truncate();
+        DB::table('cards')->truncate();
+
     }
 };

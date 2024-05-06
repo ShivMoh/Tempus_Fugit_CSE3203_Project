@@ -28,7 +28,13 @@ window.addItem = function() {
     var item_str = `${amount.value}X ${item.value}`;
 
     console.log(document.getElementById('supplier').value)
-    item_display.innerHTML = item_display.innerHTML + item_str + " | ";
+
+    if(item_display.innerHTML.length == 0) {
+      item_display.innerHTML = item_display.innerHTML + item_str ;
+    } else {
+      item_display.innerHTML = item_display.innerHTML + " | " +  item_str ;
+    }
+    
     items.value = item_display.innerText;
     console.log(items.value)    
 }

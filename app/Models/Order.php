@@ -16,7 +16,6 @@ class Order extends Model
         'id',
         'gross_cost',
         'net_cost',
-        'discount',
         'duty_and_vat',
         'insurance_fee',
         'processing_fee',
@@ -24,16 +23,16 @@ class Order extends Model
         'order_date',
         'date_arrived',
         'received',
-        'employee_id',
+        'user_id',
         'supplier_id',
-        'item_id'
+        'payment_id',
+        'address_id',
     ];
 
     protected $casts = [
         'id' => 'string',
         'gross_cost' => 'float',
         'net_cost' => 'float',
-        'discount' => 'float',
         'duty_and_vat' => 'float',
         'insurance_fee' => 'float',
         'processing_fee' => 'float',
@@ -41,8 +40,9 @@ class Order extends Model
         'order_date' => 'datetime',
         'date_arrived' => 'datetime',
         'received' => 'boolean',
-        'employee_id' => 'string',
+        'user_id' => 'string',
         'supplier_id' => 'string',
-        'item_id' => 'string'
+        'payment_id',
+        'address_id'
     ];
 }

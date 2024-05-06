@@ -28,7 +28,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('dob');
+            $table->date('dob');
             $table->timestamps();
 
         });
@@ -36,10 +36,11 @@ return new class extends Migration
         Schema::create('addresses', function(Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('line_1');
-            $table->string('line_2');
+            $table->string('line_2')->nullable();
             $table->string('city');
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->string('country');
+            $table->boolean('company_address');
             $table->timestamps();
 
         });
@@ -64,6 +65,7 @@ return new class extends Migration
         
         Schema::create('order_items', function(Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->integer('amount');
             $table->timestamps();
         });      
 
@@ -86,12 +88,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('card_payments', function(Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->timestamps();
+        });
+
         Schema::create('cards', function(Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('card_holder');
             $table->string('card_number');
             $table->string('security_pin');
-            $table->string('expirary_date');
+            $table->date('expirary_date');
+            $table->boolean('company_card');
             $table->timestamps();
         });
 
@@ -126,7 +134,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->float('gross_cost');
             $table->float('net_cost');
-            $table->float('discount');
             $table->float('duty_and_vat');
             $table->float('insurance_fee');
             $table->float('processing_fee');
@@ -183,5 +190,9 @@ return new class extends Migration
         Schema::dropIfExists('bills');
         Schema::dropIfExists('deliveries');
         Schema::dropIfExists('customers');
+        Schema::dropIfExists('payments');
+        Schema::dropIfExists('cards');
+        Schema::dropIfExists('card_payments');
+
     }
 };

@@ -20,6 +20,7 @@ class Address extends Model
         'city',
         'state',
         'country',
+        'company_address'
     ];
 
     protected $casts = [
@@ -29,5 +30,6 @@ class Address extends Model
         'city'=>'string',
         'state'=>'string',
         'country'=>'string',
+        'company_address'=>'boolean'
     ];
 }
