@@ -1,25 +1,23 @@
 @vite(['resources/css/login/login_form.css'])
+<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
-<div class="form-container">
-<form method="POST" action=/login>
-    @csrf
-    
-    <h1>Login</h1>
-    
-    <div>
-        <label for ="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="user@example.com" required autofocus>
-    </div>
-    <div>
+<body>
+    <form>
+        <h3>Login</h3>
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="example@site.com" id="email">
+
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="password" required autofocus>
-    </div>
-    <div>
-        <button type="submit">LOGIN</button>
-    </div>
-    <div class="register-link">
-    Don't have an account? <a href="/register">Register</a>
-</div>
-</form> 
-</div>
+        <input type="password" placeholder="Password" id="password">
 
+        <button>Log In</button>
+        <div class="register">
+            <div class="register-link">
+            Don't have an account? <a href="/register">Register</a>
+            </div>
+        </div>
+    </form>
+</body>
