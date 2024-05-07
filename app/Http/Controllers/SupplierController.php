@@ -11,38 +11,87 @@ use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Models\CardPayment;
 use App\Models\Card;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
-
-
-
 use App\Models\Address;
 
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class SupplierController extends Controller
 {
 
-    public function index() {
+    public function index(Request $request) {
 
         $suppliers = Supplier::all();
         $contacts = array();
 
         $result = array();
-        foreach ($suppliers as $supplier) {
 
-            $contact = Contact::where('id', $supplier->contact_id)->get();
+        if($request->input('search') != "") {
+            $suppliers = Supplier::where("name", 'like', '%'.$request->input('search').'%')->get();
             
-            array_push($result, 
-                array(
-                    'supplier'=>$supplier,
-                    'contact'=>$contact[0]
-                )
-            );
+            if(count($suppliers) != 0) {
+                $contact = Contact::where('id', $suppliers[0]->contact_id)->get();
+
+                array_push($result, 
+                    array(
+                        'supplier'=>$suppliers[0],
+                        'contact'=>$contact[0]
+                    )
+                );
+            } else {
+               
+            }
+
+            
+        } else {
+            foreach ($suppliers as $supplier) {
+
+                $contact = Contact::where('id', $supplier->contact_id)->get();
+                
+                array_push($result, 
+                    array(
+                        'supplier'=>$supplier,
+                        'contact'=>$contact[0]
+                    )
+                );
+            }    
         }
         
         return view('supplier/supplier', 
             [
                 'suppliers' => $result,
+                'error' => $request->input('search')
+            ]
+        );
+    }
+
+    public function review(Request $request) {
+
+        $card = Card::where('id', $request->input('payment'))->get();
+        $supplier = Supplier::where('id', $request->input('supplier'))->get();
+        $address = Address::where('company_address', true)->get();
+        
+        $item_names = array();
+        $item_amounts = array();
+        foreach(explode("|", $request->input('items')) as $item) {
+            $data = explode("X", $item);
+
+            $item_id = preg_replace('/\s+/', '', $data[1]);
+
+            $retrieved_item = Item::where('id', $item_id)->get();
+
+            array_push($item_names, $retrieved_item);
+            array_push($item_amounts, $data[0]);
+
+        }
+
+        return view('supplier/review', [
+                'supplier'=>$supplier,
+                'card'=>$card,
+                'address'=>$address,
+                'item_names'=>$item_names,
+                'item_amounts'=>$item_amounts,
+                'items'=> preg_replace('/\s+/', '', $request->input('items'))
             ]
         );
     }
@@ -52,12 +101,16 @@ class SupplierController extends Controller
 
         $items = Item::where('supplier_id', $supplier[0]->id)->get();
         
+        // company has multiple cards to use for payments
+        $company_cards = Card::where('company_card', true)->get();
+        
         $result = array();
 
         array_push($result, 
             array(
                 'supplier'=>$supplier[0],
-                'items'=>$items
+                'items'=>$items,
+                'cards'=>$company_cards
             )
         );
 
@@ -70,17 +123,9 @@ class SupplierController extends Controller
         $data = array(
             'items'=>$request->input('items'),
             'supplier'=>$request->input('supplier'),
-            'line_1'=>$request->input('line-1'),
-            'line_2'=>$request->input('line-2'),
-            'city'=>$request->input('city'),
-            'state'=>$request->input('state'),
-            'country'=>$request->input('country'),
-            'zip'=>$request->input('zip'),
-            'card_holder'=>$request->input('card-holder'),
-            'card_number'=>$request->input('card-number'),
-            'security_pin'=>$request->input('security-pin'),
-            'expirary_date'=>$request->input('expirary-date')
         );
+
+        error_log("message");
 
         // echo $data['items'];
 
