@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonkeyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,7 @@ Route::view('/login', 'login')->name('login');
 Route::post('/login', [UserController::class, 'login']);
 
 Route::view('/dashboard', 'dashboard');
+
+
+// Inventory Routes
+Route::get('/inventory', [ItemController::class, 'index']);
