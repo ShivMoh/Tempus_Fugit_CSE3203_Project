@@ -14,8 +14,70 @@
     justify-content: center;
 }
 
-.search-bar {
+.search-container {
     align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.button-container button {
+    margin-top: -50px;
+    width: 120px;
+    height: 25px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(50, 146, 255);
+    color: white;
+    font-family: Helvetica, sans-serif;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 12px;
+    transition: all 0.2s linear;
+}
+
+
+.button-container .clear-button {
+    margin-left: 20px;
+    background-color: red;
+}
+.button-container .search-button:hover {
+    background-color: rgb(108, 177, 255);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.button-container .clear-button:hover {
+    background-color: rgb(255, 59, 59);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.order-item-button {
+    margin-top: 50px;
+    width: 400px;
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(50, 146, 255);
+    color: white;
+    font-family: Helvetica, sans-serif;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 12px;
+    transition: all 0.2s linear;
+}
+
+.order-item-button:hover {
+    background-color: rgb(108, 177, 255);
+    transform: scale(1.05);
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.search-bar {
     border-bottom: solid black 1px;
     background-color: #eeeeee;
     width: 420px;
@@ -23,6 +85,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.clear {
+    display: none;
+    width: 0px;
 }
 
 #search-bar {
@@ -92,4 +159,22 @@
 
 .contacts {
     margin-top: 50px;
+}
+
+.errors {
+    
+    width: 100%;
+    display: flex;
+    position: relative;
+    top: 150px;
+    font-size: 25px;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.suggestion {
+    color: grey;
+    margin-top: -10px;
+    font-size: 14px;
 }

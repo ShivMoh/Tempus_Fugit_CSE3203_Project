@@ -1,49 +1,117 @@
 /* Style the form */
 #regForm {
-    background-color: #ffffff;
-    margin: 100px auto;
-    padding: 40px;
-    width: 70%;
-    min-width: 300px;
-  }
-  
-  /* Style the input fields */
-  input {
-    padding: 10px;
-    width: 100%;
-    font-size: 17px;
-    font-family: Raleway;
-    border: 1px solid #aaaaaa;
-  }
-  
-  /* Mark input boxes that gets an error on validation: */
-  input.invalid {
-    background-color: #ffdddd;
-  }
-  
-  /* Hide all steps by default: */
-  .tab {
-    display: none;
-  }
-  
-  /* Make circles that indicate the steps of the form: */
-  .step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-  }
-  
-  /* Mark the active step: */
-  .step.active {
-    opacity: 1;
-  }
-  
-  /* Mark the steps that are finished and valid: */
-  .step.finish {
-    background-color: #04AA6D;
-  }
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+select {
+  outline: none;
+  border: none;
+  background-color: #fefefefe;
+  border-bottom: solid black 2px;
+  font-size: 15px;
+}
+
+/* Style the input fields */
+input {
+  height: 40px;
+  width: 100%;
+  font-size: 15px;
+  background-color: #fefefefe;
+  outline: none;
+  border: none;
+  border-bottom: solid black 2px;
+  color: black;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+select {
+  width: 100%;
+  height: 40px;
+}
+
+.item-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 50%;
+}
+
+.input-container {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.item-container button {
+  width: 200px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background-color: rgb(50, 146, 255);
+  color: white;
+  font-family: Helvetica, sans-serif;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 12px;
+  transition: all 0.2s linear;
+}
+
+.button-container {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.order-item {
+  width: 500px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background-color: rgb(50, 146, 255);
+  color: white;
+  font-family: Helvetica, sans-serif;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 12px;
+  transition: all 0.2s linear;
+}
+
+.row {
+  width: 100%;
+  margin-top: 30px;
+  background-color: rgb(186, 218, 255);
+  padding: 10px;
+}
+
+.title-container {
+  width: 100%;
+  height: 40px;
+  background-color: rgb(50, 146, 255);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+
+.item-display {
+  display: none;
+}
+
