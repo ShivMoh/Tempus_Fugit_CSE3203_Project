@@ -1,75 +1,125 @@
 <link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet" type="text/css" >
-@vite(['resources/js/app.js', 'resources/css/dashboard/dashboard.css'])
+@vite(['resources/js/dashboard.js', 'resources/css/dashboard/dashboard.css'])
 
 
-<!-- The sidebar -->
-<div class="sidebar">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Dashboard</title>
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-    <div id="nav-bar">
-        <input id="nav-toggle" type="checkbox"/>
-        <div id="nav-header"><a id="nav-title" href="/dashboard">Dashboard</a>
-          <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-          <hr/>
+
+  <body>
+    <nav>
+
+      <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">[Company Name]</span>
+      </div>
+
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">[Company Name]</span>
         </div>
-        <div id="nav-content">
-          <div class="nav-button"><a href="/inventory">Inventory</a></div>
-          <div class="nav-button"><a href="/supplier">Supplier</a></div>
-          <div class="nav-button"><a href="/sales">Sales</a></div>
-          <div class="nav-button"><a href="#">Money</a></div>
-          <div id="nav-content-highlight"></div>
-        </div>
-        <input id="nav-footer-toggle" type="checkbox"/>
-        <div id="nav-footer">
-          <div id="nav-footer-heading">
-            <div id="nav-footer-avatar"><img src="https://gravatar.com/avatar/4474ca42d303761c2901fa819c4f2547"/></div>
-            <div id="nav-footer-titlebox"><a id="nav-footer-title" href="#" >[Company name]</a><a id="nav-footer-subtitle" href="#">Logout</a></div>
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="/dashboard" class="nav-link">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/inventory" class="nav-link">
+                <i class='bx bx-package icon'></i>
+                <span class="link">Inventory</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/supplies" class="nav-link">
+                <i class='bx bxs-cart-add icon'></i>
+                <span class="link">Supplies</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/sales" class="nav-link">
+                <i class='bx bx-line-chart icon'></i>
+                <span class="link">Sales</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/money" class="nav-link">
+                <i class='bx bx-money icon' ></i>
+                <span class="link">Money?</span>
+              </a>
+            </li>
+          </ul>
+          {{-- bottom content  --}}
+          <div class="bottom-cotent">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </a>
+            </li>
           </div>
         </div>
-    </div>
+      </div>
 
+    </nav>
+    <section class="overlay"></section>
 
-    <div class="content">
-        <!-- Upper Page content -->
-        <div class="upper content">
-            <div class="box">
-                <h2>Recently Sold Items</h2>
-                <div class="container">
-                    <!-- Three containers for upper div 1 -->
-                    <div class="item">Lorem Ipsum</div>
-                    <div class="item">Lorem Ipsum</div>
-                    <div class="item">Lorem Ipsum</div>
+    <section class="dashboard">
+        <div class="dashboard-content">
+            <div class="upper-section">
+                <!-- Upper Section Boxes -->
+                <div class="upper-section-left">
+                    <h4>Sales of the Week</h4>
+                    <div class="box" id="box-1"></div>
+                </div>
+                <div class="upper-section-right">
+                    <h5>Recently Sold Items</h5>
+                    <div class="box" id="box-2"></div>
+                    <h5>Recent Performance</h5>
+                    <div class="box" id="box-3"></div>
                 </div>
             </div>
-            <div class="box">
-                <h2>Recently Performance</h2>
-                <div class="container">
-                    <!-- Four containers for upper div 2 -->
-                    <div class="item">Lorem Ipsum</div>
-                    <div class="item"> Lorem Ipsum</div>
-                    <div class="item">Lorem Ipsum</div>
-                    <div class="item">Lorem Ipsum</div>
+
+            <div class="lower-section">
+                <!-- Lower Section Boxes -->
+                <div class="left-box">
+                    <h5>Graph 1</h5>
+                    <div class="box" id="box-4">
+                        <img src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
+                    </div>
                 </div>
+
+                <div class="middle-box">
+                    <h5>Graph 2</h5>
+                    <div class="box" id="box-5">
+                        <img src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
+                    </div>
+                </div>
+                <div class="right-box">
+                    <h5>Graph 3</h5>
+                    <div class="box" id="box-6">
+                        <img src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
+                    </div>
+                </div>
+
+
             </div>
         </div>
-        <!-- Lower Page content -->
-        <div class="lower content">
-            <div class="box">
-                <img src="{{ asset('images/graph-line.jpg') }}" alt="Graph 1">
-                <p>Graph 1</p>
-            </div>
-            <div class="box">
-                <img src="{{ asset('images/graph-line.jpg') }}" alt="Graph 2">
-                <p>Graph 2</p>
-            </div>
-            <div class="box">
-                <img src="{{ asset('images/graph-line.jpg') }}" alt="Graph 3">
-                <p>Graph 3</p>
-            </div>
-        </div>
+    </section>
 
-    </div>
-  </div>
-</div>
-
-</body>
+  </body>
 </html>
