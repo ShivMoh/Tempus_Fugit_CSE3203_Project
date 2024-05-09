@@ -25,6 +25,7 @@ class SupplierController extends Controller
         $contacts = array();
 
         $result = array();
+        $no_results = false;
 
         if($request->input('search') != "") {
             $suppliers = Supplier::where("name", 'like', '%'.$request->input('search').'%')->get();
@@ -39,7 +40,7 @@ class SupplierController extends Controller
                     )
                 );
             } else {
-               
+               $no_results = true;
             }
 
             
@@ -60,7 +61,7 @@ class SupplierController extends Controller
         return view('supplier/supplier', 
             [
                 'suppliers' => $result,
-                'error' => $request->input('search')
+                'error' => $no_results
             ]
         );
     }
@@ -76,8 +77,9 @@ class SupplierController extends Controller
         foreach(explode("|", $request->input('items')) as $item) {
             $data = explode("X", $item);
 
-            $item_id = preg_replace('/\s+/', '', $data[1]);
+            // $item_id = preg_replace('/\s+/', '', $data[1]);
 
+            $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
             $retrieved_item = Item::where('id', $item_id)->get();
 
             array_push($item_names, $retrieved_item);
@@ -171,7 +173,7 @@ class SupplierController extends Controller
             }
 
             $item_amount = $data[0];
-            $item_id = preg_replace('/\s+/', '', $data[1]);
+            $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
             
             $order_item = new OrderItem([
                 "id"=>(string) Str::uuid(),
