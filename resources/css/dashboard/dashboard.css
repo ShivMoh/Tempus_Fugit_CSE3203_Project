@@ -107,6 +107,7 @@ nav.open ~ .overlay {
 
 .dashboard {
   padding-top: 50px;
+  margin: 1.5%;
 }
 
 .dashboard-content {
@@ -150,7 +151,7 @@ nav.open ~ .overlay {
 }
 
 .left-box, .middle-box, .right-box {
-    width: 105%;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -182,6 +183,6 @@ nav.open ~ .overlay {
     margin: .5%;
 }
 
-h4, h5 {
+h2, h5 {
     color: var(--main-color);
 }

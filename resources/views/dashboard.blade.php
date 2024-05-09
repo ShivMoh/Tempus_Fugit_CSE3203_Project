@@ -83,7 +83,7 @@
             <div class="upper-section">
                 <!-- Upper Section Boxes -->
                 <div class="upper-section-left">
-                    <h4>Sales of the Week</h4>
+                    <h2>Sales of the Week</h2>
                     <div class="box" id="box-1"></div>
                 </div>
                 <div class="upper-section-right">
