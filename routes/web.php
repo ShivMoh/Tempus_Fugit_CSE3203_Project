@@ -18,7 +18,7 @@ use App\Http\Controllers\ItemController;
 */
 
 Route::get('/', function () {
-   return view("welcome"); 
+   return view("login"); 
 });
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
