@@ -107,6 +107,8 @@ button:hover {
 
 .error {
     color: red;
+    font-style: italic;
+    font-weight: 100;
     margin-top: 5px;
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
