@@ -4,14 +4,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
 <body>
-    <form>
+    <form id="loginForm" method="POST" action="/login">
+        @csrf
+
         <h3>Login</h3>
 
         <label for="email">Email</label>
-        <input type="email" placeholder="example@site.com" id="email">
+        <input type="email" placeholder="example@site.com" id="email" name="email">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" placeholder="Password" id="password" name="password">
 
         <button>Log In</button>
         <div class="register">
