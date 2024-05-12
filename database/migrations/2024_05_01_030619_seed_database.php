@@ -89,39 +89,39 @@ return new class extends Migration
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );       
+        );
 
         DB::table('items')->insert(
             array(
-                "id"=>(string) Str::uuid(),
-                'name'=>'Random Item',
-                'selling_price'=>4.5,
-                'cost_price'=>10.0,
-                'total_sold'=>10,
-                'stock_count'=>20,
-                'image_url'=>"sdfdfsdfndsf",
-                'category_id'=>'174779ab-5a6e-4aee-8053-2822954611d2',
-                'supplier_id'=>'79f9eef4-b689-4f13-895a-69f1488a791b',
-                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
-                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+                "id"            => (string) Str::uuid(),
+                'name'          => 'Hammer',
+                'selling_price' => 200.0,
+                'cost_price'    => 170.0,
+                'total_sold'    => 10,
+                'stock_count'   => 20,
+                'image_url'     => "hammer_url",
+                'category_id'   => '174779ab-5a6e-4aee-8053-2822954611d2',
+                'supplier_id'   => '79f9eef4-b689-4f13-895a-69f1488a791b',
+                'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
             )
         );    
         
         DB::table('items')->insert(
             array(
-                "id"=>(string) Str::uuid(),
-                'name'=>'Random Item 2',
-                'selling_price'=>4.5,
-                'cost_price'=>10.0,
-                'total_sold'=>10,
-                'stock_count'=>20,
-                'image_url'=>"sdfdfsdfndsf",
-                'category_id'=>'174779ab-5a6e-4aee-8053-2822954611d2',
-                'supplier_id'=>'79f9eef4-b689-4f13-895a-69f1488a791b',
-                'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
-                'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
+                "id"            => (string) Str::uuid(),
+                'name'          => 'Screwdriver',
+                'selling_price' => 100.0,
+                'cost_price'    => 80.0,
+                'total_sold'    => 5,
+                'stock_count'   => 20,
+                'image_url'     => "screwdriver_url",
+                'category_id'   => '174779ab-5a6e-4aee-8053-2822954611d2',
+                'supplier_id'   => '79f9eef4-b689-4f13-895a-69f1488a791b',
+                'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
             )
-        );   
+        );
 
         // company card
 
