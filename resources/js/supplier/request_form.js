@@ -1,3 +1,6 @@
+
+
+
 window.addItem = function() {
     var item = document.getElementById('item');
     var amount = document.getElementById('amount');
@@ -14,10 +17,24 @@ window.addItem = function() {
     } else {
       item_display.innerHTML = item_display.innerHTML + " | " +  item_str ;
     }
+
+    var index = (item_display.innerHTML.split("|")).length - 1;
     
     items.value = item_display.innerText;
     console.log(items.value)
+    item_displayer.innerHTML = item_displayer.innerHTML + "<div class='list-item'><p class'item-name'>" + item_displayer_str + "</p><span class='delete' onclick=deleteItem("+index+")>Delete</span></div>"
 
-    item_displayer.innerHTML = item_displayer.innerHTML + "<p class='item'>" + item_displayer_str + "</p>"
+}
+
+window.deleteItem = function(index) {
+  var item_display = document.getElementById('item-display');
+  var list_items = document.querySelectorAll('list-item');
+  var arr = item_display.innerHTML.split("|");
+  arr.pop();
+  item_display.innerHTML = arr.join("|");
+
+  if (list_items.length > 0) {
+    list_items[list_items.length - 1].remove();
+  }
 
 }
