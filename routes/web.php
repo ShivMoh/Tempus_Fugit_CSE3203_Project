@@ -19,7 +19,7 @@ use App\Http\Controllers\CashierController;
 */
 
 Route::get('/', function () {
-   return view("welcome"); 
+   return view("login"); 
 });
 
 Route::get('/monkey', [MonkeyController::class, 'index']);

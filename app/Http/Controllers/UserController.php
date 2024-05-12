@@ -22,7 +22,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $credentials['email'])->first();
         
         if (!$user) {
             return back()->withErrors([

@@ -1,4 +1,14 @@
+h1 {
+    font-family: 'Outfit', sans-serif;
+}
+
+p {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
 .bill-container {
+    
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,7 +18,7 @@
 
 .bill {
     width: 50%;
-    background-color: #eeeeee;
+    background-color: rgb(50, 146, 255);
 }
 
 .payment, .address, .items, .supplier {
@@ -41,4 +51,54 @@
     display: flex;
     flex-direction: row;
     column-gap: 20px;
+}
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: center;
+}
+.cancel-button {
+    margin-top: 20px;
+    width: 400px;
+    height: 35px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: red;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 12px;
+    transition: all 0.2s linear;
+}
+
+.confirm-button {
+    margin-top: 20px;
+    width: 400px;
+    height: 35px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(50, 146, 255);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 12px;
+    transition: all 0.2s linear;
+}
+
+.confirm-button:hover {
+    background-color: rgb(108, 177, 255);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: rgb(255, 59, 59);
+    transform: scale(1.05);
+    cursor: pointer;
 }

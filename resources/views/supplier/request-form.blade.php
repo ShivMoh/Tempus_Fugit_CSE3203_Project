@@ -1,6 +1,9 @@
 @vite('resources/js/supplier/request_form.js')
 @vite('resources/css/supplier/request_form.css')
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
 <form id="regForm" method="POST" action="/review">
     @csrf
         <div class="row">

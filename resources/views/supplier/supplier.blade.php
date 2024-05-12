@@ -1,6 +1,8 @@
 @vite(['resources/js/supplier/request_form.js'])
 @vite(['resources/css/supplier/supplier.css'])
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
 <section class="filter-section">
     <div class="filter-container">

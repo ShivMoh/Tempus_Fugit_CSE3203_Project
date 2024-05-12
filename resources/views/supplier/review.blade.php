@@ -84,8 +84,7 @@
             <h1>Supplier</h1>
             @foreach ($supplier as $res )
                 <input type="hidden" name="supplier" value={{$res->id}}>
-                <p>{{$res->id}}</p>
-                <p>{{$items}}</p>
+    
 
                 <input type="hidden" name="items" value={{$items}}>
 
@@ -112,6 +111,6 @@
 </form>
 
 <div class="button-container">
-    <button type="submit" form="return-form">Cancel</button>
-    <button type="submit" form="review-form">Confirm</button>
+    <button type="submit" form="return-form" class="cancel-button">Cancel</button>
+    <button type="submit" form="review-form" class="confirm-button">Confirm</button>
 </div>
