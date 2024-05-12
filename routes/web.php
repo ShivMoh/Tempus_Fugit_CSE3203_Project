@@ -5,6 +5,7 @@ use App\Http\Controllers\MonkeyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CashierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,7 @@ Route::view('/dashboard', 'dashboard');
 
 // Inventory Routes
 Route::get('/inventory', [ItemController::class, 'index']);
+
+
+// Cashier Routes
+Route::get('/cashier', [CashierController::class, 'index']);
