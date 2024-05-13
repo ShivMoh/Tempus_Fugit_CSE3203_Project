@@ -4,21 +4,33 @@ function updateTotal(element) {
     var discountInput = row.querySelector('.discount input');
     var itemTotalCell = row.querySelector('.item-total');
     
+    var selectedItemName = row.querySelector('select[name="item_name"]').value;
+    var selectedItem = items.find(item => item.name === selectedItemName);
+    var sellingPrice = selectedItem ? selectedItem.selling_price : 0;
+    
     // Convert the amount and discount values to floats, then calculate the item total
     var amount = parseFloat(amountInput.value) || 0;
     var discount = parseFloat(discountInput.value) || 0;
-    var total = amount * (1 - discount / 100);
-    
+    var total = amount * sellingPrice * (1 - discount / 100);
+
     itemTotalCell.textContent = total.toFixed(2);
     
     // Trigger recalculation of the total amount at the bottom
     updateTotalCost();
 }
 
+
 function updateRow(selectElement) {
     var row = selectElement.closest('tr');
     var amountInput = row.querySelector('.amount input');
     var discountInput = row.querySelector('.discount input');
+    var itemIdCell = row.querySelector('.item-id');
+    
+    var selectedItemName = selectElement.value;
+    var selectedItem = items.find(item => item.name === selectedItemName);
+    
+    // Update item ID cell with the selected item's ID
+    itemIdCell.textContent = selectedItem ? selectedItem.id : '';
     
     // Set the default values for amount and discount
     amountInput.value = 1;
@@ -26,6 +38,7 @@ function updateRow(selectElement) {
 
     updateTotal(amountInput);
 }
+
 
 function updateTotalCost() {
     var itemTotalCells = document.querySelectorAll('.item-total');

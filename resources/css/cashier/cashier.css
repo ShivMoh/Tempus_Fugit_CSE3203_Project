@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 * {
     font-family: "Poppins", sans-serif;
 }
+
 /* Table Styles */
 table {
     width: 80%;
@@ -22,10 +24,25 @@ th {
 td {
     border: 1px solid #C0DFFF;
     height: 3vh;
-    text-align: center;
+    text-align: center; 
 }
 
-/* Form Field Styles */
+/* Specify column widths */
+.item-id,
+.name-of-item {
+    width: 25%;
+}
+
+.amount,
+.discount {
+    width: 15%;
+}
+
+.item-total {
+    width: 20%;
+}
+
+/* Table Column Styles */
 input, select {
     width: 100%;
     height: 100%;
@@ -42,40 +59,36 @@ input, select {
     justify-content: flex-end;
 }
 
-/* Input and Button Styles */
 .total-and-print input[type="text"],
 .total-and-print button {
     width: 15%;
     margin-left: auto;
     margin-bottom: 10px;
-    height: 3.5px;
+    height: auto;
+    padding: 10px;
     color: white;
+    background-color: #8DCFFF;
     cursor: pointer;
     transition: all 0.2s linear;
+    border: 1px solid white;
+    border-radius: 5px;
 }
 
 .total-and-print input[type="text"] {
+    background-color: white;
     color: black;
+    border: solid 1px;
 }
 
-/* Button Specific Styles */
-.total-and-print button {
-    justify-content: center;
-    align-items: center;
-    background-color: #8DCFFF;
-    border: none;
-    padding: 1px;
-    height: 25px;
-}
-
-/* Button Hover Styles */
 .total-and-print button:hover {
     color: #8DCFFF;
     background-color: white;
+    border: solid 1px;
+    border-color: #8DCFFF;
 }
 
 .cashier-content {
-margin-top: 70px;
+    margin-top: 70px;
 }
 
 #totalCost {
