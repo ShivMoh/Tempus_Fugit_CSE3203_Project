@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 
@@ -18,11 +20,11 @@ return new class extends Migration
                 "id"=>"4c2b9326-bef5-4871-8e9a-9c12bccbb2d2",
                 "primary_number"=>"3535355",
                 "secondary_number"=>"3r53r33",
-                "email"=>"supplier1@email.com",      
+                "email"=>"supplier1@email.com",
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );        
+        );
 
 
         DB::table('contacts')->insert(
@@ -30,11 +32,11 @@ return new class extends Migration
                 "id"=>"fceecee3-6ea5-41aa-bf30-fd80446a55cf",
                 "primary_number"=>"356355",
                 "secondary_number"=>"783r33",
-                "email"=>"supplier2@email.com",      
+                "email"=>"supplier2@email.com",
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );        
+        );
 
 
         DB::table('contacts')->insert(
@@ -42,11 +44,11 @@ return new class extends Migration
                 "id"=>"421e6b9c-61e3-444f-8972-c934edf987e2",
                 "primary_number"=>"839355",
                 "secondary_number"=>"5453r33",
-                "email"=>"supplier3@email.com",      
+                "email"=>"supplier3@email.com",
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );        
+        );
 
         DB::table('suppliers')->insert(
             array(
@@ -79,8 +81,8 @@ return new class extends Migration
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );          
-        
+        );
+
 
         DB::table('categories')->insert(
             array(
@@ -105,8 +107,8 @@ return new class extends Migration
                 'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
             )
-        );    
-        
+        );
+
         DB::table('items')->insert(
             array(
                 "id"            => (string) Str::uuid(),
@@ -136,7 +138,7 @@ return new class extends Migration
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );   
+        );
 
         DB::table('addresses')->insert(
             array(
@@ -150,7 +152,7 @@ return new class extends Migration
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
-        );   
+        );
 
     }
 
