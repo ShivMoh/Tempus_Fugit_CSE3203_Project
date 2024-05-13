@@ -31,7 +31,7 @@
     </div>
     
     <div class="tab">Login Info:
-        <p><input placeholder="example@site.com" name="email"></p>
+        <p><input placeholder="Email..." name="email"></p>
         <p><input placeholder="Password..." name="password"></p>
         <p><input placeholder="Confirm Password..." name="confirm_password"></p>
 
