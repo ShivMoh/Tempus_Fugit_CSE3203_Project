@@ -9,9 +9,10 @@
     <div class="tab">Personal Information:
         <p><input placeholder="First name..." type="text" name="first_name"></p>
         <p><input placeholder="Last name..." type="text" name="last_name"></p>
-        <p><input placeholder="Date of Birth..." type="text" name="dob"></p>
-        <select name="job-role">
-            <option value="cashier" selected>Cashier</option>
+        <div class="date"><p><input placeholder="Date of Birth..." type="date" name="dob" required></p></div>
+        <select name="job_role" id="job_role" required>
+            <option value="" disabled selected>Select job role:</option>
+            <option value="cashier">Cashier</option>
             <option value="manager">Manager</option>
         </select>
     </div>
@@ -19,7 +20,6 @@
     <div class="tab">Contact Information:
         <p><input placeholder="Your Number..." type="text" name="primary_number"></p>
         <p><input placeholder="Emergency Contact Number..." name="secondary_number"></p>
-        
     </div>
     
     <div class="tab">Home Address:
@@ -32,9 +32,8 @@
     
     <div class="tab">Login Info:
         <p><input placeholder="Email..." name="email"></p>
-        <p><input placeholder="Password..." name="password"></p>
-        <p><input placeholder="Confirm Password..." name="confirm_password"></p>
-
+        <p><input placeholder="Password..." type="password" name="password"></p>
+        <p><input placeholder="Confirm Password..." type="password" name="confirm_password"></p>
     </div>
     
     
@@ -49,5 +48,4 @@
       <span class="step"></span>
       <span class="step"></span>
     </div>
-    
 </form>
