@@ -126,9 +126,7 @@ return new class extends Migration
             $table->integer('count');
             $table->float('total_cost');
             $table->timestamps();
-
         });
-
 
         Schema::create('orders', function(Blueprint $table) {
             $table->uuid('id')->primary();

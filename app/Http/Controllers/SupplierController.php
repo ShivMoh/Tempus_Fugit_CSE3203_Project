@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Contact;
@@ -67,6 +68,12 @@ class SupplierController extends Controller
     }
 
     public function review(Request $request) {
+        
+        $request->validate([
+            'item'=>'required',
+            'amount'=>'required|integer',
+            'payment'=>'required'
+        ]);
 
         $card = Card::where('id', $request->input('payment'))->get();
         $supplier = Supplier::where('id', $request->input('supplier'))->get();
@@ -98,7 +105,38 @@ class SupplierController extends Controller
         );
     }
 
+
+    public function view_bill(Request $request) {
+        $card = Card::where('id', $request->input('payment'))->get();
+        $supplier = Supplier::where('id', $request->input('supplier'))->get();
+        $address = Address::where('company_address', true)->get();
+        
+        $item_names = array();
+        $item_amounts = array();
+
+        foreach(explode("|", $request->input('items')) as $item) {
+            $data = explode("X", $item);
+            $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
+            $retrieved_item = Item::where('id', $item_id)->get();
+            array_push($item_names, $retrieved_item);
+            array_push($item_amounts, $data[0]);
+        }
+
+        return view('supplier/order_bill', [
+                'supplier'=>$supplier,
+                'card'=>$card,
+                'address'=>$address,
+                'item_names'=>$item_names,
+                'item_amounts'=>$item_amounts,
+                'items'=> preg_replace('/\s+/', '', $request->input('items'))
+            ]
+        );
+    }
+
+
+
     public function get_request_form(Request $request) {
+
         $supplier = Supplier::where('id', $request->input('id'))->get(); 
 
         $items = Item::where('supplier_id', $supplier[0]->id)->get();
@@ -155,7 +193,7 @@ class SupplierController extends Controller
             "order_date"=>Carbon::now(),
             "date_arrived"=>Carbon::now(),
             "received"=>false,
-            "user_id"=>"f1d09c2a-b362-4ec9-b736-292b5fcbff3d",
+            "user_id"=>"7e64918c-9cb3-4d7d-af56-cf82536eaddf",
             "supplier_id"=>$data['supplier'],
             "payment_id"=> $payment->id,
             "address_id"=> "2d9d32a9-0d08-43c0-a0a5-48f9d5d9aad2"
@@ -211,6 +249,56 @@ class SupplierController extends Controller
         ]);
     }
 
+    public function view_orders() {
+        $orders = Order::all(); 
+        $suppliers = array();
+        $cards = array();
+        $items = array();
+        $items_string = "";
+
+        /*2XRandom_Itemx06ac9ba3-27e7-4026-a838-591e7a08a778 | 3XRandom_Itemx06ac9ba3-27e7-4026-a838-591e7a08a778 */
+
+        foreach ($orders as $order) {
+            $supplier = Supplier::where('id', $order->supplier_id)->get();
+            $payment = Payment::where('id', $order->payment_id)->get()[0];
+            $card_payment = CardPayment::where('payment_id', $payment->id)->get()[0];
+            $card = Card::where('id', $card_payment->card_id)->get()[0];
+            $order_items = OrderItem::where('order_id', $order->id)->get();
+
+            foreach ($order_items as $key => $order_item) {
+                $item = Item::where('id', $order_item->item_id)->get()[0];
+                $item_name = str_replace(" ", "_", $item->name);
+                if ($key == 0) {
+                    $items_string = $order_item->amount."X".$item_name."x".$item->id;
+
+                } else {
+                    $items_string = $items_string."|".$order_item->amount."X".$item_name."x".$item->id;
+                }
+            }
+
+            array_push($suppliers, $supplier[0]);
+            array_push($cards, $card);
+            array_push($items, $items_string);
+            $items_string = "";
+        }
+
+        return(view('supplier/orders', [
+            'orders'=>$orders,
+            'suppliers'=>$suppliers,
+            'cards'=>$cards,
+            'items'=>$items
+        ]));
+    }
+
+    public function mark_as_received(Request $request) {
+
+        $order_id = $request->input('order-id');
+        $order = Order::where('id', $order_id)->get()[0];
+        $order->date_arrived = Carbon::now();
+        $order->received = false;
+        $order->save();
+        return redirect()->intended('/orders');
+    }
     //
     function test() {
 

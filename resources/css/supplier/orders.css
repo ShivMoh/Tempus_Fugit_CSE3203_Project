@@ -1,0 +1,61 @@
+
+.orders {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 50px;
+}
+
+.order-container {
+    width: 80%;
+    background-color: rgb(249, 249, 250);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 5px 5px;
+}
+
+.label-container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+}
+
+.label-container p {
+    font-weight: 600;
+}
+
+
+.mark-as-received-button, .view-more-button{
+    margin-top: 50px;
+    width: 400px;
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(50, 146, 255);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 12px;
+    transition: all 0.2s linear;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+}
+
+.mark-as-received-button:hover, .view-more-button:hover {
+    background-color: rgb(108, 177, 255);
+    transform: scale(1.05);
+    cursor: pointer;
+}
