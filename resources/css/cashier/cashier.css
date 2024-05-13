@@ -50,6 +50,10 @@ input, select {
     transition: all 0.2s linear;
 }
 
+.total-and-print input[type="text"] {
+    color: black;
+}
+
 /* Button Specific Styles */
 .total-and-print button {
     background-color: #8DCFFF;
