@@ -31,18 +31,18 @@
     </div>
     
     <div class="tab">Login Info:
-        <p><input placeholder="Email..." name="email"></p>
+        <p><input placeholder="example@site.com" name="email"></p>
         <p><input placeholder="Password..." name="password"></p>
         <p><input placeholder="Confirm Password..." name="confirm_password"></p>
 
     </div>
     
-    <div style="overflow:auto;">
-      <div style="float:right;">
-        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-      </div>
+    
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
     </div>
+    
     
       <span class="step"></span>
       <span class="step"></span>
@@ -51,4 +51,3 @@
     </div>
     
 </form>
-

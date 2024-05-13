@@ -111,6 +111,6 @@ class UserController extends Controller
         $employee->save();
         $user->save();
         
-        return redirect()->intended('/dashboard');
+        return redirect()->intended('/login');
     }
 }

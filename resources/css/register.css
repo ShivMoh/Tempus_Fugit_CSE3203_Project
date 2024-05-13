@@ -1,49 +1,112 @@
-/* Style the form */
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+}
+
 #regForm {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.13);
     margin: 100px auto;
     padding: 40px;
     width: 70%;
     min-width: 300px;
-  }
-  
-  /* Style the input fields */
-  input {
-    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+#regForm * {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+#regForm h1 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+    color: rgb(50, 146, 255);
+    margin-bottom: 30px;
+}
+
+input,
+select {
+    display: block;
+    height: 50px;
     width: 100%;
-    font-size: 17px;
-    font-family: Raleway;
-    border: 1px solid #aaaaaa;
-  }
-  
-  /* Mark input boxes that gets an error on validation: */
-  input.invalid {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-bottom: 2px solid black;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+::placeholder {
+    color: gray;
+}
+
+/* Mark input boxes that get an error on validation: */
+input.invalid {
     background-color: #ffdddd;
-  }
-  
-  /* Hide all steps by default: */
-  .tab {
+}
+
+/* Hide all steps by default: */
+.tab {
     display: none;
-  }
-  
-  /* Make circles that indicate the steps of the form: */
-  .step {
+}
+
+#regForm div button {
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 80px;
+  padding: 5px 0px;
+  font-size: 16px;
+  text-align: center;
+}
+
+button {
+    margin-top: 15px;
+    width: 75%;
+    background-color: rgb(50, 146, 255);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: white;
+    background-color: rgb(4, 56, 245);
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
     height: 15px;
     width: 15px;
-    margin: 0 2px;
+    margin: 15px 2px;
     background-color: #bbbbbb;
     border: none;
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
-  }
-  
-  /* Mark the active step: */
-  .step.active {
+}
+
+/* Mark the active step: */
+.step.active {
     opacity: 1;
-  }
-  
-  /* Mark the steps that are finished and valid: */
-  .step.finish {
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
     background-color: #04AA6D;
-  }
+}
