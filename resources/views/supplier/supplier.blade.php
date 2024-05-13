@@ -40,7 +40,7 @@
 <section class="suppliers">
     @foreach ($suppliers as $supplier )
 
-    <form class="supplier-container" method="POST" action="/request-form">
+    <form class="supplier-container" method="GET" action="/request-form">
         @csrf
         <div class="image-section">
             <div class="image"></div>
