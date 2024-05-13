@@ -57,9 +57,9 @@
               </a>
             </li>
             <li class="list">
-              <a href="/money" class="nav-link">
+              <a href="/cashier" class="nav-link">
                 <i class='bx bx-money icon' ></i>
-                <span class="link">Money?</span>
+                <span class="link">Cashier</span>
               </a>
             </li>
           </ul>
