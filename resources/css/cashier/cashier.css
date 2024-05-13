@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+* {
+    font-family: "Poppins", sans-serif;
+}
 /* Table Styles */
 table {
     width: 80%;
@@ -44,7 +48,7 @@ input, select {
     width: 15%;
     margin-left: auto;
     margin-bottom: 10px;
-    height: 3.5vh;
+    height: 3.5px;
     color: white;
     cursor: pointer;
     transition: all 0.2s linear;
@@ -56,13 +60,24 @@ input, select {
 
 /* Button Specific Styles */
 .total-and-print button {
+    justify-content: center;
+    align-items: center;
     background-color: #8DCFFF;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 1px;
+    height: 25px;
 }
 
 /* Button Hover Styles */
 .total-and-print button:hover {
     color: #8DCFFF;
     background-color: white;
+}
+
+.cashier-content {
+margin-top: 70px;
+}
+
+#totalCost {
+    height: inherit;
 }

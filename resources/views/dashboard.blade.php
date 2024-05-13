@@ -45,7 +45,7 @@
               </a>
             </li>
             <li class="list">
-              <a href="/supplies" class="nav-link">
+              <a href="/supplier" class="nav-link">
                 <i class='bx bxs-cart-add icon'></i>
                 <span class="link">Supplies</span>
               </a>
