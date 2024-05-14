@@ -13,32 +13,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-    public function login(Request $request)
-    {
-
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('email', $credentials['email'])->first();
-        
-        if (!$user) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ]);
-        }
-        
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors([
-                'password' => 'Your password is incorrect',
-            ]);
-        }
-        
-        return redirect()->intended('/dashboard');
-    }
-
     public function register(Request $request) {
         // // uncomment these when we actually create the views
         // $data = $request->validate(

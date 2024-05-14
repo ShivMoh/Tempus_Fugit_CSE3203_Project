@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MonkeyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CashierController;
@@ -19,8 +20,18 @@ use App\Http\Controllers\CashierController;
 */
 
 Route::get('/', function () {
-   return view("login"); 
+   return redirect("/login"); 
 });
+
+Route::middleware(['auth'])->group(function () {
+   Route::get('/dashboard', function () {
+       return view('dashboard');
+   });
+});
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
 
@@ -41,15 +52,16 @@ Route::post('/mark-as-received', [SupplierController::class, 'mark_as_received']
 
 // end supplier routes
 
+// Route::get('/dashboard', function () {
+//    return view('dashboard');
+// })->middleware('auth');
+
+Route::post('/stay-logged-in', [AuthController::class, 'stayLoggedIn'])->name('stay-logged-in');
 
 Route::view('/register', 'register');
 Route::post('/register', [UserController::class, 'register']);
 
-
-Route::view('/login', 'login')->name('login');
-Route::post('/login', [UserController::class, 'login']);
-
-Route::view('/dashboard', 'dashboard');
+// Route::view('/dashboard', 'dashboard');
 
 
 // Inventory Routes
