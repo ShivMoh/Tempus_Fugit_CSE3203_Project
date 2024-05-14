@@ -19,18 +19,13 @@ function updateTotal(element) {
     updateTotalCost();
 }
 
-
 function updateRow(selectElement) {
     var row = selectElement.closest('tr');
     var amountInput = row.querySelector('.amount input');
     var discountInput = row.querySelector('.discount input');
-    var itemIdCell = row.querySelector('.item-id');
     
     var selectedItemName = selectElement.value;
     var selectedItem = items.find(item => item.name === selectedItemName);
-    
-    // Update item ID cell with the selected item's ID
-    itemIdCell.textContent = selectedItem ? selectedItem.id : '';
     
     // Set the default values for amount and discount
     amountInput.value = 1;
@@ -38,7 +33,6 @@ function updateRow(selectElement) {
 
     updateTotal(amountInput);
 }
-
 
 function updateTotalCost() {
     var itemTotalCells = document.querySelectorAll('.item-total');

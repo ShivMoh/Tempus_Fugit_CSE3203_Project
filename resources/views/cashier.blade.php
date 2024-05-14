@@ -73,7 +73,7 @@
             <table class="cashier">
                 <thead>
                     <tr>
-                        <th class="item-id">Item ID</th>
+                        <th class="item-id">ID</th>
                         <th class="name-of-item">Name of Item</th>
                         <th class="amount">Amount</th>
                         <th class="discount">Discount (%)</th>
@@ -84,7 +84,7 @@
                 <tbody>
                     @for ($i = 0; $i < 15; $i++)
                         <tr>
-                            <td class="item-id"></td>
+                            <td class="item-id">{{ $i + 1 }}</td>
                             <td class="name-of-item">
                                 <select name="item_name" onchange="updateRow(this)">
                                     <option value="">Select Item</option>
@@ -107,9 +107,13 @@
 
             <div class="total-and-print">
                 <input type="text" id="totalCost" value="">
-                <button class="confirm-and-print-bill">Confirm and Print Bill</button>
-                <button class="confirm-order">Confirm Order</button>
-                <button class="manage-bills">Manage Bills</button>
+                <button class="confirm-and-print-bill">
+                    <a href="/bill_preview">Confirm and Print Bill</a>
+                </button>
+
+                <button class="manage-bills">
+                    <a href="/bills">Manage Bills</a>
+                </button>
             </div>
         </div>
     
