@@ -73,7 +73,7 @@
             <table class="cashier">
                 <thead>
                     <tr>
-                        <th class="item-id">Item ID</th>
+                        <th class="item-id">ID</th>
                         <th class="name-of-item">Name of Item</th>
                         <th class="amount">Amount</th>
                         <th class="discount">Discount (%)</th>
@@ -84,7 +84,7 @@
                 <tbody>
                     @for ($i = 0; $i < 15; $i++)
                         <tr>
-                            <td class="item-id"></td>
+                            <td class="item-id">{{ $i + 1 }}</td>
                             <td class="name-of-item">
                                 <select name="item_name" onchange="updateRow(this)">
                                     <option value="">Select Item</option>

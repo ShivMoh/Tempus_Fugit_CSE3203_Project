@@ -125,6 +125,22 @@ return new class extends Migration
             )
         );
 
+        DB::table('items')->insert(
+            array(
+                "id"            => (string) Str::uuid(),
+                'name'          => 'Shovel',
+                'selling_price' => 250.0,
+                'cost_price'    => 20.0,
+                'total_sold'    => 1,
+                'stock_count'   => 20,
+                'image_url'     => "shovel_url",
+                'category_id'   => '174779ab-5a6e-4aee-8053-2822954611d2',
+                'supplier_id'   => '79f9eef4-b689-4f13-895a-69f1488a791b',
+                'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
+            )
+        );
+
         // company card
 
         DB::table('cards')->insert(
