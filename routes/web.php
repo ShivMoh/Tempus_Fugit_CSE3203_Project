@@ -35,11 +35,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Protected routes
-// Cashier (basic)
-Route::group(['middleware' => ['role:eff3a740-b777-48dc-8c04-78893ba6a50b']], function () {
-   Route::get('/cashier', [CashierController::class, 'index']);
-   Route::get('/sales', [SalesController::class, 'index']);
-});
 
 // Manager (admin)
 Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], function () {
@@ -48,8 +43,6 @@ Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], fu
    });
    Route::get('/inventory', [ItemController::class, 'index']);
    Route::post('/info', [ItemController::class, 'show_individual']);
-   Route::get('/cashier', [CashierController::class, 'index']);
-   Route::get('/sales', [SalesController::class, 'index']);
    Route::view('/supplier', 'supplier/supplier');
    Route::get('/supplier', [SupplierController::class, 'index']);
    Route::post('/supplier', [SupplierController::class, 'index']);
@@ -60,7 +53,12 @@ Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], fu
    Route::get('/orders', [SupplierController::class, 'view_orders']);
    Route::post('/view-bill', [SupplierController::class, 'view_bill']);
    Route::post('/mark-as-received', [SupplierController::class, 'mark_as_received']);
+});
 
+// Cashier (basic)
+Route::group(['middleware' => ['role:eff3a740-b777-48dc-8c04-78893ba6a50b,86efe04b-8be4-4c70-a240-fe9624d89371']], function () {
+   Route::get('/cashier', [CashierController::class, 'index']);
+   Route::get('/sales', [SalesController::class, 'index']);
 });
 
 Route::get('/unauthorized', function () {
