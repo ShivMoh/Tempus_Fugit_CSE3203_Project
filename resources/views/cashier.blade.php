@@ -107,9 +107,13 @@
 
             <div class="total-and-print">
                 <input type="text" id="totalCost" value="">
-                <button class="confirm-and-print-bill">Confirm and Print Bill</button>
-                <button class="confirm-order">Confirm Order</button>
-                <button class="manage-bills">Manage Bills</button>
+                <button class="confirm-and-print-bill">
+                    <a href="/bill_preview">Confirm and Print Bill</a>
+                </button>
+
+                <button class="manage-bills">
+                    <a href="/bills">Manage Bills</a>
+                </button>
             </div>
         </div>
     

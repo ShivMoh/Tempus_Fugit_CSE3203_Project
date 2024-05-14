@@ -57,4 +57,7 @@ Route::get('/inventory', [ItemController::class, 'index']);
 
 
 // Cashier Routes
+// CHANGE BILL PREVIEW METHOD
 Route::get('/cashier', [CashierController::class, 'index']);
+Route::get('/bill_preview', [CashierController::class, 'createBill']);
+Route::get('/bills', [CashierController::class, 'viewBills']);
