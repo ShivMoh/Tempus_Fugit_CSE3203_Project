@@ -13,23 +13,22 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      */
+   
     public function index(Request $request)
     {
-        //Get list of items
+        //Get list of all items
         $items = Item::all();
 
-        $result = array();
         // Search functionality
-        if ($request->input('search') != ""){
-            $items = Item::where('name','like', '%', $request->input('search').'%')->get();
+        if ($request->has('search') && $request->input('search') != "") {
+            $searchTerm = $request->input('search');
+            $searchResults = Item::where('name', 'like', '%' . $searchTerm . '%')->get();
+            return view('inventory.inventory', ["items" => $searchResults]);
         }
 
-        return view('inventory.inventory',
-            [
-                "items"=> $items
-            ]
-        );
+        return view('inventory.inventory', ["items" => $items]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -100,9 +99,19 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update_stock(Request $request, int $amount)
     {
-        //
+        // Assuming you're passing the item ID via the request
+        $itemId = $request->input('item_id');
+
+        // Retrieve the item from the database
+        $item = Item::findOrFail($itemId);
+
+        // Update the stock count
+        $item->stock_count += $amount;
+        
+        // Save the updated item
+        $item->save();
     }
 
     /**

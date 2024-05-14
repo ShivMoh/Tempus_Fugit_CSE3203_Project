@@ -28,3 +28,8 @@ body{
     width: 45%;
     padding: 15px;
 }
+
+.order-sec {
+    display: flex;
+    justify-content: center;
+}

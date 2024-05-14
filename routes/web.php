@@ -42,6 +42,7 @@ Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], fu
        return view ('dashboard');
    });
    Route::get('/inventory', [ItemController::class, 'index']);
+   Route::post('/inventory', [ItemController::class, 'index']);
    Route::post('/info', [ItemController::class, 'show_individual']);
    Route::view('/supplier', 'supplier/supplier');
    Route::get('/supplier', [SupplierController::class, 'index']);
