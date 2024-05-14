@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\SalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +70,10 @@ Route::get('/inventory', [ItemController::class, 'index']);
 
 
 // Cashier Routes
+// CHANGE BILL PREVIEW METHOD
 Route::get('/cashier', [CashierController::class, 'index']);
+Route::get('/bill_preview', [CashierController::class, 'createBill']);
+Route::get('/bills', [CashierController::class, 'viewBills']);
+
+// Sales Routes
+Route::get('/sales', [SalesController::class, 'index']);

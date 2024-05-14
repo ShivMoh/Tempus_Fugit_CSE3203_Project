@@ -59,3 +59,26 @@
     transform: scale(1.05);
     cursor: pointer;
 }
+
+
+.manage-suppliers-button {
+    margin-top: 50px;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(50, 146, 255);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 12px;
+    transition: all 0.2s linear;
+}
+
+.manage-suppliers-button:hover {
+    background-color: rgb(108, 177, 255);
+    transform: scale(1.05);
+    cursor: pointer;
+}

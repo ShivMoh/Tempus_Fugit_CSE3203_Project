@@ -30,7 +30,7 @@ window.addItem = function() {
     
     items.value = item_display.innerText;
     console.log(items.value)
-    item_displayer.innerHTML = item_displayer.innerHTML + "<div class='list-item'><p class'item-name'>" + item_displayer_str + "</p><span class='delete' onclick=deleteItem("+index+")>Delete</span></div>"
+    item_displayer.innerHTML = item_displayer.innerHTML + "<div class='list-item'><p class'item-name'>" + item_displayer_str + "</p><span class='delete' onclick=deleteItem("+index+")>X</span></div>"
 
 }
 

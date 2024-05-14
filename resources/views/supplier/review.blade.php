@@ -65,7 +65,17 @@
         </div>
         
         <div class="items">   
-            <h1>Items</h1>     
+            <h1>Items</h1>   
+            <div class="single-item">    
+                <div class="item-container">
+                    <p class="amount heading">Amount</p>
+                    <p class="name heading">Name</p>
+                </div>
+    
+                <div class="cost-container">
+                    <p class="item-cost heading">Cost</h1>
+                </div>
+            </div>    
             @foreach ($item_names as $key => $value )
                 <div class="single-item">    
                     <div class="item-container">
@@ -78,6 +88,17 @@
                     </div>
                 </div>
             @endforeach
+
+            <div class="single-item final">    
+                <div class="item-container">
+                    <p class="amount heading big">Total:</p>
+                    <p class="name heading"></p>
+                </div>
+    
+                <div class="cost-container">
+                    <p class="item-cost heading big">$ {{$total_cost}}</h1>
+                </div>
+            </div>  
         </div>
         
         <div class="supplier">
