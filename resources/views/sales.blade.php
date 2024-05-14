@@ -30,12 +30,6 @@
         ><button class="rectangle-button-4">
           <span class="profits">Profits</span></button
         ><span class="financial-statistics">Financial Statistics</span>
-        <div class="group-5"></div>
-        <span class="sales">Sales</span><span class="sales-6">Sales</span
-        ><span class="costs">Costs</span><span class="profits-7">Profits</span
-        ><span class="overall-costs-vs-sales">Overall Costs vs Sales</span
-        ><span class="overall-sales-vs-profits">Overall Sales vs Profits</span>
-      </div>
     </div>
   </body>
 </html>
