@@ -1,3 +1,30 @@
-.preview{
-    width: 100%;
+body{
+    padding: 60px;
+    background-color: white;
+}
+
+#image-container{
+    width: 300px;
+}
+
+.main-details{
+    padding: 15px;
+    width: 50%;
+}
+.sec-container{
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column{
+    width: 45%;
+    padding: 15px;
 }

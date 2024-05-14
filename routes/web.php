@@ -67,6 +67,7 @@ Route::post('/register', [UserController::class, 'register']);
 
 // Inventory Routes
 Route::get('/inventory', [ItemController::class, 'index']);
+Route::post('/info', [ItemController::class, 'show_individual']);
 
 
 // Cashier Routes
