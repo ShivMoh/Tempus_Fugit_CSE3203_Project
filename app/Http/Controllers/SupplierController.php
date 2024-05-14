@@ -81,6 +81,8 @@ class SupplierController extends Controller
         
         $item_names = array();
         $item_amounts = array();
+        $total_cost = 0;
+
         foreach(explode("|", $request->input('items')) as $item) {
             $data = explode("X", $item);
 
@@ -88,7 +90,7 @@ class SupplierController extends Controller
 
             $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
             $retrieved_item = Item::where('id', $item_id)->get();
-
+            $total_cost += ((int) $data[0]) * $retrieved_item[0]->selling_price;
             array_push($item_names, $retrieved_item);
             array_push($item_amounts, $data[0]);
 
@@ -100,7 +102,8 @@ class SupplierController extends Controller
                 'address'=>$address,
                 'item_names'=>$item_names,
                 'item_amounts'=>$item_amounts,
-                'items'=> preg_replace('/\s+/', '', $request->input('items'))
+                'items'=> preg_replace('/\s+/', '', $request->input('items')),
+                'total_cost'=>$total_cost
             ]
         );
     }
@@ -110,7 +113,7 @@ class SupplierController extends Controller
         $card = Card::where('id', $request->input('payment'))->get();
         $supplier = Supplier::where('id', $request->input('supplier'))->get();
         $address = Address::where('company_address', true)->get();
-        
+        $total_cost = 0;
         $item_names = array();
         $item_amounts = array();
 
@@ -118,6 +121,7 @@ class SupplierController extends Controller
             $data = explode("X", $item);
             $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
             $retrieved_item = Item::where('id', $item_id)->get();
+            $total_cost += ((int) $data[0]) * $retrieved_item[0]->selling_price;
             array_push($item_names, $retrieved_item);
             array_push($item_amounts, $data[0]);
         }
@@ -128,7 +132,8 @@ class SupplierController extends Controller
                 'address'=>$address,
                 'item_names'=>$item_names,
                 'item_amounts'=>$item_amounts,
-                'items'=> preg_replace('/\s+/', '', $request->input('items'))
+                'items'=> preg_replace('/\s+/', '', $request->input('items')),
+                'total_cost'=>$total_cost
             ]
         );
     }
@@ -244,13 +249,11 @@ class SupplierController extends Controller
         // link order to payment detail -> should seed to a default company payment
         // link each order item to the newly created order
         
-        return view('supplier/test', [
-            'result'=>$data
-        ]);
+        return redirect('/supplier');
     }
 
     public function view_orders() {
-        $orders = Order::all(); 
+        $orders = Order::orderBy('id', 'ASC')->get(); 
         $suppliers = array();
         $cards = array();
         $items = array();
@@ -290,14 +293,20 @@ class SupplierController extends Controller
         ]));
     }
 
+    // 3.78 - 5132fc53-e3d6-4e6f-a98e-53b5b62c5ea2
+    // 7.56 - 1fd5a5da-4800-483d-aeb0-ecf89209ed69
+
+
     public function mark_as_received(Request $request) {
 
         $order_id = $request->input('order-id');
+        // echo $order_id;
+        
         $order = Order::where('id', $order_id)->get()[0];
         $order->date_arrived = Carbon::now();
-        $order->received = false;
+        $order->received = !$order->received;
         $order->save();
-        return redirect()->intended('/orders');
+        return redirect('/orders');
     }
     //
     function test() {

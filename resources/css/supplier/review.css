@@ -42,15 +42,34 @@ p {
 
 
 .single-item {
-    display: flex;
-    flex-direction: row;
+    width: 80%;
+    display: grid;
     column-gap: 35vw;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: auto;
 }
 
 .item-container {
-    display: flex;
-    flex-direction: row;
-    column-gap: 20px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    column-gap: 50px;
+}
+
+.heading {
+    font-weight: 600;
+}
+
+.big {
+    font-size: 20px;
+}
+
+.final {
+    margin-top: 40px;
+}
+
+.cost-container {
+    justify-self: start;
 }
 .button-container {
     width: 100%;

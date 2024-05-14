@@ -38,13 +38,15 @@
 @endif
 
 <section class="suppliers">
+    <form action="/orders" class="view-orders">
+        <button type="submit" class="view-orders-button">Manage Orders</button>
+    </form>
     @foreach ($suppliers as $supplier )
 
     <form class="supplier-container" method="GET" action="/request-form">
         @csrf
         <div class="image-section">
-            <div class="image"></div>
-            {{-- <img src="" alt="" srcset=""> --}}
+            <img class="image" src="{{ asset($supplier['supplier']->image_url) }}" alt="This is image">
         </div>
 
         <div class="info-section">

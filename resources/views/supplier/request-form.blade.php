@@ -1,5 +1,6 @@
 @vite('resources/js/supplier/request_form.js')
 @vite('resources/css/supplier/request_form.css')
+@vite('resources/images/bin.png')
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -10,6 +11,13 @@
         <p>{{$error}}</p>
     @endforeach
 @endif --}}
+
+<div class="back-container">
+    <form action="/supplier">
+        <button type="submit" class="back-button">Back To Supplier</button>
+    </form>
+    
+</div>
 
 <form id="regForm" method="POST" action="/review">
     @csrf
