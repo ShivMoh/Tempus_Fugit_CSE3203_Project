@@ -28,6 +28,14 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+            if ($user->user_role_id == 'eff3a740-b777-48dc-8c04-78893ba6a50b'){
+                return redirect()->intended('/cashier');
+            } elseif ($user->user_role_id == '86efe04b-8be4-4c70-a240-fe9624d89371'){
+                return redirect()->intended('/dashboard');
+            }
+
             return redirect()->intended('/dashboard');
         }
 

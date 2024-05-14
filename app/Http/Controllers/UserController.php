@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Employee;
 use App\Models\Address;
 use App\Models\Contact;
+use App\Models\JobRole;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
@@ -62,23 +63,50 @@ class UserController extends Controller
             "email"=>$request->input('email'),
         ]);
 
-        $employee = new Employee([
-            "id"=>(string) Str::uuid(),
-            "first_name"=>$request->input('first_name'),
-            "last_name"=>$request->input('last_name'),
-            "dob"=>$request->input('dob'),
-            "address_id"=>$address->id,
-            "contact_id"=>$contact->id,
-            "job_role_id"=>"d6353dd9-2e4a-4a21-81c4-9a4f16cef20c",
-        ]);
+        // write an if statement to hardcode role id
+        if ($request->input('job_role')=='cashier'){
+            $employee = new Employee([
+                "id"=>(string) Str::uuid(),
+                "first_name"=>$request->input('first_name'),
+                "last_name"=>$request->input('last_name'),
+                "dob"=>$request->input('dob'),
+                "address_id"=>$address->id,
+                "contact_id"=>$contact->id,
+                "job_role_id"=>"8821d316-6ee2-4f70-bfc8-917b4219f7d3",
+            ]);
+        }
 
-        $user = new User([
-            "id"=>(string) Str::uuid(),
-            "email"=>$request->input('email'),
-            "password"=>$request->input('password'),
-            "user_role_id"=>"86efe04b-8be4-4c70-a240-fe9624d89371",
-            "employee_id"=>$employee->id,
-        ]);
+        else {
+            $employee = new Employee([
+                "id"=>(string) Str::uuid(),
+                "first_name"=>$request->input('first_name'),
+                "last_name"=>$request->input('last_name'),
+                "dob"=>$request->input('dob'),
+                "address_id"=>$address->id,
+                "contact_id"=>$contact->id,
+                "job_role_id"=>"d6353dd9-2e4a-4a21-81c4-9a4f16cef20c",
+            ]);
+        }
+
+        if ($request->input('job_role') == 'cashier'){
+            $user = new User([
+                "id"=>(string) Str::uuid(),
+                "email"=>$request->input('email'),
+                "password"=>$request->input('password'),
+                "user_role_id"=>"eff3a740-b777-48dc-8c04-78893ba6a50b",
+                "employee_id"=>$employee->id,
+            ]);
+        }
+
+        else {
+            $user = new User([
+                "id"=>(string) Str::uuid(),
+                "email"=>$request->input('email'),
+                "password"=>$request->input('password'),
+                "user_role_id"=>"86efe04b-8be4-4c70-a240-fe9624d89371",
+                "employee_id"=>$employee->id,
+            ]);
+        }
         
         $address->save();
         $contact->save();
