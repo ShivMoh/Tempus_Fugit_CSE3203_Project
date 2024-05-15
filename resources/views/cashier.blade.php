@@ -11,62 +11,8 @@
     </head>
 
     <body>
-        <nav>
-            <div class="logo">
-                <i class="bx bx-menu menu-icon"></i>
-                <span class="logo-name">[Company Name]</span>
-            </div>
-
-            <div class="sidebar">
-                <div class="logo">
-                    <i class="bx bx-menu menu-icon"></i>
-                    <span class="logo-name">[Company Name]</span>
-                </div>
-                <div class="sidebar-content">
-                    <ul class="lists">
-                        <li class="list">
-                            <a href="/dashboard" class="nav-link">
-                                <i class="bx bx-home-alt icon"></i>
-                                <span class="link">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="/inventory" class="nav-link">
-                                <i class='bx bx-package icon'></i>
-                                <span class="link">Inventory</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="/supplier" class="nav-link">
-                                <i class='bx bxs-cart-add icon'></i>
-                                <span class="link">Supplies</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="/sales" class="nav-link">
-                                <i class='bx bx-line-chart icon'></i>
-                                <span class="link">Sales</span>
-                            </a>
-                        </li>
-                        <li class="list">
-                            <a href="/cashier" class="nav-link">
-                                <i class='bx bx-money icon' ></i>
-                                <span class="link">Cashier</span>
-                            </a>
-                        </li>
-                    </ul>
-                    {{-- bottom content  --}}
-                    <div class="bottom-cotent">
-                        <li class="list">
-                            <a href="#" class="nav-link">
-                                <i class="bx bx-log-out icon"></i>
-                                <span class="link">Logout</span>
-                            </a>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <x-nav></x-nav>
+        
         <section class="overlay"></section>
 
         <div class="cashier-content">

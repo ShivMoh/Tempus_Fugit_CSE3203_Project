@@ -6,6 +6,7 @@
     <title>Bill Preview</title>
 </head>
 <body>
+<x-nav></x-nav>
     <h1>Bill Preview goes here</h1>
 </body>
 </html>

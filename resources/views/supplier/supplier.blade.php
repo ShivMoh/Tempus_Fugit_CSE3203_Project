@@ -1,6 +1,6 @@
 @vite(['resources/js/supplier/request_form.js'])
 @vite(['resources/css/supplier/supplier.css'])
-
+<x-nav></x-nav>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 

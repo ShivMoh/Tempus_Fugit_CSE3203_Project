@@ -11,7 +11,7 @@
         <p>{{$error}}</p>
     @endforeach
 @endif --}}
-
+<x-nav></x-nav>
 <div class="back-container">
     <form action="/supplier">
         <button type="submit" class="back-button">Back To Supplier</button>

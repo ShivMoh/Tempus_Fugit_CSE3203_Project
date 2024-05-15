@@ -1,10 +1,8 @@
+
 body{
     padding: 60px;
     background-color: white;
-}
 
-h1{
-    background-color: white;
 }
 
 .item-preview button{
@@ -14,8 +12,15 @@ h1{
     padding: 0;
 }
 
-.content{
-    margin: 45px 0;
+.preview-btn {
+    margin: 18px 0;
+    /* padding: 10px 20px; Adjust padding as needed */
+    transition: padding 0.3s ease; /* Add transition for smooth effect */
+    cursor: pointer; /* Set cursor to pointer */
+}
+
+.preview-btn:hover {
+    padding: 12px 24px; 
 }
 
 .search-container{
@@ -24,6 +29,35 @@ h1{
     flex-wrap: wrap;
 }
 
+.button-container button{
+    padding: 9px 18px;
+    margin-left: 9px;
+    border-radius: 9px;
+    border: none;
+}
+
 #page-title{
     margin: 45px 0;
+    background-color: white;
+}
+
+h1#page-title{
+    font-size: 64px;
+    font-weight:normal;
+}
+
+#search-bar{
+    padding: 9px;
+    border-radius: 3px;
+    border-width: 1;
+}
+
+#search-button{
+    background-color: var(--main-color);
+    color: white;
+}
+
+#clear-button{
+    background-color: red;
+    color: white;
 }

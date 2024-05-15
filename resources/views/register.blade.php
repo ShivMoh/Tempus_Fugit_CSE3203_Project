@@ -1,6 +1,6 @@
 @vite('resources/css/register.css')
 @vite('resources/js/register.js')
-
+<x-nav></x-nav>
 <form id="regForm" method="POST" action="/register">
     @csrf
     

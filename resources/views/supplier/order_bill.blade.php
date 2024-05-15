@@ -1,6 +1,6 @@
 @vite('resources/js/supplier/review.js')
 @vite('resources/css/supplier/review.css')
-
+<x-nav></x-nav>
 <form class="bill-container" id="review-form" action="/order-item" method="POST">
     @csrf
 
