@@ -132,18 +132,29 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update_stock(Request $request, int $amount)
+    public function update_stock(string $id, int $amount)
     {
-
-        //TODO: this function needs to be called when sold AND ordered
-        // Assuming you're passing the item ID via the request
-        $itemId = $request->input('item_id');
+        $itemId = $id;
 
         // Retrieve the item from the database
         $item = Item::findOrFail($itemId);
 
         // Update the stock count
         $item->stock_count += $amount;
+        
+        // Save the updated item
+        $item->save();
+    }
+
+    public function update_total_sold(string $id, int $amount)
+    {
+        $itemId = $id;
+
+        // Retrieve the item from the database
+        $item = Item::findOrFail($itemId);
+
+        // Update the stock count
+        $item->total_sold += $amount;
         
         // Save the updated item
         $item->save();

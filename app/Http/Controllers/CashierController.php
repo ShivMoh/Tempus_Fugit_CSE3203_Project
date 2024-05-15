@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Bill;    
+use App\Http\Controllers\ItemController;
+
 
 class CashierController extends Controller
 {
@@ -23,6 +25,7 @@ class CashierController extends Controller
     // Used to populate the bill fields before printing.
     // Used to populate the bill fields before printing.
     public function createBill(Request $request) {
+        $item_controller = new ItemController;
         $customerName = $request->input('customer_name');
         $itemNames = $request->input('item_name');
         $prices = $request->input('price');
@@ -38,6 +41,7 @@ class CashierController extends Controller
         {
             if (!empty($itemName) && !empty($amounts[$index])) 
             {
+                $itemId = Item::where('name', $itemName)->value('id');
                 $price = $prices[$index];
                 $amount = $amounts[$index];
                 $discount = $discounts[$index];
@@ -50,6 +54,8 @@ class CashierController extends Controller
                     'total' => $itemTotal
                 ];
                 $grossCost = $grossCost + $itemTotal;
+                $item_controller->update_stock($itemId, $amount *-1);
+                $item_controller->update_total_sold($itemId, $amount);
             }
         }
         

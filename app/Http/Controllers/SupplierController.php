@@ -186,14 +186,11 @@ class SupplierController extends Controller
     }
 
     public function order_item(Request $request) {
+        $item_controller = new ItemController;
         $data = array(
             'items'=>$request->input('items'),
             'supplier'=>$request->input('supplier'),
         );
-
-        // error_log("message");
-
-        // echo $data['items'];
 
         $supplier = Supplier::where('id', $data['supplier'])->get()[0];
 
@@ -251,6 +248,9 @@ class SupplierController extends Controller
 
             $retrieved_item = Item::where('id', $item_id)->get();
             $item_cost = $retrieved_item[0]->selling_price;
+
+            //Update item stock when sold
+            $item_controller->update_stock($item_id, $item_amount);
 
             array_push($order_items, $order_item);
         }

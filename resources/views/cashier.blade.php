@@ -46,6 +46,7 @@
                                 <select name="item_name[]" onchange="updateRow(this)">
                                     <option value="" disabled selected>Select Item</option>
                                     @foreach($items as $item)
+
                                         <option
                                             value="{{ $item->name }}"
                                             data-price="{{ $item->selling_price }}">{{ $item->name }}
