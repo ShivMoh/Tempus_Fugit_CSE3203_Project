@@ -27,6 +27,7 @@
                     <p class="label">Expiray Date</p>
                     <p class="expirary-date">{{$res->expirary_date}}</p>
                 </div>
+                <input type="hidden" name="card" value={{$res->id}}>
             @endforeach    
         </div>
         
@@ -88,16 +89,63 @@
                     </div>
                 </div>
             @endforeach
+            
+            <div class="single-item final">    
+                <div class="item-container">
+                    <p class="amount heading">Insurance </p>
+                    <p class="name heading">Fee:</p>
+                </div>
+    
+                <div class="cost-container">
+                    <p class="item-cost heading">$ {{$insurance_fee}}</h1>
+                </div>
+            </div>  
+
+            <div class="single-item">    
+                <div class="item-container">
+                    <p class="amount heading">Processing</p>
+                    <p class="name heading"> Fee:</p>
+                </div>
+    
+                <div class="cost-container">
+                    <p class="item-cost heading">$ {{$processing_fee}}</h1>
+                </div>
+            </div>  
+
+            <div class="single-item">    
+                <div class="item-container">
+                    <p class="amount heading">Shipping </p>
+                    <p class="name heading">Fee:</p>
+                </div>
+    
+                <div class="cost-container">
+                    <p class="item-cost heading">$ {{$shipping_fee}}</h1>
+                </div>
+            </div>  
+
+            <div class="single-item">    
+                <div class="item-container">
+                    <p class="amount heading">VAT:</p>
+                    <p class="name heading"></p>
+                </div>
+    
+                <div class="cost-container">
+                    <p class="item-cost heading">$ {{$vat}}</h1>
+                </div>
+            </div>  
 
             <div class="single-item final">    
                 <div class="item-container">
-                    <p class="amount heading big">Total:</p>
+                    <p class="amount heading big">Total Cost:</p>
                     <p class="name heading"></p>
                 </div>
     
                 <div class="cost-container">
                     <p class="item-cost heading big">$ {{$total_cost}}</h1>
                 </div>
+                <input type="hidden" name="net-cost" value={{$total_cost}}>
+                <input type="hidden" name="gross-cost" value={{$gross_cost}}>
+
             </div>  
         </div>
         
@@ -122,6 +170,7 @@
             @endforeach
         </div>
     </div>
+
         
 </form>
 

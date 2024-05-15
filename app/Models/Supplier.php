@@ -15,11 +15,21 @@ class Supplier extends Model
 
     protected $fillable = [
         'id',
-        'name'
+        'name',
+        'description',
+        'image_url',
+        'insurance_fee',
+        'processing_fee',
+        'shipping_fee'
     ];
 
     protected $casts = [
         'id' => 'string',
-        'name' => 'string'
+        'name' => 'string',
+        'description' => 'string',
+        'image_url' => 'string',
+        'insurance_fee' => 'float',
+        'processing_fee' => 'float',
+        'shipping_fee' => 'float'
     ];
 }

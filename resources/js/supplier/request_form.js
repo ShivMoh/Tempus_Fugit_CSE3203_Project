@@ -12,7 +12,11 @@ window.addItem = function() {
     if(amount.value.length == 0) {
       item_errors.innerHTML = "<span class='error'>Amount is required</span>"
       return;
-    } else {
+    } else if (amount.value <= 0) {
+      item_errors.innerHTML = "<span class='error'>Amount must be greater than 0</span>"
+      return
+    }
+    else {
       item_errors.innerHTML = "";
     }
 

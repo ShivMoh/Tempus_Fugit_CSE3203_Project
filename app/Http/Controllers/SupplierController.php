@@ -24,7 +24,7 @@ class SupplierController extends Controller
 
         $suppliers = Supplier::all();
         $contacts = array();
-
+        
         $result = array();
         $no_results = false;
 
@@ -78,23 +78,27 @@ class SupplierController extends Controller
         $card = Card::where('id', $request->input('payment'))->get();
         $supplier = Supplier::where('id', $request->input('supplier'))->get();
         $address = Address::where('company_address', true)->get();
-        
+
+        $processing_fee = $supplier[0]->processing_fee;
+        $shipping_fee = $supplier[0]->shipping_fee;
+        $insurance_fee = $supplier[0]->insurance_fee;
+
         $item_names = array();
         $item_amounts = array();
         $total_cost = 0;
 
         foreach(explode("|", $request->input('items')) as $item) {
             $data = explode("X", $item);
-
-            // $item_id = preg_replace('/\s+/', '', $data[1]);
-
             $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
             $retrieved_item = Item::where('id', $item_id)->get();
             $total_cost += ((int) $data[0]) * $retrieved_item[0]->selling_price;
             array_push($item_names, $retrieved_item);
             array_push($item_amounts, $data[0]);
-
         }
+
+        $vat = 0.16 * $total_cost;
+        $gross_cost = $total_cost;
+        $total_cost += $insurance_fee + $processing_fee + $shipping_fee + $vat;
 
         return view('supplier/review', [
                 'supplier'=>$supplier,
@@ -103,7 +107,12 @@ class SupplierController extends Controller
                 'item_names'=>$item_names,
                 'item_amounts'=>$item_amounts,
                 'items'=> preg_replace('/\s+/', '', $request->input('items')),
-                'total_cost'=>$total_cost
+                'total_cost'=>$total_cost,
+                'gross_cost'=>$gross_cost,
+                'insurance_fee'=>$insurance_fee,
+                'processing_fee'=>$processing_fee,
+                'shipping_fee'=>$shipping_fee,
+                'vat'=>$vat
             ]
         );
     }
@@ -117,6 +126,11 @@ class SupplierController extends Controller
         $item_names = array();
         $item_amounts = array();
 
+        $processing_fee = $supplier[0]->processing_fee;
+        $shipping_fee = $supplier[0]->shipping_fee;
+        $insurance_fee = $supplier[0]->insurance_fee;
+
+
         foreach(explode("|", $request->input('items')) as $item) {
             $data = explode("X", $item);
             $item_id = preg_replace('/\s+/', '', explode("x", $data[1])[1]);
@@ -126,6 +140,10 @@ class SupplierController extends Controller
             array_push($item_amounts, $data[0]);
         }
 
+        $vat = 0.16 * $total_cost;
+        $total_cost += $insurance_fee + $processing_fee + $shipping_fee + $vat;
+
+
         return view('supplier/order_bill', [
                 'supplier'=>$supplier,
                 'card'=>$card,
@@ -133,7 +151,11 @@ class SupplierController extends Controller
                 'item_names'=>$item_names,
                 'item_amounts'=>$item_amounts,
                 'items'=> preg_replace('/\s+/', '', $request->input('items')),
-                'total_cost'=>$total_cost
+                'total_cost'=>$total_cost,
+                'insurance_fee'=>$insurance_fee,
+                'processing_fee'=>$processing_fee,
+                'shipping_fee'=>$shipping_fee,
+                'vat'=>$vat
             ]
         );
     }
@@ -141,7 +163,6 @@ class SupplierController extends Controller
 
 
     public function get_request_form(Request $request) {
-
         $supplier = Supplier::where('id', $request->input('id'))->get(); 
 
         $items = Item::where('supplier_id', $supplier[0]->id)->get();
@@ -170,38 +191,41 @@ class SupplierController extends Controller
             'supplier'=>$request->input('supplier'),
         );
 
-        error_log("message");
+        // error_log("message");
 
         // echo $data['items'];
 
+        $supplier = Supplier::where('id', $data['supplier'])->get()[0];
+
         $payment = new Payment([
-            "id"=>(string) Str::uuid(),
-            "cash"=>false
+           "id"=>(string) Str::uuid(),
+           "cash"=>false,
+           "amount"=>$request->input('net-cost'),
         ]);
 
         $card_payment = new CardPayment([
-           "id"=>(string) Str::uuid(),
-           "payment_id"=>$payment->id,
-           "amount"=>0,
-           "card_id"=>"d625a5d9-7277-46df-8c5e-970e8770ab67"
+            "id"=>(string) Str::uuid(),
+            "payment_id"=>$payment->id,
+            "card_id"=>$request->input('card')
         ]);
+
 
         // create a order
         $order = new Order([
             "id"=>(string) Str::uuid(),
-            "gross_cost"=>0.0,
-            "net_cost"=>0.0,
-            "duty_and_vat"=>0.0,
-            "insurance_fee"=>10000.0,
-            "processing_fee"=>10000.0,
-            "shipping_fee"=>5000,
+            "gross_cost"=>$request->input('gross-cost'),
+            "net_cost"=>$request->input('net-cost'),
+            "duty_and_vat"=>(0.16 * $request->input('gross-cost')),
+            "insurance_fee"=>$supplier->insurance_fee, // standard fee
+            "processing_fee"=>$supplier->processing_fee, // standard fee
+            "shipping_fee"=>$supplier->shipping_fee, // standard fee
             "order_date"=>Carbon::now(),
             "date_arrived"=>Carbon::now(),
             "received"=>false,
-            "user_id"=>"7e64918c-9cb3-4d7d-af56-cf82536eaddf",
+            "user_id"=>$request->user()->id,
             "supplier_id"=>$data['supplier'],
             "payment_id"=> $payment->id,
-            "address_id"=> "2d9d32a9-0d08-43c0-a0a5-48f9d5d9aad2"
+            "address_id"=> "2d9d32a9-0d08-43c0-a0a5-48f9d5d9aad2" // links to company address. Business only has one location so value is hardcoded.
         ]);
 
         $order_items = array();
@@ -229,14 +253,8 @@ class SupplierController extends Controller
             $item_cost = $retrieved_item[0]->selling_price;
 
             array_push($order_items, $order_item);
-            $order->gross_cost += $item_cost;
-
         }
-
-        $order->duty_and_vat = 0.16 * $order->gross_cost;
-        $order->net_cost = $order->gross_cost - $order->duty_and_vat;
-        $payment->amount = $order->net_cost;
-
+        
         $payment->save();
         $card_payment->save();
         $order->save();

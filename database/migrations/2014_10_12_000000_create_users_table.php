@@ -108,6 +108,9 @@ return new class extends Migration
             $table->string("description");
             $table->string('name');
             $table->string("image_url")->nullable();
+            $table->float('insurance_fee');
+            $table->float('processing_fee');
+            $table->float('shipping_fee');
             $table->timestamps();
 
         });

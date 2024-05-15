@@ -57,6 +57,9 @@ return new class extends Migration
                 "description"=>"This is supplier 1. They supply x, y and z",
                 "contact_id"=>"4c2b9326-bef5-4871-8e9a-9c12bccbb2d2",
                 "image_url"=>"/images/supplier/manufacturing_1.jpg",
+                "insurance_fee"=>10000.0,
+                "processing_fee"=>10000.0,
+                "shipping_fee"=>500.0,
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
@@ -69,6 +72,9 @@ return new class extends Migration
                 'description'=>'This is supplier 2. They supply x, y, z',
                 'contact_id'=>"fceecee3-6ea5-41aa-bf30-fd80446a55cf",
                 "image_url"=>"/images/supplier/manufacturing_2.jpg",
+                "insurance_fee"=>10000.0,
+                "processing_fee"=>10000.0,
+                "shipping_fee"=>500.0,
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )
@@ -81,6 +87,9 @@ return new class extends Migration
                 'description'=>'This is supplier 3. They supply x, y, z',
                 'contact_id'=>'421e6b9c-61e3-444f-8972-c934edf987e2',
                 "image_url"=>"/images/supplier/manufacturing_3.jpg",
+                "insurance_fee"=>10000.0,
+                "processing_fee"=>10000.0,
+                "shipping_fee"=>500.0,
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )

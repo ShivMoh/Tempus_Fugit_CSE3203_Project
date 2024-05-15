@@ -112,6 +112,12 @@ select {
   margin-top: 10px;
 }
 
+.error {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: rgb(255, 15, 15);
+}
+
 .delete {
   font-family: 'Outfit';
   margin-right: 10px;

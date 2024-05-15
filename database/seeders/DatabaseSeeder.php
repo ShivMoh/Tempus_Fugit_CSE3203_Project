@@ -56,18 +56,19 @@ class DatabaseSeeder extends Seeder
         //     ]
         // ]);
 
-        // DB::table('addresses')->insert([
-        //     [
-        //         'id' => (string) Str::uuid(),
-        //         'line_1' => '123 Main St',
-        //         'line_2' => 'Apt 4B',
-        //         'city' => 'Springfield',
-        //         'state' => 'IL',
-        //         'country' => 'USA',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ]
-        // ]);
+        DB::table('addresses')->insert([
+            [
+                'id' => (string) Str::uuid(),
+                'line_1' => '123 Main St',
+                'line_2' => 'Apt 4B',
+                'city' => 'Springfield',
+                'state' => 'IL',
+                'country' => 'USA',
+                'company_address'=>true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
 
         // DB::table('employees')->insert([
         //     [
@@ -83,52 +84,52 @@ class DatabaseSeeder extends Seeder
         //     ]
         // ]);
 
-        // DB::table('customers')->insert([
-        //     [
-        //         'id' => (string) Str::uuid(),
-        //         'first_name' => 'John',
-        //         'last_name' => 'Doe',
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //         'contact_id' => '421e6b9c-61e3-444f-8972-c934edf987e2'
-        //     ]
-        // ]);
+        DB::table('customers')->insert([
+            [
+                'id' => (string) Str::uuid(),
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'created_at' => now(),
+                'updated_at' => now(),
+                'contact_id' => '421e6b9c-61e3-444f-8972-c934edf987e2'
+            ]
+        ]);
 
-        // DB::table('bills')->insert([
-        //     [
-        //         'id' => (string) Str::uuid(),
-        //         'gross_cost' => rand(100, 1000),
-        //         'net_cost' => rand(80, 800),
-        //         'discount' => rand(0, 20),
-        //         'duty_and_vat' => rand(10, 100),
-        //         'delivery_free' => rand(0, 50),
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //         'employee_id' => 'cee11fdf-13df-4ce3-947f-ff59500b805f',
-        //         'customer_id' => '4d2c6e62-8dae-4109-a6d4-a456c15732d4'
-        //     ]
-        // ]);
+        DB::table('bills')->insert([
+            [
+                'id' => (string) Str::uuid(),
+                'gross_cost' => rand(100, 1000),
+                'net_cost' => rand(80, 800),
+                'discount' => rand(0, 20),
+                'duty_and_vat' => rand(10, 100),
+                'delivery_free' => rand(0, 50),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'employee_id' => 'cee11fdf-13df-4ce3-947f-ff59500b805f',
+                'customer_id' => '4d2c6e62-8dae-4109-a6d4-a456c15732d4'
+            ]
+        ]);
 
-        // // Insert transactions into the transactions table
-        // DB::table('transactions')->insert([
-        //     [
-        //         "id"            => (string) Str::uuid(),
-        //         'count'         => 10,
-        //         'total_cost'    => 30000.00,
-        //         'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
-        //         'updated_at'    => DB::raw('CURRENT_TIMESTAMP'),
-        //         'item_id'       => '9d989e03-d9fa-4ded-a2bf-f8a0637ca78b',
-        //         'bill_id'       => 'f5309d35-2950-4018-81f2-b9fc1739d3f6'
-        //     ]
-            // [
-            //     "id"            => (string) Str::uuid(),
-            //     'count'         => 5,
-            //     'total_cost'    => 12000.00,
-            //     'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
-            //     'updated_at'    => DB::raw('CURRENT_TIMESTAMP'),
-            //     'item_id'       => '79f9eef4-b689-4f13-895a-69f1488a791b',
-            //     'bill_id'       => 'f5309d35-2950-4018-81f2-b9fc1739d3f6'
-            // ]
-        // ]);
+        // Insert transactions into the transactions table
+        DB::table('transactions')->insert([
+            [
+                "id"            => (string) Str::uuid(),
+                'count'         => 10,
+                'total_cost'    => 30000.00,
+                'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'item_id'       => '9d989e03-d9fa-4ded-a2bf-f8a0637ca78b',
+                'bill_id'       => 'f5309d35-2950-4018-81f2-b9fc1739d3f6'
+            ],
+            [
+                "id"            => (string) Str::uuid(),
+                'count'         => 5,
+                'total_cost'    => 12000.00,
+                'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'updated_at'    => DB::raw('CURRENT_TIMESTAMP'),
+                'item_id'       => '79f9eef4-b689-4f13-895a-69f1488a791b',
+                'bill_id'       => 'f5309d35-2950-4018-81f2-b9fc1739d3f6'
+            ]
+        ]);
     }
 }
