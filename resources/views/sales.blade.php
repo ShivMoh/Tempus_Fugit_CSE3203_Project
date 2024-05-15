@@ -9,6 +9,7 @@
     @vite(['resources/css/sales/sales.css','resources/js/dashboard.js', 'resources/css/dashboard/dashboard.css'])
   </head>
   <body>
+  <x-nav></x-nav>
     <div class="main-container">
       <div class="flex-column-a">
         <span class="finances">Finances</span>

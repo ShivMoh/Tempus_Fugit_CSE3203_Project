@@ -171,7 +171,6 @@
     width: 1057px;
     height: 43px;
     margin: 42px 0 0 0;
-    cursor: pointer;
     background: #d9d9d9;
     border: none;
     z-index: 23;
@@ -198,7 +197,6 @@
     width: 1057px;
     height: 43px;
     margin: 6px 0 0 0;
-    cursor: pointer;
     background: #5fd363;
     border: none;
     z-index: 24;
@@ -225,7 +223,6 @@
     width: 1057px;
     height: 43px;
     margin: 6px 0 0 0;
-    cursor: pointer;
     background: #fa7b7b;
     border: none;
     z-index: 25;

@@ -4,7 +4,7 @@
 <body>
     <x-nav></x-nav>
     <h1 id="page-title">
-        Inventory
+        Inventory 
     </h1>
 
     <section class="filter-section">
@@ -24,8 +24,8 @@
                 </form>
             
                 <div class="button-container">
-                    <button type="submit" form="search" class="search-button">Search</button>
-                    <button type="submit" form="clear" class="clear-button">Clear</button>
+                    <button type="submit" form="search" id="search-button">Search</button>
+                    <button type="submit" form="clear" id="clear-button">Clear</button>
                 </div>
             </div>
             
@@ -38,7 +38,7 @@
         
         <div class="content">
             @foreach ($items as $item)
-            <form action="/info" method="post">
+            <form action="/info" method="post" class="preview-btn">
                 @csrf
                 <div class="item-preview">
                     <input type="hidden" name="id" value="{{$item->id}}">

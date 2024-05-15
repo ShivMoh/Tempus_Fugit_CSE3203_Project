@@ -5,7 +5,9 @@
 <head>
     <style>
         .container{
-            background-color: #aad6ec;
+            background-color: #aad6ec44;
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
         }
 
         .img{
@@ -16,7 +18,6 @@
             height: 234px;
         }
 
-
         .preview{
             display: flex;
             flex-wrap: wrap;
@@ -25,8 +26,21 @@
 
         .info{
             padding: 30px;
-            width: 65%;
+            width: 70%;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--main-color);
+        }
+
+        .info h3{
+            font-size: 24px;
+        }
+        .info h5{
+            font-size: 16px;
+            font-weight: normal;
+            color: ;
         }
     </style>
 </head>
@@ -39,11 +53,9 @@
             </div>
             <div class="info">
                 <h3>{{$item->name}}</h3>
-                <div class="details">
-                    <h5>Selling Price per unit: ${{$item->selling_price}}</h5>
-                    <h5>Cost Price per unit: ${{$item->cost_price}}</h5>
-                    <h5>Remaining Stock: {{$item->stock_count}}</h5>
-                </div>
+                <h5>Selling Price per unit: ${{$item->selling_price}}</h5>
+                <h5>Cost Price per unit: ${{$item->cost_price}}</h5>
+                <h5>Remaining Stock: {{$item->stock_count}}</h5>
             </div>
             
         </div>

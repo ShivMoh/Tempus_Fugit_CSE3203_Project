@@ -39,6 +39,7 @@
     </style>
 </head>
 <body>
+<x-nav></x-nav>
     <div class="container">
         <h1>Bill Preview</h1>
 

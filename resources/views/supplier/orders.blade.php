@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
-
+<x-nav></x-nav>
 <section class="orders">
     <form action="/supplier">
         <button type="submit" class="manage-suppliers-button">Manage Suppliers</button>

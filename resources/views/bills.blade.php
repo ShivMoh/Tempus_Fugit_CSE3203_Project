@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<x-nav></x-nav>
     <h1>Bills go here</h1>
 </body>
 </html>
