@@ -1,5 +1,5 @@
 @vite(['resources/js/app.js'])
-@vite(['resources/css/inventory/inventory.css'])
+@vite(['resources/css/inventory/inventory.css', 'resources/css/app.css'])
 
 <body>
     <x-nav></x-nav>
@@ -52,8 +52,8 @@
             @endforeach
         </div>
         
-        <form method="GET" action="">
-            <button type="submit" id="Add More">
+        <form method="GET" action="/add-new">
+            <button type="submit" id="add-more">
                 Add More
             </button>
         </form>

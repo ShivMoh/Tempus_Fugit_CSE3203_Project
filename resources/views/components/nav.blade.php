@@ -1,4 +1,4 @@
-@vite(['resources/js/dashboard.js'])
+@vite(['resources/js/dashboard.js', 'resources/css/app.css'])
 
 
 <!DOCTYPE html>
@@ -13,12 +13,7 @@
       rel="stylesheet"
     />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-      :root{
-        --main-color: rgb(50, 146, 255);
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
+      
       nav {
         position: fixed;
         top: 0;

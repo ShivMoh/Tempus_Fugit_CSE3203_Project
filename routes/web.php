@@ -44,6 +44,9 @@ Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], fu
    });
    Route::get('/inventory', [ItemController::class, 'index']);
    Route::post('/info', [ItemController::class, 'show_individual']);
+   Route::get('/add-new', [ItemController::class, 'add_new']);
+   Route::post('/add-new', [ItemController::class, 'add_new']);
+   Route::post('/confirm', [ItemController::class, 'store_item']);
    Route::view('/supplier', 'supplier/supplier');
    Route::get('/supplier', [SupplierController::class, 'index']);
    Route::post('/supplier', [SupplierController::class, 'index']);

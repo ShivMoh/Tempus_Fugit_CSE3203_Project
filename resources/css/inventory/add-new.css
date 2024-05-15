@@ -1,0 +1,63 @@
+body{
+    padding: 60px;
+}
+
+#back{
+    color: white;
+    background-color: var(--main-color);
+    padding: 9px 18px;
+    border-radius: 9px;
+    border: none;
+    font-size: 14px;
+    margin: 9px;
+}
+
+.main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-section form{
+    width: 33%;
+    padding: 45px;
+    background-color: rgb(50, 146, 255, 0.4);
+    border-radius: 9px;
+    border: 1px solid rgb(50, 146, 255, 0.6);
+}
+
+.form-group{
+    margin: 15px 0;
+}
+
+.form-group label{
+    font-size: 14px;
+}
+
+.form-control{
+    width: 100%;
+    padding: 12px;
+    margin-top: 3px;
+    border-radius: 3px;
+    border: 1px solid rgb(50, 146, 255, 0.6);;
+}
+
+.add-btn {
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 9px;
+    border: none;
+    padding: 9px 18px;
+}
+
+.btn-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+form h2{
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+}

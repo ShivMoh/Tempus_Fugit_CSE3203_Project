@@ -38,11 +38,18 @@
 @endif
 
 <section class="suppliers">
-    <form action="/orders" class="view-orders">
-        <button type="submit" class="view-orders-button">Manage Orders</button>
-    </form>
-    @foreach ($suppliers as $supplier )
 
+    <div class="buttons">
+        <form action="/orders" class="view-orders">
+            <button type="submit" class="view-orders-button">Manage Orders</button>
+        </form>
+        <form action="/add-new" method="get" class="view-orders">
+            <button type="submit" class="view-orders-button">Add New Supplied Item</button>
+        </form> 
+    </div>
+    
+
+    @foreach ($suppliers as $supplier )
     <form class="supplier-container" method="GET" action="/request-form">
         @csrf
         <div class="image-section">
@@ -56,10 +63,11 @@
                 <h4 class="email"><span class="label">Email us at: </span>{{$supplier['contact']->email}}</h4>                
                 <h4 class="numbers"><span class="label">Call at: </span>{{$supplier['contact']->primary_number}} OR {{$supplier['contact']->secondary_number}}</h4>                    
             </div>
-            <input type="hidden" name="id" value={{$supplier['supplier']->id}}>
+            <input type="hidden" name="id" value="{{$supplier['supplier']->id}}">
             <button type="submit" class="order-item-button">Order Items</button>
         </div>
     </form>
+
 
     @endforeach
 
