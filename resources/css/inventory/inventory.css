@@ -62,3 +62,12 @@ h1#page-title{
     color: white;
 }
 
+#add-more{
+    background-color: var(--main-color);
+    color: white;
+    padding: 12px 21px;
+    margin-left: 9px;
+    border-radius: 9px;
+    border: none;
+    font-size: 14px;
+}

@@ -1,0 +1,12 @@
+body{
+    padding: 60px;
+}
+
+#back{
+    color: white;
+    background-color: var(--main-color);
+    padding: 6px 15px;
+    border-radius: 9px;
+    border: none;
+    font-size: 14px;
+}

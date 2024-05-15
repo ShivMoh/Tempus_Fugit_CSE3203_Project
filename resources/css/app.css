@@ -1,4 +1,9 @@
-h1 {
-    color: blue;
-    background-color: yellow;
-}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+      
+:root{
+    --main-color: rgb(50, 146, 255);
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+ 

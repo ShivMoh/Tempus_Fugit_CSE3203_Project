@@ -32,36 +32,71 @@ class ItemController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *//* 
-    public function create_item()
+     */
+    public function add_new(Request $request)
     {
-        return view('inventory.create');
-    } */
+        $categories = Category::all();
+        $info = array();
+        
 
-    public function store_item(){
+        //if request was called from supplier page
+        if ($request->has('supplier_id')){
+            $supplier = Supplier::where('id',$request->input('supplier_id'));
+        }
+        else{
+            $suppliers = Supplier::all();
+        }
+        $cat_list = array();
+        foreach ($categories as $category) {
+            $cat_list[$category->id] = $category->name;
+        }
+        $sup_list = array();
+        foreach ($suppliers as $supplier) {
+            $sup_list[$supplier->id] = $supplier->name; 
+        }
+        array_push($info,
+        [
+           'categories'=> $cat_list,
+           'suppliers'=> $sup_list,
+        ]);
+        return view('inventory.add-new',[
+            'info' => $info
+        ]
+    );
+    }
+
+    public function store_item(Request $request){
         // TODO
-        request()->validate([
-            'name'=>'required|string|max:255',
-            'selling_price'=>'required|numeric|min:0',
-            'cost_price'=>'required|numeric|min:0',
-            'total_sold'=>'required|integer|min:0',
-            'stock_count'=>'required|integer|min:0',
-            'image_url'=>'nullable|string',
-            'supplier_id'=>'nullable|string',
-            'category_id'=>'nullable|string',
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'selling_price' => 'required|numeric',
+            'cost_price' => 'required|numeric',
+            'image_url' => 'nullable|url',
+            'category' => 'required|string', // Assuming category is a string, adjust if needed
+            'supplier' => 'required|string', // Assuming supplier is a string, adjust if needed
         ]);
 
-        $item = new Item([
-            'id' => (string) Str::uuid(),
-            'name'=>request('name'),
-            'selling_price'=>request('selling_price'),
-            'cost_price'=>request('cost_price'),
-            'total_sold'=>request('total_sold'),
-            'stock_count'=>request('stock_count'),
-            'image_url'=>request('image_url'),
-            'supplier_id'=>request('supplier_id'),
-            'category_id'=>request('category_id'),
-        ]);
+        // Create a new Item instance
+        $item = new Item();
+        $item->id = Str::uuid();
+        $item->name = $validatedData['name'];
+        $item->selling_price = $validatedData['selling_price'];
+        $item->cost_price = $validatedData['cost_price'];
+        $item->image_url = $validatedData['image_url'];
+        $item->category_id = $validatedData['category'];
+        $item->supplier_id = $validatedData['supplier'];
+        $item->total_sold = 0;
+        $item->stock_count= 0;
+
+        // Default amount in stock and sold is 0, so no need to set it explicitly
+
+        // Save the item to the database
+        $item->save();
+        
+        return view('inventory.confirm',
+    [
+        'supplier' => $validatedData['supplier']
+    ]);
     }
 
     /**
@@ -69,7 +104,6 @@ class ItemController extends Controller
      */
     public function show_individual(Request $request)
     {
-        // the item's name is id
         $itemId = $request->input('id');
         $item = Item::findOrFail($itemId);
         if ($item != null){
