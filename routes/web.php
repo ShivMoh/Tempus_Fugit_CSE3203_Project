@@ -59,6 +59,9 @@ Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], fu
 // Cashier (basic)
 Route::group(['middleware' => ['role:eff3a740-b777-48dc-8c04-78893ba6a50b,86efe04b-8be4-4c70-a240-fe9624d89371']], function () {
    Route::get('/cashier', [CashierController::class, 'index']);
+   Route::post('/bill_preview', [CashierController::class, 'createBill'])->name('bill_preview');
+   Route::get('/bills', [CashierController::class, 'viewBills']);
+   
    Route::get('/sales', [SalesController::class, 'index']);
 });
 
@@ -105,7 +108,7 @@ Route::post('/register', [UserController::class, 'register']);
 // Cashier Routes
 // CHANGE BILL PREVIEW METHOD
 // Route::get('/cashier', [CashierController::class, 'index']);
-// Route::get('/bill_preview', [CashierController::class, 'createBill']);
+// Route::post('/bill_preview', [CashierController::class, 'createBill'])->name('bill_preview');
 // Route::get('/bills', [CashierController::class, 'viewBills']);
 
 // // Sales Routes
