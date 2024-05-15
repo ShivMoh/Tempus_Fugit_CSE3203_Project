@@ -37,19 +37,14 @@ class ItemController extends Controller
     {
         $categories = Category::all();
         $info = array();
+        $suppliers = Supplier::all();
         
 
-        //if request was called from supplier page
-        if ($request->has('supplier_id')){
-            $supplier = Supplier::where('id',$request->input('supplier_id'));
-        }
-        else{
-            $suppliers = Supplier::all();
-        }
         $cat_list = array();
         foreach ($categories as $category) {
             $cat_list[$category->id] = $category->name;
         }
+
         $sup_list = array();
         foreach ($suppliers as $supplier) {
             $sup_list[$supplier->id] = $supplier->name; 
@@ -92,11 +87,15 @@ class ItemController extends Controller
 
         // Save the item to the database
         $item->save();
+        $data = [
+            'supplier' => $validatedData['supplier'],
+            'item' => $item->id
+        ];
         
         return view('inventory.confirm',
-    [
-        'supplier' => $validatedData['supplier']
-    ]);
+        [
+            'data' =>$data
+        ]);
     }
 
     /**
