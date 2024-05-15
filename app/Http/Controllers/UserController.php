@@ -10,42 +10,49 @@ use App\Models\Contact;
 use App\Models\JobRole;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
 {
     public function register(Request $request) {
         // // uncomment these when we actually create the views
-        // $data = $request->validate(
-        //     [
-        //         'first_name'=>'required|max:255',
-        //         'last_name'=>'required|max:255',
-        //         'job_role'=>'required|max:255',
-        //         'dob'=>'required',
-        //         'line_1'=>'required|max:255',
-        //         'line_2'=>'required|max:255',
-        //         'city'=>'required|max:255',
-        //         'state'=>'required|max:255',
-        //         'country'=>'required|max:255',
-        //         'email'=>'required|unique|email|max:255',
-        //         'password'=>'required',
-        //         'confirm_password'=>'required'            
-        //     ]
-        // );
+        $data = $request->validate(
+            [
+                'first_name'=>'required|max:255',
+                'last_name'=>'required|max:255',
+                'job_role'=>'required|max:255',
+                'dob'=>'required',
+                'line_1'=>'required|max:255',
+                'line_2'=>'required|max:255',
+                'city'=>'required|max:255',
+                'state'=>'required|max:255',
+                'country'=>'required|max:255',
+                'email'=>'required|unique:users|email|max:255',
+                'password'=>'required',
+                'confirm_password'=>'required'            
+            ],
+            [
+                'dob.date' => 'The date of birth must be a valid date.',
+                'email.unique' => 'The email has already been taken.',
+                'confirm_password.same' => 'The password confirmation does not match.',
+            ]
+        );
 
-        echo "<script>console.log('hello world')</script>";
+        $dob = Carbon::parse($data['dob']);
 
-        // if (floor(date("Y-m-d") - $request->input('dob')) < 18) {
-        //     echo "Under aged";
-        //     return redirect()->intended('/login');
-        // }
+        if ($dob->age < 18) {
+            return redirect()->back()->withInput()->withErrors(['dob' => 'You must be at least 18 years old to register.']);
+        }
 
         // create Address
         // create Contact
         // create Employee and link to newly created address and contact
         // create User
         // link user to user_role and employee
-        
+    try {
         $address = new Address([
             "id"=>(string) Str::uuid(),
             "line_1"=>$request->input('line_1'),
@@ -114,5 +121,15 @@ class UserController extends Controller
         $user->save();
         
         return redirect()->intended('/login');
+
+    } catch (QueryException $e) {
+        if ($e->errorInfo[1] === 23505) {
+            // Duplicate entry error for email
+            return redirect()->back()->withInput()->withErrors(['email' => 'The email has already been taken.']);
+        } else {
+            // Handle other database errors
+            return redirect()->route('register_error')->with('register_error', 'An error occurred. Please try again later.');
+            }
+        }
     }
 }

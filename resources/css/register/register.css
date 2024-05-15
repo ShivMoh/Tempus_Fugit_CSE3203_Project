@@ -136,3 +136,12 @@ button {
 .step.finish {
     background-color: #04AA6D;
 }
+
+.error {
+    font-style: italic;
+    font-weight: 100;
+    margin-top: 5px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: red;
+}

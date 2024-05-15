@@ -43,9 +43,8 @@
                             <td class="item-id">{{ $i + 1 }}</td>
 
                             <td class="name-of-item">
-                                <!-- Used to update amount and discount columns when an option has been selected -->
-                                <select name="item_name[]" onchange="updateRow(this)">
-                                    <option value=""></option>
+                                <select name="item_name" onchange="updateRow(this)">
+                                    <option value="" disabled selected>Select Item</option>
                                     @foreach($items as $item)
                                         <option
                                             value="{{ $item->name }}"
