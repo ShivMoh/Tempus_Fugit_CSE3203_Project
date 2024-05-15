@@ -43,7 +43,7 @@
                             <td class="item-id">{{ $i + 1 }}</td>
 
                             <td class="name-of-item">
-                                <select name="item_name" onchange="updateRow(this)">
+                                <select name="item_name[]" onchange="updateRow(this)">
                                     <option value="" disabled selected>Select Item</option>
                                     @foreach($items as $item)
                                         <option
