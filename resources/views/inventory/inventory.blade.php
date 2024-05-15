@@ -52,6 +52,12 @@
             @endforeach
         </div>
         
+        <form method="GET" action="">
+            <button type="submit" id="Add More">
+                Add More
+            </button>
+        </form>
+        
 
     </section>
 </body>

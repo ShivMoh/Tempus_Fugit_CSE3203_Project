@@ -101,6 +101,8 @@ class ItemController extends Controller
      */
     public function update_stock(Request $request, int $amount)
     {
+
+        //TODO: this function needs to be called when sold AND ordered
         // Assuming you're passing the item ID via the request
         $itemId = $request->input('item_id');
 

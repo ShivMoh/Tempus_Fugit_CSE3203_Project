@@ -1,5 +1,4 @@
-<link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet" type="text/css" >
-@vite(['resources/js/dashboard.js', 'resources/css/dashboard/dashboard.css'])
+@vite(['resources/js/dashboard.js'])
 
 
 <!DOCTYPE html>
@@ -14,6 +13,23 @@
       rel="stylesheet"
     />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+      :root{
+        --main-color: rgb(50, 146, 255);
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: #fff;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+      }
       nav .logo {
         display: flex;
         align-items: center;
