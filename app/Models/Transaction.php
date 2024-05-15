@@ -27,4 +27,9 @@ class Transaction extends Model
         'item_id' => 'string',
         'bill_id' => 'string'
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,52 +22,7 @@ use App\Http\Controllers\SalesController;
 */
 
 Route::get('/', function () {
-   return redirect("/login"); 
-});
-
-// Route::middleware(['auth'])->group(function () {
-//    Route::get('/dashboard', function () {
-//        return view('dashboard');
-//    });
-// });
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Protected routes
-
-// Manager (admin)
-Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], function () {
-   Route::get('/dashboard', function () {
-       return view ('dashboard');
-   });
-   Route::get('/inventory', [ItemController::class, 'index']);
-   Route::post('/inventory', [ItemController::class, 'index']);
-   Route::post('/info', [ItemController::class, 'show_individual']);
-   Route::view('/supplier', 'supplier/supplier');
-   Route::get('/supplier', [SupplierController::class, 'index']);
-   Route::post('/supplier', [SupplierController::class, 'index']);
-   Route::post('/request-form', [SupplierController::class, 'get_request_form']);
-   Route::get('/request-form', [SupplierController::class, 'get_request_form']);
-   Route::post('/order-item', [SupplierController::class, 'order_item']);
-   Route::post('/review', [SupplierController::class, 'review']);
-   Route::get('/orders', [SupplierController::class, 'view_orders']);
-   Route::post('/view-bill', [SupplierController::class, 'view_bill']);
-   Route::post('/mark-as-received', [SupplierController::class, 'mark_as_received']);
-});
-
-// Cashier (basic)
-Route::group(['middleware' => ['role:eff3a740-b777-48dc-8c04-78893ba6a50b,86efe04b-8be4-4c70-a240-fe9624d89371']], function () {
-   Route::get('/cashier', [CashierController::class, 'index']);
-   Route::post('/bill_preview', [CashierController::class, 'createBill'])->name('bill_preview');
-   Route::get('/bills', [CashierController::class, 'viewBills']);
-   
-   Route::get('/sales', [SalesController::class, 'index']);
-});
-
-Route::get('/unauthorized', function () {
-   return view('unauthorized_access');
+   return view("login");
 });
 
 Route::get('/monkey', [MonkeyController::class, 'index']);
@@ -74,15 +30,15 @@ Route::get('/monkey', [MonkeyController::class, 'index']);
 // start supplier routes
 
 // Route::view('/supplier', 'supplier/supplier');
-// Route::get('/supplier', [SupplierController::class, 'index']);
-// Route::post('/supplier', [SupplierController::class, 'index']);
-// Route::post('/request-form', [SupplierController::class, 'get_request_form']);
-// Route::get('/request-form', [SupplierController::class, 'get_request_form']);
-// Route::post('/order-item', [SupplierController::class, 'order_item']);
-// Route::post('/review', [SupplierController::class, 'review']);
-// Route::get('/orders', [SupplierController::class, 'view_orders']);
-// Route::post('/view-bill', [SupplierController::class, 'view_bill']);
-// Route::post('/mark-as-received', [SupplierController::class, 'mark_as_received']);
+Route::get('/supplier', [SupplierController::class, 'index']);
+Route::post('/supplier', [SupplierController::class, 'index']);
+Route::post('/request-form', [SupplierController::class, 'get_request_form']);
+Route::get('/request-form', [SupplierController::class, 'get_request_form']);
+Route::post('/order-item', [SupplierController::class, 'order_item']);
+Route::post('/review', [SupplierController::class, 'review']);
+Route::get('/orders', [SupplierController::class, 'view_orders']);
+Route::post('/view-bill', [SupplierController::class, 'view_bill']);
+Route::post('/mark-as-received', [SupplierController::class, 'mark_as_received']);
 
 // Route::post('/supplier', [SupplierController::class, 'test']);
 
@@ -97,7 +53,13 @@ Route::post('/stay-logged-in', [AuthController::class, 'stayLoggedIn'])->name('s
 Route::view('/register', 'register');
 Route::post('/register', [UserController::class, 'register']);
 
-// Route::view('/dashboard', 'dashboard');
+
+Route::view('/login', 'login')->name('login');
+Route::post('/login', [UserController::class, 'login']);
+
+// Dashboard Routes
+Route::get('/dashboard',[DashboardController::class, 'index']);
+
 
 
 // Inventory Routes
@@ -111,5 +73,5 @@ Route::post('/register', [UserController::class, 'register']);
 // Route::post('/bill_preview', [CashierController::class, 'createBill'])->name('bill_preview');
 // Route::get('/bills', [CashierController::class, 'viewBills']);
 
-// // Sales Routes
-// Route::get('/sales', [SalesController::class, 'index']);
+// Sales Routes
+Route::get('/sales', [SalesController::class, 'index']);
