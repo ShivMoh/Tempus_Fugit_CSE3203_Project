@@ -70,27 +70,29 @@
                 </tbody>
             </table>
 
-            <div class="cashier-options">
-                <div class="customer-info">
-                    <label for="customer_name">Customer Name:</label>
-                    <input type="text" id="customer_name" name="customer_name" required>
+            <div class="cashier-bottom-content">
+                <div class="cashier-options">
+                    <div class="customer-info">
+                        <label for="customer_name">Customer Name:</label>
+                        <input type="text" id="customer_name" name="customer_name" required>
+                    </div>
+                    
+                    <!-- Add $50 dollars if delivery is checked -->
+                    <div class="additional-options">
+                        <label for="delivery_fee">Delivery Fee:</label>
+                        <input type="checkbox" id="delivery_fee" name="delivery_fee" value="50">
+                    </div>
                 </div>
-
-                <!-- Add $50 dollars if delivery is checked -->
-                <div class="additional-options">
-                    <label for="delivery_fee">Delivery Fee:</label>
-                    <input type="checkbox" id="delivery_fee" name="delivery_fee" value="50">
+                
+                <div class="total-and-bill-options">
+                    <input type="text" id="totalCost" readonly placeholder="Total Cost">
+                    <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
+                    <button class="manage-bills">
+                        <a href="/bills">Manage Bills</a>
+                    </button>
                 </div>
             </div>
-
-            <div class="total-and-bill-options">
-                <input type="text" id="totalCost" readonly placeholder="Total Cost">
-                <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
-                <button class="manage-bills">
-                    <a href="/bills">Manage Bills</a>
-                </button>
-            </div>
-        </form>
+            </form>
     </div>
 
     <!-- Pass items array to js so the item's price can be accessed -->
