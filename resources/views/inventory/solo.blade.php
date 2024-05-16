@@ -1,7 +1,9 @@
 @vite(['resources/js/app.js'])
 @vite(['resources/css/inventory/item.css','resources/css/app.css'])
 
-
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 <body>
     <x-nav></x-nav>
 

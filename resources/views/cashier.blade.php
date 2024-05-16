@@ -49,7 +49,8 @@
 
                                         <option
                                             value="{{ $item->name }}"
-                                            data-price="{{ $item->selling_price }}">{{ $item->name }}
+                                            data-price="{{ $item->selling_price }}"
+                                            data-stock="{{ $item->stock_count }}">{{ $item->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -93,6 +94,7 @@
     <!-- Pass items array to js so the item's price can be accessed -->
     <script>
         var items = <?php echo json_encode($items); ?>;
+
     </script>
     <script src="{{ asset('resources/js/cashier.js') }}"></script>
 </body>

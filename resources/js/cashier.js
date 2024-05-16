@@ -23,7 +23,7 @@ function updateTotal(element) {
 
 // Updates row when an option has been selected.
 // Defaults amount to 1 and discount to 0.
-function updateRow(selectElement) {
+/* function updateRow(selectElement) {
     var row = selectElement.closest('tr');
     var amountInput = row.querySelector('.amount input');
     var discountInput = row.querySelector('.discount input');
@@ -36,6 +36,33 @@ function updateRow(selectElement) {
 
     updateTotal(amountInput);
 }
+ */
+
+// Updates row when an option has been selected.
+// Defaults amount to 1 and discount to 0.
+function updateRow(selectElement) {
+    var row = selectElement.closest('tr');
+    var amountInput = row.querySelector('.amount input');
+    var discountInput = row.querySelector('.discount input');
+
+    // Get the selected option
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    
+    // Get the stock count from the selected option
+    var stockCount = parseFloat(selectedOption.getAttribute('data-stock')) || 0;
+    
+    // Set the maximum attribute of the amount input field to the stock count
+    amountInput.setAttribute('max', stockCount);
+
+    var selectedItemName = selectElement.value;
+    var selectedItem = items.find(item => item.name === selectedItemName);
+    
+    amountInput.value = 1;
+    discountInput.value = 0;
+
+    updateTotal(amountInput);
+}
+
 
 // Calculates and updates the total cost.
 function updateTotalCost() {
