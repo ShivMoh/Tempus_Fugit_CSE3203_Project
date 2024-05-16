@@ -22,7 +22,7 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
-   return redirect("/login"); 
+   return redirect("/login");
 });
 
 // Route::middleware(['auth'])->group(function () {
@@ -39,9 +39,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Manager (admin)
 Route::group(['middleware' => ['role:86efe04b-8be4-4c70-a240-fe9624d89371']], function () {
-   Route::get('/dashboard', function () {
-       return view ('dashboard');
-   });
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+
    Route::get('/inventory', [ItemController::class, 'index']);
    Route::post('/info', [ItemController::class, 'show_individual']);
    Route::get('/add-new', [ItemController::class, 'add_new']);
