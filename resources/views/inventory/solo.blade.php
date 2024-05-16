@@ -85,16 +85,15 @@
             <h1 style="width: 100%">Statistics</h1>
             <div class="graph">
                 <canvas id="dailySales"></canvas>
-                <img id="image-container" src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
-                <h5>Name of Graph</h5>
+                <h5>Daily Sales</h5>
             </div>
             <div class="graph">
-                <img id="image-container" src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
-                <h5>Name of Graph</h5>
+                <canvas id="totalProfitPerTransaction"></canvas>
+                <h5>Total Profit per Transaction</h5>
             </div>
             <div class="graph">
-                <img id="image-container" src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
-                <h5>Name of Graph</h5>
+                <canvas id="totalEarningsPerDay"></canvas>
+                <h5>Total Earning per Day</h5>
             </div>
         </div>
     </section>
