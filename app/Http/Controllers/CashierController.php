@@ -23,7 +23,6 @@ class CashierController extends Controller
     }
 
     // Used to populate the bill fields before printing.
-    // Used to populate the bill fields before printing.
     public function createBill(Request $request) {
         $item_controller = new ItemController;
         $customerName = $request->input('customer_name');

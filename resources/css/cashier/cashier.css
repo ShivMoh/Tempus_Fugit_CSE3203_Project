@@ -1,16 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+/* General Styles */
 * {
     font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
 }
 
 /* Table Styles */
 table {
     width: 80%;
-    margin: 4vh auto;
+    margin: 0 auto;
     border-collapse: collapse;
-    border-bottom: 4px solid #085993;
     border-right: 4px solid #085993;
+    border-bottom: 4px solid #085993;
+    text-align: center;
 }
 
 th {
@@ -18,13 +21,11 @@ th {
     color: white;
     font-size: 1.2em;
     padding: 1vh;
-    text-align: center;
 }
 
-td {
+th, td {
     border: 1px solid #C0DFFF;
     height: 3vh;
-    text-align: center; 
 }
 
 /* Specify column widths */
@@ -42,7 +43,7 @@ td {
     width: 20%;
 }
 
-/* Table Column Styles */
+/* Input and Select Styles */
 input, select {
     width: 100%;
     height: 100%;
@@ -51,46 +52,76 @@ input, select {
     text-align: center;
 }
 
-/* Total and Print Section Styles */
-.total-and-print {
+/* Customer Info Styles */
+.customer-info {
+    width: 35%;
+    margin: 3vh 0 1vh 10%;
     display: flex;
-    width: 90%;
-    flex-direction: column;
-    justify-content: flex-end;
 }
 
-.total-and-print input[type="text"],
-.total-and-print button {
-    width: 15%;
-    margin-left: auto;
-    margin-bottom: 10px;
-    height: auto;
-    padding: 10px;
-    color: white;
-    background-color: #8DCFFF;
-    cursor: pointer;
-    transition: all 0.2s linear;
-    border: 1px solid white;
-    border-radius: 5px;
-}
-
-.total-and-print input[type="text"] {
-    background-color: white;
-    color: black;
-    border: solid 1px;
-}
-
-.total-and-print button:hover {
-    color: #8DCFFF;
-    background-color: white;
-    border: solid 1px;
-    border-color: #8DCFFF;
+.customer-info input {
+    margin-left: 0.5vw;
+    width: 75%;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 15px;
 }
 
 .cashier-content {
-    margin-top: 70px;
+    margin-top: 7.5vh;
 }
 
-#totalCost {
-    height: inherit;
+.additional-options {
+    margin: 1vh 0 0 10%;
+    display: flex;
 }
+
+.additional-options label {
+    margin-right: 10px;
+}
+
+.additional-options input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+/* Total and Bill Options Styles */
+.total-and-bill-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.total-and-bill-options input[type=text],
+.total-and-bill-options input[type=submit],
+.total-and-bill-options button {
+    width: 20%;
+    margin-top: 10px;
+    margin-left: 10%;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.total-and-bill-options input[type=text] {
+    background-color: white;
+}
+
+.total-and-bill-options input[type=submit],
+.total-and-bill-options button {
+    background-color: #8DCFFF;
+    border: 1px solid white;
+}
+
+.total-and-bill-options input[type=submit]:hover,
+.total-and-bill-options button:hover {
+    background-color: white;
+    border: 1px solid #8DCFFF;
+}
+
+.total-and-bill-options a {
+    text-decoration: none;
+    color: black;
+}
+

@@ -40,6 +40,7 @@ function updateTotal(element) {
 
 // Updates row when an option has been selected.
 // Defaults amount to 1 and discount to 0.
+
 function updateRow(selectElement) {
     var row = selectElement.closest('tr');
     var amountInput = row.querySelector('.amount input');
@@ -62,7 +63,6 @@ function updateRow(selectElement) {
 
     updateTotal(amountInput);
 }
-
 
 // Calculates and updates the total cost.
 function updateTotalCost() {

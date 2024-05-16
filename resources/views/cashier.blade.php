@@ -19,11 +19,6 @@
         <!-- Table is wrapped in form tags so that its information can be used to produce the bill -->
         <form action="/bill_preview" method="POST">
             @csrf
-            <div class="customer-info">
-                <label for="customer_name">Customer Name:</label>
-                <input type="text" id="customer_name" name="customer_name" required>
-            </div>
-
             <table class="cashier">
                 <thead>
                     <tr>
@@ -75,10 +70,17 @@
                 </tbody>
             </table>
 
-            <!-- Add $50 dollars if delivery is checked -->
-            <div class="additional-options">
-                <label for="delivery_fee">Apply Delivery Fee:</label>
-                <input type="checkbox" id="delivery_fee" name="delivery_fee" value="50">
+            <div class="cashier-options">
+                <div class="customer-info">
+                    <label for="customer_name">Customer Name:</label>
+                    <input type="text" id="customer_name" name="customer_name" required>
+                </div>
+
+                <!-- Add $50 dollars if delivery is checked -->
+                <div class="additional-options">
+                    <label for="delivery_fee">Delivery Fee:</label>
+                    <input type="checkbox" id="delivery_fee" name="delivery_fee" value="50">
+                </div>
             </div>
 
             <div class="total-and-bill-options">
@@ -94,7 +96,6 @@
     <!-- Pass items array to js so the item's price can be accessed -->
     <script>
         var items = <?php echo json_encode($items); ?>;
-
     </script>
     <script src="{{ asset('resources/js/cashier.js') }}"></script>
 </body>
