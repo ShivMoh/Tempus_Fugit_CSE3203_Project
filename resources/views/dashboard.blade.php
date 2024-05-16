@@ -36,7 +36,6 @@
                         <script>
                             var transactions = @json($transactions);
                         </script>
-
                     </div>
                 </div>
                 <div class="upper-section-right">
@@ -44,9 +43,7 @@
                     <div class="box" id="box-2">
                         <ul>
                             @foreach ($recentTransactions as $transaction)
-                                <li>
-                                    {{ $transaction->item_name }}
-                                </li>
+                                <li>{{ $transaction->item_name }}</li>
                             @endforeach
                         </ul>
                     </div>
