@@ -1,4 +1,4 @@
-@vite(['resources/js/app.js'])
+@vite(['resources/js/app.js', 'resources/js/item.js'])
 @vite(['resources/css/inventory/item.css','resources/css/app.css'])
 
 <head>
@@ -84,6 +84,7 @@
         <div class="sec-container">
             <h1 style="width: 100%">Statistics</h1>
             <div class="graph">
+                <canvas id="dailySales"></canvas>
                 <img id="image-container" src="{{ asset('images/graph-line.jpg') }}" alt="Graph">
                 <h5>Name of Graph</h5>
             </div>
@@ -97,4 +98,10 @@
             </div>
         </div>
     </section>
+
+    <script>
+        window.dailySales = @json($dailySales);
+        window.totalProfitPerTransaction = @json($totalProfitPerTransaction);
+        window.totalEarningsPerDay = @json($totalEarningsPerDay);
+    </script>
 </body>

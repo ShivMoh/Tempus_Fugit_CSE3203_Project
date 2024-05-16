@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Supplier;
 use App\Models\Category;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -104,8 +106,36 @@ class ItemController extends Controller
     public function show_individual(Request $request)
     {
         $itemId = $request->input('id');
+        $transactions = Transaction::all();
+
+
         $item = Item::findOrFail($itemId);
         if ($item != null){
+            //Put the chart data here: Daily Sales, Profit Per Sale, Daily Earning
+            $dailySales = DB::table('transactions')
+                ->select(DB::raw('DATE(created_at) as day'), DB::raw('SUM(count) as daily_sales'))
+                ->where('item_id', $itemId)
+                ->groupBy(DB::raw('DATE(created_at)'))
+                ->get();
+            echo(json_encode($dailySales));
+
+            $totalProfitPerTransaction = DB::table('transactions')
+                ->join('items', 'transactions.item_id', '=', 'items.id')
+                ->select('transactions.id', 'transactions.count', 'transactions.total_cost', 'items.selling_price', 'items.cost_price')
+                ->addSelect(DB::raw('(transactions.count * (items.selling_price - items.cost_price)) as total_profit'))
+                ->get();
+            echo(json_encode($totalProfitPerTransaction));
+                
+            $totalEarningsPerDay = DB::table('transactions')
+                ->select(DB::raw('DATE(created_at) as transaction_date'), DB::raw('SUM(total_cost) as total_earnings'))
+                ->groupBy(DB::raw('DATE(created_at)'))
+                ->orderBy(DB::raw('DATE(created_at)'), 'desc')
+                ->get();
+            echo(json_encode($totalEarningsPerDay));
+
+
+            
+
             $info = array();
             $category = Category::where('id',$item->category_id)->value('name');
             $supplier = Supplier::where('id',$item->supplier_id)->value('name');
@@ -117,11 +147,7 @@ class ItemController extends Controller
                 'supplier'=>$supplier
             ]);
 
-            return view('inventory.solo',
-                [
-                    'info'=>$info
-                ]
-            );
+            return view('inventory.solo',compact('info', 'dailySales', 'totalProfitPerTransaction', 'totalEarningsPerDay'));
         }
         else{
             abort(404, "Item not found");
@@ -160,8 +186,4 @@ class ItemController extends Controller
         $item->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    
 }
