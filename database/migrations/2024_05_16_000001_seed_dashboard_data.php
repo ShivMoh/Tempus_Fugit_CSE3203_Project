@@ -104,7 +104,6 @@ return new class extends Migration
                 'first_name' => 'John',
                 'last_name' => 'Doe',
                 'dob' => '1980-01-01',
-                'unique_identifier' => '1024212',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'job_role_id' => 'd6353dd9-2e4a-4a21-81c4-9a4f16cef20c',
@@ -113,6 +112,19 @@ return new class extends Migration
             ]
         ]);
 
+        DB::table('users')->insert([
+            [
+                'id' => '22f1c687-0ede-49d9-bccd-e543cf263d00',
+                'email' => 'john@gmail.com',
+                'password' => 'verystrongpassword',
+                'created_at' => now(),
+                'updated_at' => now(),
+                'user_role_id' => '86efe04b-8be4-4c70-a240-fe9624d89371',
+                'employee_id' => 'cee11fdf-13df-4ce3-947f-ff59500b8055'
+            ]
+        ]);
+
+
 
         DB::table('employees')->insert([
             [
@@ -120,7 +132,6 @@ return new class extends Migration
                 'first_name' => 'Mary',
                 'last_name' => 'Sue',
                 'dob' => '1980-08-10',
-                'unique_identifier' => '1012342',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'job_role_id' => '8821d316-6ee2-4f70-bfc8-917b4219f7d3',

@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('dob');
-            $table->string('unique_identifier');
             $table->timestamps();
 
         });
@@ -45,7 +44,6 @@ return new class extends Migration
             $table->timestamps();
 
         });
-
 
         Schema::create('contacts', function(Blueprint $table) {
             $table->uuid('id')->primary();
