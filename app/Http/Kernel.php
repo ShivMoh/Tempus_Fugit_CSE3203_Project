@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\PreventBackHistory::class,
         ],
 
         'api' => [
@@ -46,7 +47,7 @@ class Kernel extends HttpKernel
     ];
 
     protected $routeMiddleware = [
-        // Other middleware
+        // Validates user roles
         'role' => \App\Http\Middleware\CheckRole::class,
     ];
     

@@ -156,10 +156,14 @@
           {{-- bottom content  --}}
           <div class="bottom-cotent">
             <li class="list">
-              <a href="#" class="nav-link">
+            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bx bx-log-out icon"></i>
                 <span class="link">Logout</span>
-              </a>
+            </a>
+              <!-- Hidden logout form -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
             </li>
           </div>
         </div>
