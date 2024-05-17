@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Bill extends Model
 {
@@ -11,6 +12,8 @@ class Bill extends Model
     
     public $table = 'bills';
     public $timestamps = true;
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'id',
@@ -33,4 +36,16 @@ class Bill extends Model
         'employee_id' => 'string',
         'customer_id' => 'string'
     ];
+
+    // If ID = empty, create id.
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->id)) {
+                $model->id = (string) Str::uuid();
+            }
+        });
+    }
 }

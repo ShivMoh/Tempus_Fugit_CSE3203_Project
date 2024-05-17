@@ -134,3 +134,7 @@ input, select {
 .cashier-bottom-content {
     display: flex;
 }
+
+.additional-options input[type=text] {
+    border: 1px solid;
+}
