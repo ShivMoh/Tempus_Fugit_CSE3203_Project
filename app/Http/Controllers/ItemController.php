@@ -69,8 +69,8 @@ class ItemController extends Controller
             'selling_price' => 'required|numeric',
             'cost_price' => 'required|numeric',
             'image_url' => 'nullable|url',
-            'category' => 'required|string', // Assuming category is a string, adjust if needed
-            'supplier' => 'required|string', // Assuming supplier is a string, adjust if needed
+            'category' => 'required|string',
+            'supplier' => 'required|string',
         ]);
 
         // Create a new Item instance
@@ -117,22 +117,22 @@ class ItemController extends Controller
                 ->where('item_id', $itemId)
                 ->groupBy(DB::raw('DATE(created_at)'))
                 ->get();
-            // echo(json_encode($dailySales));
+            // echo(json_encode($dailySales). '<br>');
 
             $totalProfitPerTransaction = DB::table('transactions')
                 ->join('items', 'transactions.item_id', '=', 'items.id')
-                ->select('transactions.id', 'transactions.count', 'transactions.total_cost', 'items.selling_price', 'items.cost_price')
-                ->addSelect(DB::raw('(transactions.count * (items.selling_price - items.cost_price)) as total_profit'))
+                ->select('transactions.id', DB::raw('(transactions.count * (items.selling_price - items.cost_price)) as total_profit'))
                 ->get();
-            // echo(json_encode($totalProfitPerTransaction));
+
+            // echo(json_encode($totalProfitPerTransaction). '<br>');
                 
             $totalEarningsPerDay = DB::table('transactions')
                 ->select(DB::raw('DATE(created_at) as transaction_date'), DB::raw('SUM(total_cost) as total_earnings'))
                 ->groupBy(DB::raw('DATE(created_at)'))
                 ->orderBy(DB::raw('DATE(created_at)'), 'desc')
                 ->get();
-            // echo(json_encode($totalEarningsPerDay));
-
+            // echo(json_encode($totalEarningsPerDay). '<br>');
+// 
 
             
 

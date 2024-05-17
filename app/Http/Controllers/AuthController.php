@@ -77,4 +77,32 @@ class AuthController extends Controller
         // If no valid action is provided, redirect to the dashboard
         return redirect()->intended('/dashboard');
     }
+
+    public function showAuthorizationForm()
+    {
+        return view('register/authorization_form');
+    }
+
+    public function authorizeRegistration(Request $request)
+    {
+        // Validate the authorization credentials
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        // Attempt to authenticate the user
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            // Check if the user has the admin role
+            if ($user->user_role_id == '86efe04b-8be4-4c70-a240-fe9624d89371') {
+                // User is an admin, redirect to the registration page
+                return redirect('/register');
+            }
+        }
+
+        // Authorization failed, redirect back with an error message
+        return redirect()->back()->withErrors(['authorization' => 'Invalid authorization credentials.']);
+    }
 }

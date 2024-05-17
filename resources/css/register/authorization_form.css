@@ -90,27 +90,6 @@ button:hover {
   background-color: rgb(4, 56, 245);
 }
 
-.register{
-  margin-top: 35px;
-  width: 100%;
-  display: flex;
-  justify-content:center;
-  text-align: center;
-  cursor: pointer;
-  background-color: white;
-  color: gray;
-}
-
-.register .register-link{
-  margin-right: 5px;
-}
-
-.alert-success {
-    margin-top: 25px;
-    color: green;
-    font-style: italic;
-}
-
 .error {
     color: red;
     font-style: italic;
