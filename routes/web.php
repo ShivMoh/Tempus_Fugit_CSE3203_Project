@@ -77,8 +77,6 @@ Route::get('/unauthorized', function () {
    return view('login/unauthorized_access');
 });
 
-Route::post('/stay-logged-in', [AuthController::class, 'stayLoggedIn'])->name('stay-logged-in');
-
 Route::view('/register', 'register/register');
 Route::post('/register', [UserController::class, 'register']);
 

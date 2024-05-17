@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Unauthorized Access</h1>
-    <p>You do not have permission to access this page.</p>
+    <p>You do not have the necessary permissions to access this page.</p>
     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Return to Login</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf

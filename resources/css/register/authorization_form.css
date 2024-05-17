@@ -75,7 +75,7 @@ input{
 
 button{
     margin-top: 30px;
-    width: 100%;
+    width: 60%;
     background-color: rgb(50, 146, 255);
     color: white;
     padding: 15px 0;
@@ -83,6 +83,9 @@ button{
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button:hover {
