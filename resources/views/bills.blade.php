@@ -7,7 +7,37 @@
 </head>
 
 <body>
+
 <x-nav></x-nav>
-    <h1>Bills go here</h1>
+
+<h1>Bills</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Bill ID</th>
+            <th>Customer Name</th>
+            <th>Gross Cost</th>
+            <th>Net Cost</th>
+            <th>Discount</th>
+            <th>Duty and VAT</th>
+            <th>Delivery Fee</th>
+            <th>User ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($bills as $bill)
+        <tr>
+            <td>{{ $bill->id }}</td>
+            <td>${{ $bill->gross_cost }}</td>
+            <td>${{ $bill->net_cost }}</td>
+            <td>${{ $bill->discount }}</td>
+            <td>${{ $bill->duty_and_vat }}</td>
+            <td>${{ $bill->delivery_fee }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 </body>
 </html>

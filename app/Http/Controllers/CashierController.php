@@ -169,11 +169,12 @@ class CashierController extends Controller
 
     private function getItemDetails(Request $request)
     {
+        // Make them empty if viewing bills alone
         $itemDetails = [];
-        $itemNames = $request->input('item_name');
-        $prices = $request->input('price');
-        $amounts = $request->input('amount');
-        $discounts = $request->input('discount');
+        $itemNames = $request->input('item_name', []);
+        $prices = $request->input('price', []);       
+        $amounts = $request->input('amount', []);     
+        $discounts = $request->input('discount', []); 
 
         foreach ($itemNames as $index => $itemName) {
             if (!empty($itemName) && !empty($amounts[$index])) {
@@ -191,6 +192,7 @@ class CashierController extends Controller
 
         return $itemDetails;
     }
+
 
     private function calculateCosts(array $itemDetails, bool $hasDeliveryFee)
     {

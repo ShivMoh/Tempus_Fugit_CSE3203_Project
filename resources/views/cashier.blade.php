@@ -96,11 +96,12 @@
                 <div class="total-and-bill-options">
                     <input type="text" id="totalCost" readonly placeholder="Total Cost">
                     <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
-                    <button class="manage-bills">
-                        <a href="{{ route('bills') }}">Manage Bills</a>
-                    </button>
                 </div>
             </div>
+        </form>
+
+        <form action="{{ route('bills') }}" method="GET">
+            <button type="submit" class="manage-bills">Manage Bills</button>
         </form>
     </div>
 
