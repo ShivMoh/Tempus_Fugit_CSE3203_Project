@@ -31,7 +31,15 @@ Route::get('/', function () {
 //    });
 // });
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+Route::get('/login', function () {
+   return view('login/login')->with('authorizationLink', '/authorization');
+})->name('login');
+
+Route::get('/authorization', [AuthController::class, 'showAuthorizationForm'])->name('authorization');
+Route::post('/authorization', [AuthController::class, 'authorizeRegistration']);
+
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -100,6 +108,8 @@ Route::post('/stay-logged-in', [AuthController::class, 'stayLoggedIn'])->name('s
 
 Route::view('/register', 'register/register');
 Route::post('/register', [UserController::class, 'register']);
+
+
 
 Route::get('/register_error', function () {
    return view('register/register_error');

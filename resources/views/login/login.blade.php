@@ -9,6 +9,12 @@
 
         <h3>Login</h3>
 
+        @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
         <label for="email">Email</label>
         <input type="email" placeholder="example@site.com" id="email" name="email">
         @error('email')
@@ -25,7 +31,7 @@
 
         <div class="register">
             <div class="register-link">
-            Don't have an account? <a href="/register">Register</a>
+            Don't have an account? <a href="{{ $authorizationLink }}">Register</a>
             </div>
         </div>
     </form>

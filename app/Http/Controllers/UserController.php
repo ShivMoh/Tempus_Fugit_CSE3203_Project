@@ -120,6 +120,9 @@ class UserController extends Controller
         $employee->save();
         $user->save();
         
+        // Add a flash message to the session
+        session()->flash('success', 'Registration successful! You can now log in.');
+
         return redirect()->intended('/login');
 
     } catch (QueryException $e) {
