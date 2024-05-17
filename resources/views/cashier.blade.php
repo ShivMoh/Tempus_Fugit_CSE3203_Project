@@ -73,13 +73,13 @@
                     </div>
                     
                     <div class="customer-info">
-                        <label for="customer_number">Customer Number (Leave blank if customer already exists)</label>
-                        <input type="text" id="customer_number" name="customer_number">
+                        <label for="customer_number">Customer Number</label>
+                        <input type="text" id="customer_number" name="customer_number" placeholder="Leave Blank if Customer Exists">
                     </div>
 
                     <div class="customer-info">
-                        <label for="customer_email">Customer Email (Leave blank if customer already exists)</label>
-                        <input type="email" id="customer_email" name="customer_email">
+                        <label for="customer_email">Customer Email</label>
+                        <input type="email" id="customer_email" name="customer_email" placeholder="Leave Blank if Customer Exists">
                     </div>
                     
                     <div class="additional-options">
@@ -96,12 +96,11 @@
                 <div class="total-and-bill-options">
                     <input type="text" id="totalCost" readonly placeholder="Total Cost">
                     <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
+                    <form action="{{ route('bills') }}" method="GET">
+                        <button type="submit" class="manage-bills">Manage Bills</button>
+                    </form>
                 </div>
             </div>
-        </form>
-
-        <form action="{{ route('bills') }}" method="GET">
-            <button type="submit" class="manage-bills">Manage Bills</button>
         </form>
     </div>
 

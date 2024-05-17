@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-
 /* General Styles */
 * {
     font-family: "Poppins", sans-serif;
@@ -10,6 +8,7 @@
 table {
     width: 80%;
     margin: 0 auto;
+    margin-top: 8vh;
     border-collapse: collapse;
     border-right: 4px solid #085993;
     border-bottom: 4px solid #085993;
@@ -53,57 +52,52 @@ input, select {
 }
 
 /* Customer Info Styles */
-.customer-info {
-    width: 35%;
-    margin: 3vh 0 1vh 20%;
+.customer-info,
+.additional-options {
+    width: 70%; /* Adjusted width */
+    margin: 2vh 0 1vh 20%;
     display: flex;
 }
 
-.customer-info input {
-    margin-left: 0.5vw;
-    width: auto;
+.customer-info label,
+.additional-options label {
+    width: 150px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    display: inline-block; /* Ensure labels are displayed inline */
+}
+
+.customer-info input,
+.additional-options input[type=text],
+#card_details {
+    width: calc(70% - 160px); /* Adjusted width for input fields */
+    margin-left: 10px; /* Set margin to align with labels */
     padding: 5px;
     border: 1px solid;
     border-radius: 15px;
 }
 
-.cashier-content {
-    margin-top: 7.5vh;
-}
-
-.additional-options {
-    margin: 1vh 0 0 20%;
-    display: flex;
-}
-
-.additional-options label {
-    margin-right: 10px;
-}
-
-.additional-options input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-}
-
 /* Total and Bill Options Styles */
 .total-and-bill-options {
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
     width: 50%;
-    align-items: flex-end
+    align-items: flex-end;
 }
 
 .total-and-bill-options input[type=text],
 .total-and-bill-options input[type=submit],
 .total-and-bill-options button {
     width: 35%;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-right: 20%;
     padding: 5px;
     border: 1px solid;
     border-radius: 15px;
     cursor: pointer;
     transition: 0.2s all;
+    height: 35px;
 }
 
 .total-and-bill-options input[type=text] {
@@ -135,6 +129,12 @@ input, select {
     display: flex;
 }
 
-.additional-options input[type=text] {
-    border: 1px solid;
+.additional-options label {
+    margin-right: 10px;
+}
+
+.additional-options input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
 }
