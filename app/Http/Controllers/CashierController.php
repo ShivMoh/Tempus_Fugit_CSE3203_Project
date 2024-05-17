@@ -39,7 +39,8 @@ class CashierController extends Controller
         $customerNumber = $request->input('customer_number');
         $customerEmail = $request->input('customer_email');
         $itemDetails = $this->getItemDetails($request);
-        $costs = $this->calculateCosts($itemDetails, $request->has('delivery_fee'));
+        $deliveryFee = $request->has('delivery_fee') ? 50 : 0;
+        $costs = $this->calculateCosts($itemDetails, $deliveryFee);
 
         // Gets the exact discount value for the bill
         $totalDiscount = array_reduce($itemDetails, function ($carry, $item) {
@@ -144,7 +145,7 @@ class CashierController extends Controller
                 'net_cost' => $costs['netCost'],
                 'discount' => $totalDiscount,
                 'duty_and_vat' => $costs['duty'],
-                'delivery_fee' => $costs['deliveryFee'],
+                'delivery_free' => $costs['deliveryFee'] ?? 0,
                 'user_id' => Auth::id(),
                 'customer_id' => $customerId
             ]);
@@ -193,8 +194,7 @@ class CashierController extends Controller
         return $itemDetails;
     }
 
-
-    private function calculateCosts(array $itemDetails, bool $hasDeliveryFee)
+    private function calculateCosts(array $itemDetails, $deliveryFee)
     {
         $grossCost = 0;
 
@@ -202,7 +202,6 @@ class CashierController extends Controller
             $grossCost += $itemDetail['total'];
         }
 
-        $deliveryFee = $hasDeliveryFee ? 50 : 0;
         $duty = $grossCost * 0.16;
         $netCost = $grossCost + $deliveryFee;
         $grossCost += $duty;
@@ -264,7 +263,8 @@ class CashierController extends Controller
 
     public function viewBills()
     {
-        $bills = $this->getBills();
+        $bills = Bill::with('customer')->get();
         return view('bills', ['bills' => $bills]);
     }
 }
+

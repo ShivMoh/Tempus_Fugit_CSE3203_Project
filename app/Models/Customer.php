@@ -41,4 +41,9 @@ class Customer extends Model
             }
         });
     }
+
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
 }
