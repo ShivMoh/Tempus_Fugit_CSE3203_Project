@@ -103,6 +103,9 @@ class AuthController extends Controller
 
             // Check if the user has the admin role
             if ($user->user_role_id == '86efe04b-8be4-4c70-a240-fe9624d89371') {
+
+                session()->flash('success', 'Authorization Successful!');
+
                 // User is an admin, redirect to the registration page
                 return redirect('/register');
             }

@@ -5,6 +5,12 @@
     @csrf
     
     <h1>Register:</h1>
+
+    @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     
     <div class="tab">Personal Information:
         <p><input placeholder="First name..." type="text" name="first_name" value="{{ old('first_name') }}"></p>
