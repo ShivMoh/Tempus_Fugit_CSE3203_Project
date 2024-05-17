@@ -21,7 +21,7 @@ class Bill extends Model
         'net_cost',
         'discount',
         'duty_and_vat',
-        'delivery_fee',
+        'delivery_free',
         'user_id',
         'customer_id'
     ];
@@ -32,7 +32,7 @@ class Bill extends Model
         'net_cost' => 'float',
         'discount' => 'float',
         'duty_and_vat' => 'float',
-        'delivery_fee' => 'float',
+        'delivery_free' => 'float',
         'user_id' => 'string',
         'customer_id' => 'string'
     ];
