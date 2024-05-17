@@ -12,6 +12,8 @@
 
     <div class="container">
         <h1 class="title">Bill Preview</h1>
+        <a href="{{ route('cashier') }}" class="return-button">Go back</a>
+
 
         {{-- <p class="user-id">Employee ID: {{ Auth::id() }}</p> --}}
 
