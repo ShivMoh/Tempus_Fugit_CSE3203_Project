@@ -18,9 +18,6 @@
                 <span class="net-balance">Net Balance:</span>
                 <span class="dollar-sign">${{ number_format($netBalance, 2) }}</span>
             </div>
-            <a href="/loginvestmentform" class="rectangle-2">
-                <span class="log-investment">Log Investment</span>
-            </a>
         </div>
         <button class="rectangle-button">
             <span class="given-to-suppliers">Given to Suppliers: ${{ number_format(abs($givenToSuppliers), 2) }}</span>
