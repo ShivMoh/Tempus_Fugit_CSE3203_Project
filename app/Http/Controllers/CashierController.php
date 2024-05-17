@@ -38,6 +38,12 @@ class CashierController extends Controller
         $customerName = $request->input('customer_name');
         $customerNumber = $request->input('customer_number');
         $customerEmail = $request->input('customer_email');
+
+        // Check if customer name is provided without email or phone number
+        if (!empty($customerName) && (empty($customerNumber) && empty($customerEmail))) {
+            return redirect()->route('customer_error'); // Redirect to customer_error route
+        }
+
         $itemDetails = $this->getItemDetails($request);
         $deliveryFee = $request->has('delivery_fee') ? 50 : 0;
         $costs = $this->calculateCosts($itemDetails, $deliveryFee);
@@ -61,6 +67,7 @@ class CashierController extends Controller
 
         return view('bill_preview', $this->getBillPreviewData($customerName, $costs));
     }
+
 
     // Gets all the data needed for the bill preview
     private function getBillPreviewData(string $customerName, array $costs)
@@ -265,6 +272,11 @@ class CashierController extends Controller
     {
         $bills = Bill::with('customer')->get();
         return view('bills', ['bills' => $bills]);
+    }
+
+    public function customerError()
+    {
+        return view('customer_error');
     }
 }
 
