@@ -15,10 +15,6 @@
     <section class="overlay"></section>
 
     <div class="cashier-content">
-        <form action="{{ route('bills') }}" method="GET">
-            <button type="submit" class="manage-bills">View Bills</button>
-        </form>
-
         <form action="{{ route('bill_preview') }}" method="POST">
             @csrf
             <table class="cashier">
@@ -75,10 +71,10 @@
                     <div class="customer-info">
                         <label for="customer">Customers: </label>
                             <select name="customer" id="customer">
+                                <option value="" disabled selected>Select Customer</option>
                                 @foreach ($customers as $customer)
-                                    <option value={{$customer->id}}>{{$customer->first_name." ".$customer->last_name}}</option>
+                                    <option value="{{$customer->id}}">{{$customer->first_name." ".$customer->last_name}}</option>
                                 @endforeach
-
                             </select>
                     </div>
                     
@@ -106,11 +102,22 @@
                         <label for="card_details">Card Details</label>
                         <input type="text" id="card_details" name="card_details" placeholder="Leave Blank For Cash Payment">
                     </div>
+
+                    <div class="additional-options">
+                        <label for="card_pin">Card PIN</label>
+                        <input type="text" id="card_pin" name="card_pin" placeholder="PIN">
+                    </div>
+
+                    <div class="additional-options">
+                        <label for="card_expiry">Expiry Date</label>
+                        <input type="text" id="card_expiry" name="card_expiry" placeholder="MM/YY">
+                    </div>
                 </div>
-                
+
                 <div class="total-and-bill-options">
-                    <input type="text" id="totalCost" readonly placeholder="Total Cost">
+                    <input type="text" id="totalCost" readonly placeholder="Total Cost" style="background-color: white; border: 1px solid black;">
                     <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
+                    <a href="/bills" class="view-bills">View Bills</a>
                 </div>
             </div>
         </form>

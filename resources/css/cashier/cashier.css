@@ -7,7 +7,7 @@
 /* Table Styles */
 table {
     width: 80%;
-    margin: 0 auto;
+    margin: 7vh auto 0 auto;
     border-collapse: collapse;
     border-right: 4px solid #085993;
     border-bottom: 4px solid #085993;
@@ -55,7 +55,7 @@ input, select {
 .customer-info,
 .additional-options {
     width: 70%;
-    margin: 2vh 0 1vh 20%;
+    margin: 1.5vh 0 1vh 20%;
     display: flex;
 }
 
@@ -67,12 +67,24 @@ input, select {
 
 .customer-info input,
 .additional-options input[type=text],
-#card_details {
+#card_details,
+#card_pin,
+#card_expiry {
     width: calc(70% - 160px);
     margin-left: 10px;
     padding: 5px;
-    border: 1px solid;
+    border: 1px solid #C0DFFF;
     border-radius: 15px;
+}
+
+.customer-info select {
+    width: calc(70% - 160px);
+    margin-left: 10px;
+    padding: 5px;
+    border: 1px solid #C0DFFF;
+    border-radius: 15px;
+    background-color: white;
+    color: grey;
 }
 
 /* Total and Bill Options Styles */
@@ -86,7 +98,7 @@ input, select {
 
 .total-and-bill-options input[type=text],
 .total-and-bill-options input[type=submit],
-.total-and-bill-options button {
+.total-and-bill-options a.view-bills {
     width: 35%;
     margin-top: 15px;
     margin-right: 20%;
@@ -96,27 +108,20 @@ input, select {
     cursor: pointer;
     transition: 0.2s all;
     height: 35px;
-}
-
-.total-and-bill-options input[type=text] {
-    background-color: white;
-}
-
-.total-and-bill-options input[type=submit],
-.total-and-bill-options button {
+    text-align: center;
+    display: inline-block;
+    line-height: 25px;
     background-color: #8DCFFF;
     border: 1px solid white;
+    color: black;
+    text-decoration: none;
+    font-size: 0.9em;
 }
 
 .total-and-bill-options input[type=submit]:hover,
-.total-and-bill-options button:hover {
+.total-and-bill-options a.view-bills:hover {
     background-color: white;
     border: 1px solid #8DCFFF;
-}
-
-.total-and-bill-options a {
-    text-decoration: none;
-    color: black;
 }
 
 /* Cashier Styles */
