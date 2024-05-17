@@ -13,7 +13,7 @@
     <div class="container">
         <h1 class="title">Bill Preview</h1>
 
-        <p class="user-id">Employee ID: {{ Auth::id() }}</p>
+        {{-- <p class="user-id">Employee ID: {{ Auth::id() }}</p> --}}
 
         <p class="customer-name">{{ $customerName }}</p>
 

@@ -50,7 +50,7 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('sales') }}" class="return-button">Return to Sales</a>
+    <a href="{{ route('cashier') }}" class="return-button">Go back</a>
 </div>
 
 </body>
