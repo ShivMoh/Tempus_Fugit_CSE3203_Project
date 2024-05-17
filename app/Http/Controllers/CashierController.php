@@ -141,7 +141,7 @@ class CashierController extends Controller
 
         DB::beginTransaction();
 
-        // try {
+        try {
             $customerName = $billPreview['customerName'];
             $customerNumber = $billPreview['customerNumber'];
             $customerEmail = $billPreview['customerEmail'];
@@ -155,7 +155,6 @@ class CashierController extends Controller
                 return $carry + ($item['price'] * $item['amount'] * $item['discount'] / 100);
             }, 0);
 
-            // $customerId = null;
             $contactId = null;
             $paymentId = null;
 
@@ -166,63 +165,55 @@ class CashierController extends Controller
                     "secondary_number" => 'N/A',
                     "email" => $customerEmail,
                 ]);
-    
-                $contact->save();    
-                $contactId = $contact->id;
 
+                $contact->save();
+                $contactId = $contact->id;
             } else {
-                $customer = Customer::where('id', $customerId)->get()[0];
-                $contact = Contact::where("id", $customer->contact_id)->get()[0];
+                $customer = Customer::where('id', $customerId)->first();
+                $contact = Contact::where("id", $customer->contact_id)->first();
                 $contactId = $contact->id;  
             }
-            
 
             if ($cardNumber) {
-
                 $payment = new Payment([
                     "id" => (string) Str::uuid(),
-                    "cash" => true,
+                    "cash" => false,
                     "amount" => $costs['netCost'],
                 ]);
+                $payment->save();
 
-                $card = Card::where("card_number", $request->input('card_details'))->get();
-
-                if(!empty($card)) {
+                $card = Card::where("card_number", $cardNumber)->first();
+                if (!$card) {
                     $card = new Card([
                         "id" => (string) Str::uuid(),
                         "card_holder" => $customerName,
-                        "card_number"=>$cardNumber,
-                        "security_pin"=>"242",
-                        "expirary_date"=>"2025-05-23",
-                        "company_card"=>false
-                    ]);    
+                        "card_number" => $cardNumber,
+                        "security_pin" => $cardPin,
+                        "expirary_date" => "2025-05-23",
+                        "company_card" => false
+                    ]);
                     $card->save();
-                } else {
-                    $card = $card[0];
                 }
 
-                $card_payment = new CardPayment([
+                $cardPayment = new CardPayment([
                     "id" => (string) Str::uuid(),
                     "payment_id" => $payment->id,
-                    "card_id"=>$card->id
+                    "card_id" => $card->id
                 ]);
+                $cardPayment->save();
 
-                $payment->save();
-                $card_payment->save();
-        
             } else {
                 $payment = new Payment([
                     "id" => (string) Str::uuid(),
                     "cash" => true,
                     "amount" => $costs['netCost'],
                 ]);
-
                 $payment->save();
             }
 
             $paymentId = $payment->id;
 
-            if(!$customerId) {
+            if (!$customerId) {
                 $customerId = $this->createCustomer($customerName, $contactId, $paymentId);
             }
 
@@ -237,7 +228,6 @@ class CashierController extends Controller
                 'customer_id' => $customerId,
                 'payment_id' => $paymentId
             ]);
-
             $bill->save();
 
             foreach ($itemDetails as $itemDetail) {
@@ -250,11 +240,10 @@ class CashierController extends Controller
             session()->forget('billPreview');
 
             return redirect()->route('bill_success')->with('success', 'Bill confirmed and saved successfully.');
-        // } 
-        // catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return redirect()->route('cashier')->with('error', 'Failed to confirm and save bill.');
-        // }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('cashier')->with('error', 'Failed to confirm and save bill.');
+        }
     }
 
     private function getItemDetails(Request $request)

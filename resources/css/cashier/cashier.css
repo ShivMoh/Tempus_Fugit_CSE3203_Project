@@ -77,6 +77,7 @@ input, select {
     border-radius: 15px;
 }
 
+.payment-method-dropdown,
 .customer-info select {
     width: calc(70% - 160px);
     margin-left: 10px;
@@ -84,7 +85,6 @@ input, select {
     border: 1px solid #C0DFFF;
     border-radius: 15px;
     background-color: white;
-    color: grey;
 }
 
 /* Total and Bill Options Styles */

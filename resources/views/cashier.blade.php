@@ -99,18 +99,28 @@
                     </div>
 
                     <div class="additional-options">
-                        <label for="card_details">Card Details</label>
-                        <input type="text" id="card_details" name="card_details" placeholder="Leave Blank For Cash Payment">
+                        <label for="payment_method">Payment Method</label>
+                        <select class="payment-method-dropdown" name="payment_method" id="payment_method" onchange="toggleCardDetails(this)">
+                            <option value="cash">Cash</option>
+                            <option value="card">Card</option>
+                        </select>
                     </div>
 
-                    <div class="additional-options">
-                        <label for="card_pin">Card PIN</label>
-                        <input type="text" id="card_pin" name="card_pin" placeholder="PIN">
-                    </div>
+                    <div id="card-details" style="display: none;">
+                        <div class="additional-options">
+                            <label for="card_details">Card Details</label>
+                            <input type="text" id="card_details" name="card_details" placeholder="Card Number">
+                        </div>
 
-                    <div class="additional-options">
-                        <label for="card_expiry">Expiry Date</label>
-                        <input type="text" id="card_expiry" name="card_expiry" placeholder="MM/YY">
+                        <div class="additional-options">
+                            <label for="card_pin">Card PIN</label>
+                            <input type="text" id="card_pin" name="card_pin" placeholder="PIN">
+                        </div>
+
+                        <div class="additional-options">
+                            <label for="card_expiry">Expiry Date</label>
+                            <input type="text" id="card_expiry" name="card_expiry" placeholder="MM/YY">
+                        </div>
                     </div>
                 </div>
 
@@ -125,6 +135,11 @@
 
     <script>
         var items = @json($items);
+
+        function toggleCardDetails(select) {
+            var cardDetails = document.getElementById('card-details');
+            cardDetails.style.display = select.value === 'card' ? 'block' : 'none';
+        }
     </script>
     <script src="{{ asset('resources/js/cashier.js') }}"></script>
 </body>
