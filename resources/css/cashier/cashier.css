@@ -48,6 +48,7 @@ input, select {
     border: none;
     color: black;
     text-align: center;
+    background-color: transparent;
 }
 
 /* Customer Info Styles */

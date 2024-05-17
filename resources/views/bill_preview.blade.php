@@ -4,23 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill Preview</title>
+    @vite('resources/css/cashier/bill_preview.css')
 </head>
 
 <body>
-<x-nav></x-nav>
+    <x-nav></x-nav>
 
-<h1 style="margin-top: 300px">Bill Preview</h1>
-    <p>User ID: {{ Auth::id() }}</p>
-    <p>Customer Name: {{ $customerName }}</p>
-    <p>Gross Cost: ${{ $grossCost }}</p>
-    <p>Net Cost: ${{ $netCost }}</p>
-    <p>Delivery Fee: ${{ $deliveryFee }}</p>
-    <p>Duty: ${{ $duty }}</p>
-    <p>Total Discount: ${{ $totalDiscount }}</p>
+    <div class="container">
+        <h1 class="title">Bill Preview</h1>
 
-<form action="{{ route('bill_confirmed') }}" method="POST">
-    @csrf
-    <button type="submit">Confirm Bill</button>
-</form>
+        <p class="user-id">Employee ID: {{ Auth::id() }}</p>
+
+        <p class="customer-name">{{ $customerName }}</p>
+
+        <div class="total">
+            <h2 class="total-title">Total</h2>
+            <div class="total-detail">
+                <span>Gross Cost:</span>
+                <span>${{ $grossCost }}</span>
+            </div>
+            <div class="total-detail">
+                <span>Discount:</span>
+                <span>${{ $totalDiscount }}</span>
+            </div>
+            <div class="total-detail">
+                <span>Duty:</span>
+                <span>${{ $duty }}</span>
+            </div>
+            <div class="total-detail">
+                <span>Delivery Fee:</span>
+                <span>${{ $deliveryFee }}</span>
+            </div>
+            <div class="total-net">
+                <span>Net Cost:</span>
+                <span>${{ $netCost }}</span>
+            </div>
+        </div>
+
+        <form action="{{ route('bill_confirmed') }}" method="POST">
+            @csrf
+            <button type="submit" class="confirm-button">Confirm Bill</button>
+        </form>
+    </div>
 </body>
 </html>
