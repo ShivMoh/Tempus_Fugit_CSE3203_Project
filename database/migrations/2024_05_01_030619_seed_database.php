@@ -107,7 +107,7 @@ return new class extends Migration
 
         DB::table('items')->insert(
             array(
-                "id"            => (string) Str::uuid(),
+                "id"            => 'a2839025-3c91-4cfe-ad33-1268d16753a8',
                 'name'          => 'Hammer',
                 'selling_price' => 200.0,
                 'cost_price'    => 170.0,
@@ -123,7 +123,7 @@ return new class extends Migration
 
         DB::table('items')->insert(
             array(
-                "id"            => (string) Str::uuid(),
+                "id"            => '79f9eef4-b689-4f13-895a-69f1488a791b',
                 'name'          => 'Screwdriver',
                 'selling_price' => 100.0,
                 'cost_price'    => 80.0,
@@ -139,7 +139,7 @@ return new class extends Migration
 
         DB::table('items')->insert(
             array(
-                "id"            => (string) Str::uuid(),
+                "id"            => '79f9eef4-b689-4f13-895a-69f1488a791a',
                 'name'          => 'Shovel',
                 'selling_price' => 250.0,
                 'cost_price'    => 20.0,
