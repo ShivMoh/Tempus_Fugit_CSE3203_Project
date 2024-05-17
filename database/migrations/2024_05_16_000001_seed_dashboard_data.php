@@ -6,6 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -116,15 +117,13 @@ return new class extends Migration
             [
                 'id' => '22f1c687-0ede-49d9-bccd-e543cf263d00',
                 'email' => 'john@gmail.com',
-                'password' => 'verystrongpassword',
+                'password' => Hash::make('verystrongpassword'),
                 'created_at' => now(),
                 'updated_at' => now(),
                 'user_role_id' => '86efe04b-8be4-4c70-a240-fe9624d89371',
                 'employee_id' => 'cee11fdf-13df-4ce3-947f-ff59500b8055'
             ]
         ]);
-
-
 
         DB::table('employees')->insert([
             [
