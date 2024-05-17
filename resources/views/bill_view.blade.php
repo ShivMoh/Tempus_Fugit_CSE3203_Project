@@ -11,7 +11,7 @@
     <x-nav></x-nav>
 
     <div class="container">
-        <a href="{{ route('cashier') }}" class="return-button">Go back</a>
+        <a href="{{ route('bills') }}" class="return-button">Go back</a>
 
         <h1 class="title">Bill Preview</h1>
 
