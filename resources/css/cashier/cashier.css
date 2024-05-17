@@ -8,7 +8,6 @@
 table {
     width: 80%;
     margin: 0 auto;
-    margin-top: 8vh;
     border-collapse: collapse;
     border-right: 4px solid #085993;
     border-bottom: 4px solid #085993;
@@ -54,24 +53,22 @@ input, select {
 /* Customer Info Styles */
 .customer-info,
 .additional-options {
-    width: 70%; /* Adjusted width */
+    width: 70%;
     margin: 2vh 0 1vh 20%;
     display: flex;
 }
 
 .customer-info label,
 .additional-options label {
-    width: 150px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    display: inline-block; /* Ensure labels are displayed inline */
+    width: 25%;
+    display: inline-block;
 }
 
 .customer-info input,
 .additional-options input[type=text],
 #card_details {
-    width: calc(70% - 160px); /* Adjusted width for input fields */
-    margin-left: 10px; /* Set margin to align with labels */
+    width: calc(70% - 160px);
+    margin-left: 10px;
     padding: 5px;
     border: 1px solid;
     border-radius: 15px;
@@ -121,14 +118,17 @@ input, select {
     color: black;
 }
 
+/* Cashier Styles */
 .cashier-options {
     width: 50%;
 }
 
 .cashier-bottom-content {
     display: flex;
+    justify-content: space-between;
 }
 
+/* Additional Options Styles */
 .additional-options label {
     margin-right: 10px;
 }
@@ -137,4 +137,24 @@ input, select {
     width: 20px;
     height: 20px;
     margin-left: 10px;
+}
+
+/* Manage Bills Styles */
+.manage-bills {
+    width: 10%;
+    margin-top: 8vh;
+    margin-left: 10%;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s all;
+    background-color: #8DCFFF;
+    color: white;
+}
+
+.manage-bills:hover {
+    background-color: white;
+    border: 1px solid #8DCFFF;
+    color: #8DCFFF;
 }

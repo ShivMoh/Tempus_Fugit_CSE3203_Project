@@ -15,6 +15,10 @@
     <section class="overlay"></section>
 
     <div class="cashier-content">
+        <form action="{{ route('bills') }}" method="GET">
+            <button type="submit" class="manage-bills">View Bills</button>
+        </form>
+
         <form action="{{ route('bill_preview') }}" method="POST">
             @csrf
             <table class="cashier">
@@ -96,9 +100,6 @@
                 <div class="total-and-bill-options">
                     <input type="text" id="totalCost" readonly placeholder="Total Cost">
                     <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
-                    <form action="{{ route('bills') }}" method="GET">
-                        <button type="submit" class="manage-bills">Manage Bills</button>
-                    </form>
                 </div>
             </div>
         </form>
