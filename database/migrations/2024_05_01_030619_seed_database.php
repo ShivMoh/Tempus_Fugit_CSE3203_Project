@@ -176,7 +176,7 @@ return new class extends Migration
                 "city"=>"Georgetown",
                 "state"=>"Guyana",
                 "country"=>"Guyana",
-                "company_address"=>true,
+                "company_address"=>false,
                 'created_at'=>DB::raw('CURRENT_TIMESTAMP'),
                 'updated_at'=>DB::raw('CURRENT_TIMESTAMP')
             )

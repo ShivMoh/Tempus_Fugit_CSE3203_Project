@@ -135,8 +135,8 @@
 
             <div class="single-item final">    
                 <div class="item-container">
-                    <p class="amount heading big">Total:</p>
-                    <p class="name heading"></p>
+                    <p class="amount heading big">Total</p>
+                    <p class="name heading big">Cost:</p>
                 </div>
     
                 <div class="cost-container">

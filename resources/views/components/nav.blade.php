@@ -106,6 +106,10 @@
         left: 260px;
         pointer-events: auto;
       }
+
+      .bottom-content {
+        margin-bottom: 0px;
+      }
     </style>
   </head>
   <body>
@@ -154,7 +158,7 @@
             </li>
           </ul>
           {{-- bottom content  --}}
-          <div class="bottom-cotent">
+          <div class="bottom-content">
             <li class="list">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bx bx-log-out icon"></i>

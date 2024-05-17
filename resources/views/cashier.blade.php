@@ -71,9 +71,20 @@
 
             <div class="cashier-bottom-content">
                 <div class="cashier-options">
+
+                    <div class="customer-info">
+                        <label for="customer">Customers: </label>
+                            <select name="customer" id="customer">
+                                @foreach ($customers as $customer)
+                                    <option value={{$customer->id}}>{{$customer->first_name." ".$customer->last_name}}</option>
+                                @endforeach
+
+                            </select>
+                    </div>
+                    
                     <div class="customer-info">
                         <label for="customer_name">Customer Name</label>
-                        <input type="text" id="customer_name" name="customer_name" required>
+                        <input type="text" id="customer_name" name="customer_name" placeholder="Leave Blank if Customer Exists">
                     </div>
                     
                     <div class="customer-info">

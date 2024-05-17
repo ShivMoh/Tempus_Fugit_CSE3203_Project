@@ -49,9 +49,11 @@ return new class extends Migration
         Schema::table('bills', function(Blueprint $table ) {
             $table->uuid('user_id');
             $table->uuid('customer_id');
+            $table->uuid('payment_id');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('payment_id')->references('id')->on('payments');
         });
         
         Schema::table('orders', function(Blueprint $table ) {
@@ -138,6 +140,7 @@ return new class extends Migration
         Schema::table('bills', function(Blueprint $table ) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['customer_id']);
+            $table->dropForeign(['payment_id']);
         });
         
         Schema::table('orders', function(Blueprint $table ) {

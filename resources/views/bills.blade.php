@@ -38,8 +38,13 @@
                 <td>${{ $bill->duty_and_vat }}</td>
                 <td>${{ $bill->delivery_free ?? 0 }}</td>
                 <td>{{ $bill->customer_id }}</td>
+
+                <form action="/bill_view" method="POST" id="bill-information">
+                    @csrf
+                    <input type="hidden" name="bill_id" value={{$bill->id}}>
+                </form>
                 <td>
-                    <button class="print-button">Print</button> <!-- Print button -->
+                    <button form="bill-information" class="print-button">View Bill</button> <!-- Print button -->
                 </td>
             </tr>
             @endforeach

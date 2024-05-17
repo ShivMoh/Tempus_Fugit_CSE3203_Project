@@ -1,4 +1,7 @@
-/* Style the form */
+.bottom-content {
+  margin-bottom: 100px !important;
+}
+
 #regForm {
   background-color: #ffffff;
   margin: 0px auto;

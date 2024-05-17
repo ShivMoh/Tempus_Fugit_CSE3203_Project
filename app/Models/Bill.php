@@ -23,7 +23,8 @@ class Bill extends Model
         'duty_and_vat',
         'delivery_free',
         'user_id',
-        'customer_id'
+        'customer_id',
+        'payment_id'
     ];
 
     protected $casts = [
@@ -34,7 +35,8 @@ class Bill extends Model
         'duty_and_vat' => 'float',
         'delivery_free' => 'float',
         'user_id' => 'string',
-        'customer_id' => 'string'
+        'customer_id' => 'string',
+        'payment_id' => 'string'
     ];
 
     // If ID = empty, create id.

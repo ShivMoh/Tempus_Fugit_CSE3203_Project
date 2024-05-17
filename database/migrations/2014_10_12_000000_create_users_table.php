@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('last_name');
             $table->date('dob');
             $table->timestamps();
-
         });
 
         Schema::create('addresses', function(Blueprint $table) {

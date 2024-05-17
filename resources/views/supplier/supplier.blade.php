@@ -1,10 +1,11 @@
 @vite(['resources/js/supplier/request_form.js'])
 @vite(['resources/css/supplier/supplier.css'])
-<x-nav></x-nav>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<x-nav></x-nav>
 
 <section class="filter-section">
+
     <div class="filter-container">
         <div class="search-container">
             <form  action="/supplier" method="POST" class="search-bar" id="search">

@@ -152,7 +152,8 @@ return new class extends Migration
                 'created_at' => now(),
                 'updated_at' => now(),
                 'user_id' => 'cee11fdf-13df-4ce3-947f-ff59500b8055',
-                'customer_id' => 'd625a5d9-7277-46df-8c5e-870e8770ab66'
+                'customer_id' => 'd625a5d9-7277-46df-8c5e-870e8770ab66',
+                'payment_id' => 'd625a5d9-7277-46df-8c5e-870e8770ab67'
             ]
         ]);
 
