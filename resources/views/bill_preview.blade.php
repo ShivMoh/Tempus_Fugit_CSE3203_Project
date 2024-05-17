@@ -43,7 +43,7 @@
 
         <form action="{{ route('bill_confirmed') }}" method="POST">
             @csrf
-            <button type="submit" class="confirm-button">Confirm Bill</button>
+            <button type="submit" class="confirm-button" onclick="print()">Confirm Bill</button>
         </form>
     </div>
 </body>
