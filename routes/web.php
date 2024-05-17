@@ -72,6 +72,9 @@ Route::group(['middleware' => ['role:eff3a740-b777-48dc-8c04-78893ba6a50b,86efe0
    Route::get('/cashier', [CashierController::class, 'index'])->name('cashier');
    Route::post('/bill_preview', [CashierController::class, 'createBill'])->name('bill_preview');
    Route::post('/bill_confirmed', [CashierController::class, 'confirmBill'])->name('bill_confirmed');
+   Route::get('/bill_success', function () {
+       return view('bill_success');
+   })->name('bill_success');
    Route::get('/bills', [CashierController::class, 'viewBills'])->name('bills');
 
    Route::get('/sales', [SalesController::class, 'index']);

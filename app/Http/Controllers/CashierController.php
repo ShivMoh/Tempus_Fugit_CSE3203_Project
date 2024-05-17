@@ -17,14 +17,16 @@ use Illuminate\Support\Str;
 
 class CashierController extends Controller
 {
-    // used to get item info from the db
-    public function getItems() {
+    // Used to get item info from the db
+    public function getItems()
+    {
         $items = Item::all();
         return $items;
     }
 
-    // creates the register with the db items in the dropdown
-    public function index() {
+    // Creates the register with the db items in the dropdown
+    public function index()
+    {
         $items = $this->getItems();
         return view('cashier', ['items' => $items]);
     }
@@ -32,18 +34,19 @@ class CashierController extends Controller
     // Creates the bill preview 
     public function createBill(Request $request)
     {
-        // gets details from the cashier page
+        // Gets details from the cashier page
         $customerName = $request->input('customer_name');
         $customerNumber = $request->input('customer_number');
         $customerEmail = $request->input('customer_email');
         $itemDetails = $this->getItemDetails($request);
         $costs = $this->calculateCosts($itemDetails, $request->has('delivery_fee'));
 
-        // gets the exact discount value for the bill
+        // Gets the exact discount value for the bill
         $totalDiscount = array_reduce($itemDetails, function ($carry, $item) {
             return $carry + ($item['price'] * $item['amount'] * $item['discount'] / 100);
         }, 0);
 
+        // Stores cash register details in a session
         session([
             'billPreview' => [
                 'customerName' => $customerName,
@@ -58,7 +61,7 @@ class CashierController extends Controller
         return view('bill_preview', $this->getBillPreviewData($customerName, $costs));
     }
 
-
+    // Gets all the data needed for the bill preview
     private function getBillPreviewData(string $customerName, array $costs)
     {
         return [
@@ -71,99 +74,101 @@ class CashierController extends Controller
         ];
     }
 
+    // Creates user, payment id and contact info if entered, else get info from db and create bill
     public function confirmBill(Request $request)
-{
-    $billPreview = session('billPreview');
+    {
+        $billPreview = session('billPreview');
 
-    if (!$billPreview) {
-        return redirect()->route('cashier')->with('error', 'No bill to confirm.');
-    }
+        if (!$billPreview) {
+            return redirect()->route('cashier')->with('error', 'No bill to confirm.');
+        }
 
-    DB::beginTransaction();
+        DB::beginTransaction();
 
-    try {
-        $customerName = $billPreview['customerName'];
-        $customerNumber = $billPreview['customerNumber'];
-        $customerEmail = $billPreview['customerEmail'];
-        $itemDetails = $billPreview['itemDetails'];
-        $costs = $billPreview['costs'];
+        try {
+            $customerName = $billPreview['customerName'];
+            $customerNumber = $billPreview['customerNumber'];
+            $customerEmail = $billPreview['customerEmail'];
+            $itemDetails = $billPreview['itemDetails'];
+            $costs = $billPreview['costs'];
 
-        $totalDiscount = array_reduce($itemDetails, function ($carry, $item) {
-            return $carry + ($item['price'] * $item['amount'] * $item['discount'] / 100);
-        }, 0);
+            $totalDiscount = array_reduce($itemDetails, function ($carry, $item) {
+                return $carry + ($item['price'] * $item['amount'] * $item['discount'] / 100);
+            }, 0);
 
-        $customerId = null;
-        $contactId = null;
-        $paymentId = null;
+            $customerId = null;
+            $contactId = null;
+            $paymentId = null;
 
-        if (!empty($customerNumber) && !empty($customerEmail)) {
-            $contact = new Contact([
-                "id" => (string) Str::uuid(),
-                "primary_number" => $customerNumber,
-                "secondary_number" => 'N/A',
-                "email" => $customerEmail,
+            if (!empty($customerNumber) && !empty($customerEmail)) {
+                $contact = new Contact([
+                    "id" => (string) Str::uuid(),
+                    "primary_number" => $customerNumber,
+                    "secondary_number" => 'N/A',
+                    "email" => $customerEmail,
+                ]);
+
+                $contact->save();
+                $contactId = $contact->id;
+
+                if ($request->has('card_details')) {
+                    $payment = new CardPayment([
+                        "id" => (string) Str::uuid(),
+                        "card_number" => $request->input('card_details'),
+                        "amount" => $costs['netCost'],
+                    ]);
+                } else {
+                    $payment = new Payment([
+                        "id" => (string) Str::uuid(),
+                        "cash" => true,
+                        "amount" => $costs['netCost'],
+                    ]);
+                }
+
+                $payment->save();
+                $paymentId = $payment->id;
+
+                $customerId = $this->createCustomer($customerName, $contactId, $paymentId);
+            } else {
+                $customerId = $this->getCustomerIdByName($customerName);
+                if ($customerId) {
+                    $customer = Customer::find($customerId);
+                    $contactId = $customer->contact_id;
+                    $paymentId = $customer->payment_id;
+                }
+            }
+
+            $bill = new Bill([
+                'id' => (string) Str::uuid(),
+                'gross_cost' => $costs['grossCost'],
+                'net_cost' => $costs['netCost'],
+                'discount' => $totalDiscount,
+                'duty_and_vat' => $costs['duty'],
+                'delivery_fee' => $costs['deliveryFee'],
+                'user_id' => Auth::id(),
+                'customer_id' => $customerId
             ]);
 
-            $contact->save();
-            $contactId = $contact->id;
+            $bill->save();
 
-            if ($request->has('card_details')) {
-                $payment = new CardPayment([
-                    "id" => (string) Str::uuid(),
-                    "card_number" => $request->input('card_details'),
-                    "amount" => $costs['netCost'], // Adding bill cost to payment amount
-                ]);
-            } else {
-                $payment = new Payment([
-                    "id" => (string) Str::uuid(),
-                    "cash" => true,
-                    "amount" => $costs['netCost'], // Adding bill cost to payment amount
-                ]);
+            foreach ($itemDetails as $itemDetail) {
+                $this->updateStockAndSoldCount($itemDetail);
+                $this->addTransaction($itemDetail, $bill->id);
             }
 
-            $payment->save();
-            $paymentId = $payment->id;
+            DB::commit();
 
-            $customerId = $this->createCustomer($customerName, $contactId, $paymentId);
-        } else {
-            $customerId = $this->getCustomerIdByName($customerName);
-            if ($customerId) {
-                $customer = Customer::find($customerId);
-                $contactId = $customer->contact_id;
-                $paymentId = $customer->payment_id;
-            }
+            session()->forget('billPreview');
+
+            return redirect()->route('bill_success')->with('success', 'Bill confirmed and saved successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('cashier')->with('error', 'Failed to confirm and save bill.');
         }
-
-        $bill = new Bill([
-            'id' => (string) Str::uuid(),
-            'gross_cost' => $costs['grossCost'],
-            'net_cost' => $costs['netCost'],
-            'discount' => $totalDiscount,
-            'duty_and_vat' => $costs['duty'],
-            'delivery_fee' => $costs['deliveryFee'],
-            'user_id' => Auth::id(),
-            'customer_id' => $customerId
-        ]);
-
-        $bill->save();
-
-        foreach ($itemDetails as $itemDetail) {
-            $this->updateStockAndSoldCount($itemDetail);
-            $this->addTransaction($itemDetail, $bill->id);
-        }
-
-        DB::commit();
-
-        session()->forget('billPreview');
-
-        return redirect()->route('cashier')->with('success', 'Bill confirmed and saved successfully.');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect()->route('cashier')->with('error', 'Failed to confirm and save bill.');
     }
-}
 
-    private function getItemDetails(Request $request) {
+    private function getItemDetails(Request $request)
+    {
         $itemDetails = [];
         $itemNames = $request->input('item_name');
         $prices = $request->input('price');
@@ -187,8 +192,10 @@ class CashierController extends Controller
         return $itemDetails;
     }
 
-    private function calculateCosts(array $itemDetails, bool $hasDeliveryFee) {
+    private function calculateCosts(array $itemDetails, bool $hasDeliveryFee)
+    {
         $grossCost = 0;
+
         foreach ($itemDetails as $itemDetail) {
             $grossCost += $itemDetail['total'];
         }
@@ -206,13 +213,15 @@ class CashierController extends Controller
         ];
     }
 
-    private function updateStockAndSoldCount(array $itemDetail) {
+    private function updateStockAndSoldCount(array $itemDetail)
+    {
         $itemController = new ItemController;
         $itemController->update_stock($itemDetail['id'], $itemDetail['amount'] * -1);
         $itemController->update_total_sold($itemDetail['id'], $itemDetail['amount']);
     }
 
-    private function addTransaction(array $itemDetail, string $billId) {
+    private function addTransaction(array $itemDetail, string $billId)
+    {
         $transaction = new Transaction([
             'id' => (string) Str::uuid(),
             'count' => $itemDetail['amount'],
@@ -222,16 +231,6 @@ class CashierController extends Controller
         ]);
 
         $transaction->save();
-    }
-
-    public function getBills() {
-        $bills = Bill::all();
-        return $bills;
-    }
-
-    public function viewBills() {
-        $bills = $this->getBills();
-        return view('bills', ['bills' => $bills]);
     }
 
     private function getCustomerIdByName(string $customerName)
@@ -253,5 +252,17 @@ class CashierController extends Controller
         $newCustomer->save();
 
         return $newCustomer->id;
+    }
+
+    public function getBills()
+    {
+        $bills = Bill::all();
+        return $bills;
+    }
+
+    public function viewBills()
+    {
+        $bills = $this->getBills();
+        return view('bills', ['bills' => $bills]);
     }
 }
