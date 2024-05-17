@@ -17,17 +17,25 @@
         @csrf
         <h3>Authorization</h3>
 
-        <label for="username">Username</label>
-        <input type="email" placeholder="Username" id="username" name="email" required>
-        @error('username')
-            <div class="error">{{ $message }}</div>
-        @enderror
+        @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
 
+        @if ($errors->any())
+            <div class="error">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </div>
+        @endif
+
+        <label for="username">Email</label>
+        <input type="email" placeholder="Email" id="username" name="email" required>
+        
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password" required>
-        @error('password')
-            <div class="error">{{ $message }}</div>
-        @enderror
 
         <button type="submit">Authorize</button>
     </form>
