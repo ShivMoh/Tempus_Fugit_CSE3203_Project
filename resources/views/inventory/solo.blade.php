@@ -84,24 +84,15 @@
         <div class="sec-container">
             <h1 style="width: 100%">Statistics</h1>
             <div class="graph">
-                <?php>
-                    {{$dailySales}};
-                </?>
 
                 <canvas id="dailySales"></canvas>
                 <h5>Daily Sales</h5>
             </div>
             <div class="graph">
-                <?php>
-                    {{$totalProfitPerTransaction}};
-                </?>
                 <canvas id="totalProfitPerTransaction"></canvas>
                 <h5>Total Profit per Transaction</h5>
             </div>
             <div class="graph">
-                <?php>
-                    {{$totalEarningsPerDay}};
-                </?>
                 <canvas id="totalEarningsPerDay"></canvas>
                 <h5>Total Earning per Day</h5>
             </div>
