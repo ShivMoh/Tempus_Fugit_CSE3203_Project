@@ -6,6 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -28,6 +29,32 @@ return new class extends Migration
             ]
         ]);
 
+        DB::table('addresses')->insert([
+            [
+                'id' => '3a8b47f7-5b9a-4b19-a4d2-f21e29be2f4f',
+                'line_1' => '456 Oak St',
+                'line_2' => 'Suite 202',
+                'city' => 'Oakland',
+                'state' => 'CA',
+                'country' => 'USA',
+                'company_address' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+
+        DB::table('contacts')->insert([
+            [
+                'id' => 'c950681e-68e3-4b5b-90e2-7c6e6f8b2121',
+                'primary_number' => '555-123-4567',
+                'secondary_number' => '555-987-6543',
+                'email' => 'mary.sue@example.com',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
+        
+
         DB::table('employees')->insert([
             [
                 'id' => 'cee11fdf-13df-4ce3-947f-ff59500b8055',
@@ -39,6 +66,32 @@ return new class extends Migration
                 'job_role_id' => 'd6353dd9-2e4a-4a21-81c4-9a4f16cef20c',
                 'contact_id' => '421e6b9c-61e3-444f-8972-c934edf987e2',
                 'address_id' => '2d9d32a9-0d08-43c0-a0a5-48f9d5d9a8c0'
+            ]
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'id' => '22f1c687-0ede-49d9-bccd-e543cf263d00',
+                'email' => 'john@gmail.com',
+                'password' => Hash::make('verystrongpassword'),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'user_role_id' => '86efe04b-8be4-4c70-a240-fe9624d89371',
+                'employee_id' => 'cee11fdf-13df-4ce3-947f-ff59500b8055'
+            ]
+        ]);
+
+        DB::table('employees')->insert([
+            [
+                'id' => 'bf3f86ab-10e0-4659-9ac5-69ea75889555',
+                'first_name' => 'Mary',
+                'last_name' => 'Sue',
+                'dob' => '1980-08-10',
+                'created_at' => now(),
+                'updated_at' => now(),
+                'job_role_id' => '8821d316-6ee2-4f70-bfc8-917b4219f7d3',
+                'contact_id' => 'c950681e-68e3-4b5b-90e2-7c6e6f8b2121',
+                'address_id' => '3a8b47f7-5b9a-4b19-a4d2-f21e29be2f4f'
             ]
         ]);
 

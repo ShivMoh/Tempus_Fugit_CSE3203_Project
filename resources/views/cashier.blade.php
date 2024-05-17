@@ -73,14 +73,19 @@
             <div class="cashier-bottom-content">
                 <div class="cashier-options">
                     <div class="customer-info">
-                        <label for="customer_name">Customer Name:</label>
+                        <label for="customer_name">Customer Name</label>
                         <input type="text" id="customer_name" name="customer_name" required>
                     </div>
                     
                     <!-- Add $50 dollars if delivery is checked -->
                     <div class="additional-options">
-                        <label for="delivery_fee">Delivery Fee:</label>
+                        <label for="delivery_fee">Delivery Fee</label>
                         <input type="checkbox" id="delivery_fee" name="delivery_fee" value="50">
+                    </div>
+
+                    <div class="additional-options">
+                        <label for="card">Card</label>
+                        <input type="text" id="card-details" name="card_details" placeholder="Leave Blank For Cash Payment">
                     </div>
                 </div>
                 

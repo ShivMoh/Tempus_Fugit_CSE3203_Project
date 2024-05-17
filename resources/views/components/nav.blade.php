@@ -24,6 +24,7 @@
         align-items: center;
         background: #fff;
         box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
       }
       nav .logo {
         display: flex;
