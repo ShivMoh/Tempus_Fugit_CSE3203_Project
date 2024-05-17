@@ -70,7 +70,7 @@
 
                     <div class="customer-info">
                         <label for="customer">Customers: </label>
-                            <select name="customer" id="customer">
+                            <select name="customer" id="customer" required>
                                 <option value="" disabled selected>Select Customer</option>
                                 @foreach ($customers as $customer)
                                     <option value="{{$customer->id}}">{{$customer->first_name." ".$customer->last_name}}</option>

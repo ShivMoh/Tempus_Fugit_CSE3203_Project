@@ -275,15 +275,19 @@ class CashierController extends Controller
     private function calculateCosts(array $itemDetails, $deliveryFee)
     {
         $grossCost = 0;
-
+        $totalDiscount = session('billPreview.totalDiscount');
+    
+        // Calculate gross cost and apply discounts
         foreach ($itemDetails as $itemDetail) {
             $grossCost += $itemDetail['total'];
         }
-
-        $duty = $grossCost * 0.16;
-        $netCost = $grossCost + $deliveryFee;
-        $grossCost += $duty;
-
+    
+        // Calculate duty based on gross cost and discount
+        $duty = ($grossCost - $totalDiscount) * 0.16;
+    
+        // Calculate net cost
+        $netCost = $grossCost - $totalDiscount + $duty + $deliveryFee;
+    
         return [
             'grossCost' => $grossCost,
             'netCost' => $netCost,
