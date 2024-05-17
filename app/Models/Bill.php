@@ -22,7 +22,7 @@ class Bill extends Model
         'discount',
         'duty_and_vat',
         'delivery_fee',
-        'employee_id',
+        'user_id',
         'customer_id'
     ];
 
@@ -33,7 +33,7 @@ class Bill extends Model
         'discount' => 'float',
         'duty_and_vat' => 'float',
         'delivery_fee' => 'float',
-        'employee_id' => 'string',
+        'user_id' => 'string',
         'customer_id' => 'string'
     ];
 
