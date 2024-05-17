@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
     <style>
-      
+
       nav {
         position: fixed;
         top: 0;
@@ -111,13 +111,13 @@
     <nav>
       <div class="logo">
         <i class="bx bx-menu menu-icon"></i>
-        <span class="logo-name">[Company Name]</span>
+        <span class="logo-name">Tempus Fugit LLC</span>
       </div>
 
       <div class="sidebar">
         <div class="logo">
           <i class="bx bx-menu menu-icon"></i>
-          <span class="logo-name">[Company Name]</span>
+          <span class="logo-name">Tempus Fugit LLC</span>
         </div>
         <div class="sidebar-content">
           <ul class="lists">

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const transactions = window.transactionsData;
         const salesLabels = transactions.map(transaction => {
             const date = new Date(transaction.created_at);
-            return date.toLocaleDateString(); // Format date to only display date part
+            return date.toLocaleDateString();
         });
         const salesDataValues = transactions.map(transaction => transaction.total_cost);
 
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createSalesChart();
 
-    // Create the highest stock items chart
     const stockCtx = document.getElementById('highestStockChart').getContext('2d');
     let stockChart;
 
@@ -132,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createLowestStockChart();
 
-    // Create the category doughnut chart
     const categoryDoughnutCtx = document.getElementById('categoryDoughnutChart').getContext('2d');
     const chartData = window.chartData;
 

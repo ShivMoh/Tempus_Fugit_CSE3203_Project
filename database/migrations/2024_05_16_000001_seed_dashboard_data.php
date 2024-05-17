@@ -14,50 +14,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        // Insert items into the items table
-        // DB::table('items')->insert([
-        //     [
-        //         "id"            => '79f9eef4-b689-4f13-895a-69f1488a791b',
-        //         'name'          => 'Screwdriver',
-        //         'selling_price' => 100.0,
-        //         'cost_price'    => 80.0,
-        //         'total_sold'    => 5,
-        //         'stock_count'   => 20,
-        //         'image_url'     => "screwdriver_url",
-        //         'category_id'   => '174779ab-5a6e-4aee-8053-2822954611d2',
-        //         'supplier_id'   => '79f9eef4-b689-4f13-895a-69f1488a791b', // Replace with actual supplier_id
-        //         'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
-        //         'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
-        //     ],
-        //     [
-        //         "id"            => (string) Str::uuid(),
-        //         'name'          => 'Hammer',
-        //         'selling_price' => 150.0,
-        //         'cost_price'    => 120.0,
-        //         'total_sold'    => 10,
-        //         'stock_count'   => 15,
-        //         'image_url'     => "hammer_url",
-        //         'category_id'   => '174779ab-5a6e-4aee-8053-2822954611d2',
-        //         'supplier_id'   => '79f9eef4-b689-4f13-895a-69f1488a791b', // Replace with actual supplier_id
-        //         'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
-        //         'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
-        //     ],
-        //     [
-        //         "id"            => (string) Str::uuid(),
-        //         'name'          => 'Wrench',
-        //         'selling_price' => 120.0,
-        //         'cost_price'    => 90.0,
-        //         'total_sold'    => 8,
-        //         'stock_count'   => 25,
-        //         'image_url'     => "wrench_url",
-        //         'category_id'   => '174779ab-5a6e-4aee-8053-2822954611d2',
-        //         'supplier_id'   => '79f9eef4-b689-4f13-895a-69f1488a791b', // Replace with actual supplier_id
-        //         'created_at'    => DB::raw('CURRENT_TIMESTAMP'),
-        //         'updated_at'    => DB::raw('CURRENT_TIMESTAMP')
-        //     ]
-        // ]);
-
         DB::table('addresses')->insert([
             [
                 'id' => '2d9d32a9-0d08-43c0-a0a5-48f9d5d9a8c0',
@@ -95,6 +51,7 @@ return new class extends Migration
                 'updated_at'    => DB::raw('CURRENT_TIMESTAMP'),
             ]
             ]);
+
 
         DB::table('card_payments')->insert([
             [
@@ -146,7 +103,6 @@ return new class extends Migration
             ]
         ]);
 
-        // Insert transactions into the transactions table
         DB::table('transactions')->insert([
             [
                 "id"            => (string) Str::uuid(),
