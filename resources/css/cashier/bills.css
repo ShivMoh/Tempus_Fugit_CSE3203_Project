@@ -1,0 +1,67 @@
+/* General Styles */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    color: #085993;
+}
+
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.bill-table th, .bill-table td {
+    border: 1px solid #C0DFFF;
+    padding: 10px;
+    text-align: center;
+}
+
+.bill-table th {
+    background-color: #8DCFFF;
+    color: white;
+}
+
+.return-button {
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #8DCFFF; 
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.return-button:hover {
+    background-color: #085993;
+}
+
+.print-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.print-button:hover {
+    background-color: #45a049;
+}
