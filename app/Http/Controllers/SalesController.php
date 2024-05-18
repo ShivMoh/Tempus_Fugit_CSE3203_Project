@@ -9,38 +9,43 @@ class SalesController extends Controller
 {
     public function getItems()
     {
-        $items = Item::all();
-        return $items;
+        return Item::all();
     }
 
     public function index()
-{
-    $items = $this->getItems();
+    {
+        $items = $this->getItems();
 
+        // Initialize arrays for labels and data
+        $labels = [];
+        $sales = [];
+        $profitsData = [];
+        $costs = [];
 
-    // Calculates the total sales received from customers
-    $receivedFromCustomers = $items->sum(function ($item) {
-        return $item->selling_price * $item->total_sold;
-    });
+        // Calculate data for each item
+        foreach ($items as $item) {
+            $labels[] = $item->name;
+            $sales[] = $item->selling_price * $item->total_sold;
+            $costs[] = $item->cost_price * $item->total_sold;
+            $profitsData[] = ($item->selling_price - $item->cost_price) * $item->total_sold;
+        }
 
-    // Calculates the total costs given to suppliers
-    $givenToSuppliers = $items->sum(function ($item) {
-        return $item->cost_price * $item->total_sold;
-    });
+        // Calculate total received from customers and given to suppliers
+        $receivedFromCustomers = array_sum($sales);
+        $givenToSuppliers = array_sum($costs);
+        $netBalance = $receivedFromCustomers - $givenToSuppliers;
+        $profits = $receivedFromCustomers - $givenToSuppliers;
 
-    // Calculates net balance 
-    $netBalance = $receivedFromCustomers - $givenToSuppliers;
-
-    // Calculates profit 
-    $profits = $receivedFromCustomers - $givenToSuppliers;
-
-    return view('sales', [
-        'netBalance' => $netBalance,
-        'givenToSuppliers' => $givenToSuppliers,
-        'receivedFromCustomers' => $receivedFromCustomers,
-        'profits' => $profits,
-        'items' => $items,
-    ]);
-}   
+        return view('sales', [
+            'netBalance' => $netBalance,
+            'givenToSuppliers' => $givenToSuppliers,
+            'receivedFromCustomers' => $receivedFromCustomers,
+            'profits' => $profits,
+            'labels' => $labels,
+            'sales' => $sales,
+            'profitsData' => $profitsData,
+            'costs' => $costs,
+        ]);
+    }
 
 }
