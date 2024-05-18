@@ -33,7 +33,7 @@
                     @for ($i = 0; $i < 15; $i++)
                         <tr>
                             <td class="item-id">{{ $i + 1 }}</td>
-
+                            
                             <td class="name-of-item">
                                 <select name="item_name[]" onchange="updateRow(this)">
                                     <option value="" disabled selected>Select Item</option>
@@ -70,11 +70,13 @@
 
                     <div class="customer-info">
                         <label for="customer">Customers: </label>
-                            <select name="customer" id="customer">
+                            <select name="customer" id="customer" required>
                                 <option value="" disabled selected>Select Customer</option>
                                 @foreach ($customers as $customer)
                                     <option value="{{$customer->id}}">{{$customer->first_name." ".$customer->last_name}}</option>
                                 @endforeach
+                                <option value="">New Customer</option>
+
                             </select>
                     </div>
                     
