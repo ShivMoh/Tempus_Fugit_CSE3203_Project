@@ -4,15 +4,15 @@
 
 1. **NPM (Node Package Manager)**
    
-   Download and install Node.js from https://nodejs.org/
+   Download and install [Node.js](<https://nodejs.org/>)
 
 2. **Composer**
    
-   Download and install Composer from https://getcomposer.org/
+   Download and install [Composer](<https://getcomposer.org/>)
 
 3. **PostgreSQL**
    
-   Download and install PostgreSQL from https://www.postgresql.org/download/
+   Download and install [PostgreSQL](<https://www.postgresql.org/download/>)
 
 ### Create a Database in PostgreSQL
 
