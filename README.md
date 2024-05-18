@@ -56,7 +56,7 @@
     ```
 3. In database.php, change the default connection to postgres
 
-```env
+```
 'default' => env('DB_CONNECTION', 'pgsql')
     ```
 
