@@ -16,8 +16,8 @@
 
 ### Create a Database in PostgreSQL
 
-1. Open a database manager (E.G: DBeaver, pgAdmin).
-2. Create a new database for your Laravel project.
+1. Open a database manager (E.G: DBeaver, pgAdmin) or use a terminal.
+2. Create a new postgres database for your Laravel project.
 
 ### Install Laravel
 
@@ -54,7 +54,10 @@
     DB_USERNAME=your_database_username
     DB_PASSWORD=your_database_password
     ```
+3. In database.php, change the default connection to postgres
 
+```php 'default' => env('DB_CONNECTION', 'pgsql'),
+```
 ### Generate Application Key
 
 1. Run the following command to generate the application key:
