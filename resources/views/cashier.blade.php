@@ -127,12 +127,7 @@
                 <div class="total-and-bill-options">
                     <input type="text" id="totalCost" readonly placeholder="Total Cost" style="background-color: white; border: 1px solid black;">
                     <input type="submit" class="confirm-and-print-bill" value="Confirm and Print Bill">
-                    <a href="/bills" class="view-bills">View Bills</a>
                 </div>
-            </div>
-        </form>
-    </div>
-
     <script>
         var items = @json($items);
 

@@ -57,10 +57,14 @@ body {
     
 }
 
-.up-arrow,
-.down-arrow {
+.up-arrow{
     font-size: 1.5rem;
     color: rgb(50, 255, 67);
+}
+
+.down-arrow {
+  font-size: 1.5rem;
+  color: rgb(255, 50, 50);
 }
 
 .financial-statistics {

@@ -71,6 +71,9 @@ Route::group(['middleware' => ['role:eff3a740-b777-48dc-8c04-78893ba6a50b,86efe0
    })->name('bill_success');
    Route::get('/customer_error', [CashierController::class, 'customerError'])->name('customer_error');
    Route::get('/bills', [CashierController::class, 'viewBills'])->name('bills');
+   
+   Route::post('/sales', [SalesController::class, 'index'])->name('sales');
+
 
    Route::get('/sales', [SalesController::class, 'index']);
 });

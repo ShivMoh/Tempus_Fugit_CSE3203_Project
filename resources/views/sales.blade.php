@@ -21,14 +21,14 @@
             </div>
             <div class="rectangle-button">
                 <span class="given-to-suppliers">Given to Suppliers: ${{ number_format(abs($givenToSuppliers), 2) }}</span>
-            </button>
+            </div>
             <div class="rectangle-button-3">
                 <span class="received-from-customers">Received from Customers: ${{ number_format(abs($receivedFromCustomers), 2) }}</span>
-            </>
+            </div>
             <div class="rectangle-button-4">
                 <span class="profits">Profits: {!! $profits > 0 ? '<span class="up-arrow">&uarr;</span>' : ($profits < 0 ? '<span class="down-arrow">&darr;</span>' : '') !!} ${{ number_format(abs($profits), 2) }}</span>
-            </>
-            <div class="financial-statistics">Financial Statistics</>
+            </div>
+            <div class="financial-statistics">Financial Statistics</div>
             <div class="charts-container">
                 <div class="chart">
                     <canvas id="salesProfitsChart" width="300" height="150"></canvas>
@@ -38,6 +38,11 @@
                     <canvas id="costsSalesChart" width="300" height="150"></canvas>
                     <div class="chart-title">Overall Costs vs Sales</div>
                 </div>
+            </div>
+            <div class="cashier-content">
+                <form action="{{ route('bills') }}" method="GET">
+                    <button type="submit" class="manage-bills">Sales Log</button>
+                </form>
             </div>
         </div>
     </div>
