@@ -56,8 +56,8 @@
     ```
 3. In database.php, change the default connection to postgres
 
-```'default' => env('DB_CONNECTION', 'pgsql')```
-
+```php
+'default' => env('DB_CONNECTION', 'pgsql')
 ### Generate Application Key
 
 1. Run the following command to generate the application key:
