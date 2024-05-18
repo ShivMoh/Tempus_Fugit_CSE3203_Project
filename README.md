@@ -58,6 +58,7 @@
 
 ```php
 'default' => env('DB_CONNECTION', 'pgsql')
+```
 ### Generate Application Key
 
 1. Run the following command to generate the application key:
