@@ -1,6 +1,10 @@
 /* Importing Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+.bottom-content {
+    margin-bottom: 100px !important;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7fc;
