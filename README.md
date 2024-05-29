@@ -75,6 +75,14 @@
     php artisan migrate
     ```
 
+### Seed Database
+
+1. Run the following command to create the necessary database tables:
+
+    ```sh
+    php artisan db:seed
+    ```
+
 ### Serve the Application
 1. Run the following command to build NPM:
    
