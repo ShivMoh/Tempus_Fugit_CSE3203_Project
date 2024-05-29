@@ -77,7 +77,7 @@
 
 ### Seed Database
 
-1. Run the following command to create the necessary database tables:
+1. Run the following command to create to seed the database:
 
     ```sh
     php artisan db:seed
